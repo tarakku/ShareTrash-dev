@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+            content="width=device-width, user-scalable=no, initial-scale=1.0",
+            maximum-scale="1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/index_style.css" />
+    @vite(['resources/css/index.css', 'resources/js/app.js'])
+</head>
+<body>
+    <!--ここからヘッダー-->
+    <header>
+        <div class="Shere_Trash_icon">
+            <img src="./header_images/Shere_Trash_icon.png" alt="Shere_Trash_icon">
+            <h1>ShareTrash</h1>
+        </div>    
+        <nav>
+            <ul>
+                <li><a href="#">Form</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Members</a></li>
+
+                <li class="login">
+                    <img class="login_icon" src="./header_images/login_icon.png" alt="login_icon">
+                    <a href="{{ route('login') }}">Login/Sign Up</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <!--ここまでヘッダー-->
+
+    <div class="message">
+        <h2>GreenCycle Comminity</h2>
+        <h3>Connected Trash Can</h3>
+    </div>
+
+    <!--ここからメイン-->
+    <main>
+        <div class="main_nav">
+            <nav>
+            <ul>
+                <li><a href="#">category</a></li>
+                <li><a href="#">Allpost</a></li>
+                <li><a href="#">Mypost</a></li>
+            </ul>
+            </nav>
+            <button><a href="{{ route('login') }}">login/sign up</a></button>
+        </div>
+
+        <button>create</button>
+
+        <div class="main_category">
+            <img src="{{ asset('category_icon/燃えるごみ.png') }}" alt="燃えるごみ">
+            <img src="{{ asset('category_icon/不燃ごみ.png') }}" alt="不燃ごみ">
+            <img src="{{ asset('category_icon/インクカートリッジ.png') }}" alt="インクカートリッジ">
+            <img src="{{ asset('category_icon/カン.png') }}" alt="カン">
+            <img src="{{ asset('category_icon/カン2.png') }}" alt="カン2">
+            <img src="{{ asset('category_icon/キャップ.png') }}" alt="キャップ">
+            <img src="{{ asset('category_icon/ケーブル類.png') }}" alt="ケーブル類">
+            <img src="{{ asset('category_icon/トレー.png') }}" alt="トレー">
+            <img src="{{ asset('category_icon/ビン.png') }}" alt="ビン">
+            <img src="{{ asset('category_icon/ペットボトル.png') }}" alt="ペットボトル">
+            <img src="{{ asset('category_icon/新聞紙.png') }}" alt="新聞紙">
+            <img src="{{ asset('category_icon/小型製品.png') }}" alt="小型製品">
+        </div>
+    </main>
+    
+    
+    <!--ここまでメイン-->
+
+    <!--ここからフッター-->
+    <footer>
+        <p>&copy; 2023 Your Company Name. All rights reserved.</p>
+        <nav>
+            <ul>
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Terms of Service</a></li>
+                <li><a href="#">Contact Us</a></li>
+            </ul>
+        </nav>
+        <div class="social-links">
+            <a href="#"><img src="social-icon-facebook.png" alt="Facebook"></a>
+            <a href="#"><img src="social-icon-twitter.png" alt="Twitter"></a>
+            <a href="#"><img src="social-icon-instagram.png" alt="Instagram"></a>
+        </div>
+    </footer>
+    <!--ここまでフッター-->
+</body>
+</html>

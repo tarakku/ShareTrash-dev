@@ -1,0 +1,76 @@
+.rergister_form_btm{
+    display: flex;
+    justify-content: center
+}
+
+.register_main {
+  width: 30%;
+  padding: 40pxd 10px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  background-color: white;
+  text-align: center;
+  border-radius: 15%;
+}
+
+.register_main h1,
+.register_main p {
+  color: black;
+  font-weight: 500;
+}
+
+.register_main p {
+  font-size: 10px;
+  padding-bottom: 15px;
+}
+
+.register_main input[type = "id"],
+.register_main input[type = "password"],form input[type = "text"],form input[type = "email"],select{
+  border: 0;
+  background: none;
+  display: block;
+  margin: 20px auto;
+  border: 2px solid black;
+  padding: 15px 10px;
+  width: 80%;
+  outline: none;
+  border-radius: 24px;
+  transition: 0.25s;
+  text-align: center;
+}
+
+.rergister_form_right select{
+    width: 95%;
+}
+
+.register_main input[type = "id"]:focus,
+.register_main input[type = "password"]:focus,input[type="text"]:focus,input[type="email"]:focus{
+  width: 85%;
+  background-color: #f0f8ff;
+}
+
+.register_button button[type = "submit"]{
+  border: 0;
+  background: none;
+  background-color: black;
+  display: block;
+  margin: 20px auto;
+  border: 2px solid black;
+  padding: 15px 10px;
+  width: 50%;
+  outline: none;
+  color: white;
+  border-radius: 25px;
+  transition: 0.25s;
+  text-align: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.register_main input[type = "submit"]:hover {
+  background-color: #ff69b4;
+  border: 2px solid #ff69b4;
+}
+
