@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('posts', function (Blueprint $table) {
-            $table->id('post_id'); // PK: 投稿ID
+            $table->bigIncrements('post_id'); // PK: 投稿ID
             $table->string('title'); // タイトル
             $table->text('content'); // 内容 (stringではなくtextの方が適切)
             $table->timestamp('posted_at')->useCurrent(); // 投稿日時
