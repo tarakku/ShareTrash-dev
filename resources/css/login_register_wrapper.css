@@ -1,0 +1,65 @@
+.wrapper { 
+  height: 100%;
+  width: 100%;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  position: absolute;
+  /* 青、緑、白のグラデーションに調整 */
+  background: linear-gradient(124deg, #20c2ce, #aefff4, #1de840); /* 水色、白、鮮やかな緑 */
+  background-size: 1800% 1800%; /* グラデーションの大きさを維持 */
+
+  /* アニメーションの速度を遅くする (例: 30秒に設定) */
+  -webkit-animation: rainbow 30s ease infinite; 
+  -z-animation: rainbow 30s ease infinite;
+  -o-animation: rainbow 30s ease infinite;
+  animation: rainbow 30s ease infinite;
+}
+
+@-webkit-keyframes rainbow {
+    0%{background-position:0% 82%}
+    50%{background-position:100% 19%}
+    100%{background-position:0% 82%}
+}
+@-moz-keyframes rainbow {
+    0%{background-position:0% 82%}
+    50%{background-position:100% 19%}
+    100%{background-position:0% 82%}
+}
+@-o-keyframes rainbow {
+    0%{background-position:0% 82%}
+    50%{background-position:100% 19%}
+    100%{background-position:0% 82%}
+}
+@keyframes rainbow { 
+    0%{background-position:0% 82%}
+    50%{background-position:100% 19%}
+    100%{background-position:0% 82%}
+}
+
+
+.header_ShereTrash{
+    padding: 20px;
+}
+
+.top-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: black;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.top-button:hover{
+    background-color: rgb(204, 18, 133);
+}
+
+.top-button:active{
+    background-color: rgb(0, 0, 0);
+}

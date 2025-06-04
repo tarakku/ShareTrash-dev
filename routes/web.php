@@ -17,5 +17,5 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('/ShareTrash', \App\Http\Controllers\ShareTrash\IndexController::class);
+Route::get('/ShareTrash', \App\Http\Controllers\ShareTrash\IndexController::class)->name('ShareTrash');
 require __DIR__.'/auth.php';
