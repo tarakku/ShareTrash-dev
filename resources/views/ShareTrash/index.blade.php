@@ -24,7 +24,12 @@
 
                 <li class="login">
                     <img class="login_icon" src="./header_images/login_icon.png" alt="login_icon">
-                    <a href="{{ route('login') }}">Login/Sign Up</a>
+                    @guest
+                    <a href="{{ route('login') }}">Login/Register</a>
+                    @endguest
+                    @auth
+                    こんにちは、{{ Auth::user()->nickname }} さん！
+                    @endauth
                 </li>
             </ul>
         </nav>
@@ -46,10 +51,22 @@
                 <li><a href="#">Mypost</a></li>
             </ul>
             </nav>
-            <button><a href="{{ route('login') }}">login/sign up</a></button>
+            @guest
+            <button><a href="{{ route('login') }}">Login/Register</a></button>
+            @endguest
+            @auth
+                <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                    <button type="button">Log Out</button>
+                </a>
+
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    @csrf </form>
+            @endauth
         </div>
 
+        @auth
         <button>create</button>
+        @endauth
 
         <div class="main_category">
             <img src="{{ asset('category_icon/燃えるごみ.png') }}" alt="燃えるごみ">
