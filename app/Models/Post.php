@@ -10,9 +10,7 @@ class Post extends Model
     use HasFactory;
 
     protected $table = 'posts';
-
-    protected $primarkey = 'post_id';
-
+    protected $primaryKey = 'post_id';
     public $timestamps = false;
 
     protected $fillable = [
@@ -22,10 +20,23 @@ class Post extends Model
         'edited_at',
         'views_count',
         'likes_count',
+        'user_id',
+        'category_id',
     ];
 
     protected $casts = [
         'posted_at' => 'datetime',
         'edited_at' => 'datetime',
     ];
+
+    // リレーションシップ（オプション）
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'id', 'id'); // 'id' (postsテーブルのカラム名), 'id' (usersテーブルの参照カラム名)
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class, 'category_id', 'category_id');
+    }
 }

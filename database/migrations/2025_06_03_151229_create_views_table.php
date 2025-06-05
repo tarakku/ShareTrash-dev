@@ -13,14 +13,14 @@ return new class extends Migration
     {
         Schema::create('views', function (Blueprint $table) {
             // 複合主キーの定義
-            $table->foreignId('id')
+            $table->foreignId('user_id')
                   ->constrained('users', 'id')
                   ->onDelete('cascade');
             $table->foreignId('post_id')
                   ->constrained('posts', 'post_id')
                   ->onDelete('cascade');
 
-            $table->primary(['id', 'post_id']); // 複合主キー
+            $table->primary(['user_id', 'post_id']); // 複合主キー
 
             $table->timestamp('viewed_at')->useCurrent(); // 閲覧日時
             // $table->timestamps(); // もしupdated_atも必要なら

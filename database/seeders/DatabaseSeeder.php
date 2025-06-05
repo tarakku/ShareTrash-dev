@@ -13,7 +13,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
-        $this->call(PostTableSeeder::class);
+        $this->call([
+            UserTableSeeder::class,     // ユーザーシーダーが一番最初に来るように
+            CategoryTableSeeder::class, // その後、カテゴリ
+            PostTableSeeder::class,     // その後、投稿
+            CommentTableSeeder::class,  // 最後にコメント
+        ]);
     }
 }

@@ -23,7 +23,7 @@ return new class extends Migration
                   ->onDelete('cascade');
 
             // FK: 会員ID
-            $table->foreignId('id')
+            $table->foreignId('user_id')
                   ->constrained('users', 'id') // usersテーブルのidを参照
                   ->onDelete('cascade');
         });

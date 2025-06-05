@@ -12,16 +12,16 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('posts', function (Blueprint $table) {
-            $table->bigIncrements('post_id'); // PK: 投稿ID
+            $table->bigIncrements('post_id');// PK: 投稿ID
             $table->string('title'); // タイトル
-            $table->text('content'); // 内容 (stringではなくtextの方が適切)
+            $table->text('content'); // 内容
             $table->timestamp('posted_at')->useCurrent(); // 投稿日時
             $table->timestamp('edited_at')->nullable(); // 編集日時
-            $table->integer('views_count')->default(0); // 閲覧数 (view は予約語と被る可能性があるので変更)
-            $table->integer('likes_count')->default(0); // いいね数 (like も予約語と被る可能性があるので変更)
+            $table->integer('views_count')->default(0); // 閲覧数
+            $table->integer('likes_count')->default(0); // いいね数
 
             // FK: 会員ID
-            $table->foreignId('id')
+            $table->foreignId('user_id')
                   ->constrained('users', 'id') // usersテーブルのidを参照
                   ->onDelete('cascade');
 

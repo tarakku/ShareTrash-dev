@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('status')->default('pending'); // 対応状況 (例: 'pending', 'resolved'など)
 
             // FK: 会員ID
-            $table->foreignId('id')
+            $table->foreignId('user_id')
                   ->constrained('users', 'id')
                   ->onDelete('cascade');
         });
