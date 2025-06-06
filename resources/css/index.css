@@ -13,6 +13,15 @@ body {
     min-height: 100vh;
     background-image: url("/public/back_image/back.png");
     background-size:cover;
+
+    /* アニメーション */
+    opacity: 0; /* 透明 */
+    transition: opacity 1.5s ease-out; /* 1.5秒*/
+}
+
+/* アニメーション */
+body.fade-in {
+    opacity: 1; /* 不透明にする */
 }
 
 /* ------------------------------------ */

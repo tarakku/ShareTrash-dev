@@ -1,0 +1,394 @@
+footer {
+    background-color: #ffffff; /* 全体の背景色 */
+    border-top: 1px solid #ddd;
+    margin-top: 60px; /* ページ下部に固定 */
+    padding: 20px 0 0 0;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 0 20px 30px;
+}
+
+.footer-left img {
+  width: 350px;
+  height: 100px;
+  margin-left: 40px;
+}
+
+
+.sharetrash-logo {
+    padding: 0 80px 30px 0;
+}
+
+.contact-button {
+    display: inline-block;
+    background: linear-gradient(to bottom, #80d5ff, #4dc4ff); 
+    border: none;
+    border-radius: 99999px;
+    padding: 13px 100px;
+    color: white;
+    font-size: 1.8em;
+    font-weight: bold;
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    box-shadow: 0 10px #3b6b90; /* 立体感を出すための影 */
+    transition: all 0.4s ease;
+    text-align: center;
+}
+
+.contact-button span {
+    position: relative;
+    z-index: 1;
+}
+
+.contact-button:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(62, 62, 62, 0.2); /* ホバー時の光沢 */
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    transform: translateX(-100%); /* 初期状態は左に隠す */
+}
+
+.contact-button:hover {
+    transform: translateY(10px); /* 少し沈むようなアニメーション */
+    box-shadow: 0 2px #3b6b90; /* 影を小さくして沈んだように見せる */
+}
+
+.contact-button:hover:before {
+    transform: translateX(0); /* ホバー時に光沢を移動 */
+    opacity: 1;
+}
+
+.contact-button:active {
+    transform: translateY(4px);
+    box-shadow: 0 2px #3b6b90;
+    
+}
+
+
+.footer-center,
+.footer-right {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.footer-center ul,
+.footer-right ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 10px 0;
+}
+
+.footer-center li,
+.footer-right li {
+    margin-bottom: 10px;
+}
+.footer-center a,
+.footer-right a {
+    text-decoration: none;
+    color: #666;
+    font-size: 1em;
+    transition: color 0.2s ease;
+}
+
+.footer-center a:hover,
+.footer-right a:hover {
+    color: #000;
+}
+
+.community-info {
+    margin-top: 20px;
+}
+
+.greencycle-text,
+.community-text,
+.connected-text {
+    font-family: 'Arial Black', sans-serif; /* 少し太めのフォント */
+    font-size: 2.9em; /* 大きな文字 */
+    color: #ffffff; /* 白 */
+    text-shadow: 3.2px 3px 0 #000000, -1px -1px 0 #000000, 5px -1px 0 #000000, -1px 1px 0 #000000; /* 黒い縁取り */
+    line-height: 0.9; /* 行間を狭く */
+    margin: 0;
+    padding-left: 100px;
+    
+    
+}
+
+.community-text {
+    font-size: 2.7em; /* Comminity は少し大きめ */
+}
+
+.connected-text {
+    font-size: 1.4em; /* Connected Trash Can は小さめ */
+    color: #6f6868; /* 少し濃いグレー */
+    text-shadow: none; /* 縁取りなし */
+    margin-top: 5px;
+}
+
+.footer-bottom {
+    background-color: #80D5FF; /* 下部の青い帯 */
+    color: rgb(255, 255, 255);
+    padding: 0px 90px;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0;
+    align-items: center;
+    font-size: 0.865em;
+}
+
+.footer-bottom-links a {
+    color: rgb(1, 1, 1);
+    text-decoration: none;
+    margin-right: 20px;
+    transition: color 0.2s ease;
+}
+
+.footer-bottom-links a:hover {
+    color: #ffffff;
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+    .footer-container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 20px;
+    }
+
+    .footer-left,
+    .footer-center,
+    .footer-right {
+        margin-bottom: 30px;
+        align-items: center;
+    }
+
+    .footer-center ul,
+    .footer-right ul {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .footer-center li,
+    .footer-right li {
+        margin: 0 10px 10px 10px;
+    }
+
+    .sharetrash-logo {
+        font-size: 2.5em;
+    }
+
+    .community-info {
+        margin-top: 10px;
+    }
+
+    .greencycle-text,
+    .community-text,
+    .connected-text {
+        font-size: 1.8em;
+    }
+
+    .community-text {
+        font-size: 2.2em;
+    }
+
+    .connected-text {
+        font-size: 1em;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .footer-bottom-links {
+        margin-bottom: 10px;
+    }
+}
+
+/* ... (既存のCSSコード) ... */
+
+/* レスポンシブ対応 */
+@media (max-width: 992px) { /* タブレット向け調整 (例: 992px以下) */
+    .footer-container {
+        flex-wrap: wrap; /* 要素を折り返すようにする */
+        justify-content: center; /* 中央寄せ */
+        padding: 0 15px 30px; /* パディングを少し減らす */
+    }
+
+    .footer-left,
+    .footer-center,
+    .footer-right {
+        flex-basis: 45%; /* 各要素の幅を調整（2列表示を意識） */
+        margin-bottom: 30px;
+        align-items: center; /* 中央寄せ */
+        text-align: center; /* テキストも中央寄せ */
+    }
+
+    .footer-left {
+        order: 1; /* 表示順序の調整（左上） */
+    }
+    .footer-center {
+        order: 2; /* 右上 */
+    }
+    .footer-right {
+        order: 3; /* 左下 */
+        flex-basis: 90%; /* 右下は幅を広めに */
+    }
+
+    .sharetrash-logo {
+        font-size: 2.8em;
+    }
+
+    .contact-button {
+        padding: 12px 25px;
+        font-size: 1em;
+    }
+
+    .footer-center ul,
+    .footer-right ul {
+        flex-direction: column; /* 縦並びに戻す */
+        align-items: center; /* 中央寄せ */
+    }
+}
+
+@media (max-width: 768px) { /* スマートフォン向け調整 (例: 768px以下) */
+    .footer-container {
+        flex-direction: column; /* 要素を縦並びにする */
+        align-items: center; /* 中央寄せ */
+        padding: 20px 15px; /* パディングを調整 */
+    }
+
+    .footer-left,
+    .footer-center,
+    .footer-right {
+        flex-basis: 100%; /* 各要素の幅を100%にする */
+        margin-bottom: 25px; /* マージンを調整 */
+        align-items: center;
+        text-align: center;
+    }
+
+    .sharetrash-logo {
+        font-size: 2em; /* フォントサイズをさらに小さく */
+        margin-bottom: 15px;
+    }
+
+    .contact-button {
+        width: 90%; /* ボタンの幅を調整 */
+        max-width: 260px; /* 最大幅を設定 */
+        padding: 10px 20px;
+        font-size: 0.9em;
+    }
+
+    .footer-center ul,
+    .footer-right ul {
+        margin: 0;
+        padding: 0;
+        width: 100%; /* リストの幅を調整 */
+    }
+
+    .footer-center li,
+    .footer-right li {
+        margin-bottom: 8px; /* リスト項目のマージンを調整 */
+    }
+
+    .footer-center a,
+    .footer-right a {
+        font-size: 0.95em;
+    }
+
+    .community-info {
+        margin-top: 15px;
+    }
+
+    .greencycle-text,
+    .community-text,
+    .connected-text {
+        font-size: 1.8em; /* フォントサイズを小さく */
+        line-height: 1;
+    }
+
+    .community-text {
+        font-size: 2.2em; /* Comminity は少し大きめを維持 */
+    }
+
+    .connected-text {
+        font-size: 0.9em; /* さらに小さく */
+        margin-top: 5px;
+    }
+
+    .footer-bottom {
+        flex-direction: column; /* 縦並びにする */
+        padding: 12px 15px;
+    }
+
+    .footer-bottom-links {
+        margin-bottom: 8px;
+        display: flex; /* リンクも横並び */
+        justify-content: center;
+        width: 100%;
+    }
+
+    .footer-bottom-links a {
+        margin: 0 10px; /* リンク間のマージン */
+    }
+
+    .footer-bottom p {
+        text-align: center;
+        font-size: 0.8em;
+    }
+}
+
+@media (max-width: 480px) { /* さらに小さなスマホ向け (例: 480px以下) */
+    .sharetrash-logo {
+        font-size: 1.8em;
+    }
+
+    .contact-button {
+        width: 90%;
+        font-size: 0.85em;
+    }
+
+    .greencycle-text,
+    .community-text {
+        font-size: 1.5em;
+    }
+
+    .community-text {
+        font-size: 1.8em;
+    }
+
+    .connected-text {
+        font-size: 0.8em;
+    }
+
+    .footer-bottom-links a {
+        margin: 0 8px;
+    }
+}
+/* モバイル対応 */
+@media(max-width: 767px){
+	.nav ul{
+		flex-wrap: wrap;
+		gap: 15px;
+	}
+	main{
+		padding: 0 8%;
+	}
+}
