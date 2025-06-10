@@ -1,0 +1,74 @@
+/* ------------------------------------ */
+/* ヘッダー設定 */
+/* ------------------------------------ */
+
+.Shere_Trash_icon{
+    display: flex;
+    margin-left: 15%;
+}
+
+.Shere_Trash_icon img{
+    width: 70px;
+    height: auto;
+}
+
+.login{
+    display: flex;
+}
+.login_icon{
+    width: 30px;
+    height: 30px;
+    margin-right: 5px;
+    overflow: hidden;
+    position: relative;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+}
+
+header h1 {
+    margin: 0;
+}
+
+
+header nav {
+    margin-right: 15%;
+}
+header nav ul {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+header nav ul li {
+    margin-left: 20px;
+}
+
+header nav ul li a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+}
+
+header nav ul li a:hover {
+    color: #007bff;
+}
+
+.message h2 {
+    font-size: 3rem;
+}
+
+.message h3 {
+    font-size: 1rem;
+}
+
+.message{
+    text-align: center;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}

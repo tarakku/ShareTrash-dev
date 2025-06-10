@@ -11,7 +11,7 @@
     <div class="wrapper">
         <div class="header">
             <div class="header_ShereTrash">
-                <a href="{{ route('ShareTrash') }}" class="top-button">
+                <a href="{{ route('category') }}" class="top-button">
                     トップへ戻る
                 </a>
             </div> 

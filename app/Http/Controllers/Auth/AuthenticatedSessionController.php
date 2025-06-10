@@ -28,7 +28,7 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended(route('ShareTrash', absolute: false));
+        return redirect()->intended(route('sharetrash', absolute: false));
     }
 
     /**
@@ -42,6 +42,6 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect()->route('ShareTrash');
+        return redirect()->route('sharetrash');
     }
 }
