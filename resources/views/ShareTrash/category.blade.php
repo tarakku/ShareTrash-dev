@@ -9,7 +9,7 @@
 </div>
 
 <main>
-    <div>
+    <div class="category">
         <x-nav />
         <div class="main_category">
             <img src="{{ asset('category_icon/燃えるごみ.png') }}" alt="燃えるごみ">
@@ -25,7 +25,6 @@
             <img src="{{ asset('category_icon/新聞紙.png') }}" alt="新聞紙">
             <img src="{{ asset('category_icon/小型製品.png') }}" alt="小型製品">
         </div>
-        </div>
-        
-    </main>
+    </div>
+</main>
 @endsection

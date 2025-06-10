@@ -1,0 +1,18 @@
+/* ------------------------------------ */
+/* メイン設定 */
+/* ------------------------------------ */
+.allpost {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 40%;
+    margin: 0 auto;
+    padding: 20px;
+    border: 2px solid #333;
+    border-radius: 15px;
+    background: #ffffff;
+}
+
+.post-container {
+    display: flex;
+}
