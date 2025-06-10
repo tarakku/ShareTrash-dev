@@ -41,15 +41,14 @@ class PostTableSeeder extends Seeder
             // return;
         }
 
-        // ここからPost::create()の各呼び出しに user_id と category_id を追加
         Post::create([
             'title' => 'テストデータ',
             'content' => 'これはシーダーで作成された最初の投稿です',
             'posted_at' => now(), // 現在時刻
             'views_count' => 10,
             'likes_count' => 5,
-            'user_id' => $user->id,          // ★ここを追加または修正★
-            'category_id' => $category->category_id, // ★ここを追加または修正★
+            'user_id' => $user->id,
+            'category_id' => $category->category_id,
         ]);
 
         Post::create([
@@ -59,7 +58,7 @@ class PostTableSeeder extends Seeder
             'views_count' => 25,
             'likes_count' => 12,
             'user_id' => $user->id,
-            'category_id' => $category->category_id,
+            'category_id' => 3
         ]);
 
         Post::create([
@@ -69,7 +68,7 @@ class PostTableSeeder extends Seeder
             'views_count' => 20,
             'likes_count' => 12,
             'user_id' => $user->id,
-            'category_id' => $category->category_id,
+            'category_id' => 4
         ]);
 
         Post::create([

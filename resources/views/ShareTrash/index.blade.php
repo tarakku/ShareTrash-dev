@@ -14,7 +14,7 @@
         <!--ここからヘッダー-->
         <header>
             <div class="Shere_Trash_icon">
-                <img src="./header_images/Shere_Trash_icon.png" alt="Shere_Trash_icon">
+                <img src="{{ asset('header_images/Shere_Trash_icon.png') }}" alt="Shere_Trash_icon">
                 <h1>ShareTrash</h1>
             </div>    
             <nav>
@@ -24,7 +24,7 @@
                     <li><a href="#">Members</a></li>
 
                     <li class="login">
-                        <img class="login_icon" src="./header_images/login_icon.png" alt="login_icon">
+                        <img class="login_icon" src="{{ asset('header_images/login_icon.png') }}" alt="login_icon">
                         @guest
                         <a href="{{ route('login') }}">Login/Register</a>
                         @endguest
@@ -48,7 +48,7 @@
                 <nav>
                 <ul>
                     <li><a href="#">category</a></li>
-                    <li><a href="#">Allpost</a></li>
+                    <li><a href="{{ route('allpost') }}">Allpost</a></li>
                     <li><a href="#">Mypost</a></li>
                 </ul>
                 </nav>
