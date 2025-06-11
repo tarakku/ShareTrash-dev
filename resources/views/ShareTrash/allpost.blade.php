@@ -52,7 +52,6 @@
                             <span class="stat-item">{{ $post->views_count }}</span>
                             <span class="stat-item">{{ $post->likes_count }}</span>
                             <span class="stat-item">0</span> {{-- コメント数を想定 --}}
-                            <span class="stat-item">0</span> {{-- 不満数を想定 --}}
                         </div>
                         <div class="post-meta">
                             <i class="fas fa-user-circle user-icon"></i>
