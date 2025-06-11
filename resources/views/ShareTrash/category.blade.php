@@ -9,7 +9,7 @@
 </div>
 
 <main>
-    <div class="category">
+    <div class="category_container">
         <x-nav />
         <div class="main_category">
             <img src="{{ asset('category_icon/燃えるごみ.png') }}" alt="燃えるごみ">
@@ -24,6 +24,9 @@
             <img src="{{ asset('category_icon/ペットボトル.png') }}" alt="ペットボトル">
             <img src="{{ asset('category_icon/新聞紙.png') }}" alt="新聞紙">
             <img src="{{ asset('category_icon/小型製品.png') }}" alt="小型製品">
+            <img src="{{ asset('category_icon/新聞紙.png') }}" alt="新聞紙">
+            <img src="{{ asset('category_icon/小型製品.png') }}" alt="小型製品">
+            <img src="{{ asset('category_icon/新聞紙.png') }}" alt="新聞紙">
         </div>
     </div>
 </main>

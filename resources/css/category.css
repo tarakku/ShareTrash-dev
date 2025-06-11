@@ -27,11 +27,10 @@ body.fade-in {
 /* ------------------------------------ */
 /* メイン設定 */
 /* ------------------------------------ */
-.category {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    width: 40%;
+.category_container {
+    width: 800px;
+    max-width: 900px;
+    min-width: 320px;
     margin: 0 auto;
     padding: 20px;
     border: 2px solid #333;
@@ -39,67 +38,97 @@ body.fade-in {
     background: #ffffff;
 }
 
-.main_nav {
-    width: 100%;
+.category_container .header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 20px;
-    border-bottom: 2px solid #333;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #eee;
 }
 
-.main_nav nav ul {
+.category_container .header .main-nav {
     display: flex;
-    list-style: none;
-    padding: 0;
-    margin: 0;
+    gap: 20px;
 }
 
-.main_nav nav ul li {
-    margin-right: 20px;
-}
-
-.main_nav nav ul li a {
+.category_container .header .nav-link {
     text-decoration: none;
-    color: #333;
+    color: #555;
     font-weight: bold;
+    padding-bottom: 5px;
 }
 
-.main_nav button {
-    padding: 8px 15px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+.category_container .header .nav-link.active {
+    color: #000;
+    border-bottom: 2px solid #000; /* アクティブなリンクの下線 */
 }
 
-.main_nav button a{
-    text-decoration: none;
-    color: #ffffff;
-    font-weight: bold;
-}
-
-.category > button:nth-of-type(1) {
-    margin-top: 0;
-    margin-bottom: 20px;
-    padding: 10px 20px;
-    background-color: #28a745;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.main_category {
-    width: 100%;
+.category_container .header .header-right {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-start;
+    align-items: center;
     gap: 15px;
 }
 
-.main_category img {
+.category_container .search-bar {
+     position: relative;
+}
+
+.category_container .search-bar input {
+    border: 1px solid #ccc;
+    padding: 8px 30px 8px 10px; /* テキストと×ボタンのスペース */
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.category_container .search-bar .clear-search {
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #888;
+}
+
+.category_container .btn-link {
+    text-decoration: none;
+    color: inherit; /* 親要素（ボタン）の文字色を継承 */
+    display: block; /* ボタン全体をリンク範囲にするため */
+    line-height: 1; /* ボタンの高さに合わせる調整 */
+    padding: 12px 20px;
+
+    margin: -12px -20px;
+}
+
+.category_container .sign-out-btn,
+.category_container .sign-up-btn {
+    background-color: #dc3545; /* 赤系の色 */
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    overflow: hidden; /* 子要素のpaddingでボタンからはみ出さないように */
+}
+
+.category_container .sign-up-btn {
+    background-color: #02fdf1;
+    color: white; /* リンクの色も白にするため */
+}
+
+.category_container .main_category {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.category_container .main_category img {
     width: 140px;
     height: 140px;
     object-fit: contain;

@@ -1,11 +1,10 @@
 /* ------------------------------------ */
 /* メイン設定 */
 /* ------------------------------------ */
-.allpost {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 40%;
+.allpost_container {
+    width: 900px;
+    max-width: 900px;
+    min-width: 320px;
     margin: 0 auto;
     padding: 20px;
     border: 2px solid #333;
@@ -13,6 +12,286 @@
     background: #ffffff;
 }
 
-.post-container {
+.allpost_container .header {
     display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #eee;
+}
+
+.allpost_container .header .main-nav {
+    display: flex;
+    gap: 20px;
+    position: relative;
+    padding-bottom: 5px;
+}
+
+
+.allpost_container .header .nav-link {
+    text-decoration: none;
+    color: #555;
+    font-weight: bold;
+    padding: 0 10px 5px 10px;
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+    transition: color 0.3s ease;
+
+    /* CSS変数で下線の状態を制御 */
+    --underline-width: 0%;
+    --underline-left: 0%;
+}
+
+.allpost_container .header .nav-link::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: var(--underline-left); /* JavaScriptで制御 */
+    width: var(--underline-width); /* JavaScriptで制御 */
+    height: 2px;
+    background-color: #000;
+    transition: width 0.3s ease-out, left 0.3s ease-out; /* スライドアニメーション */
+}
+
+.allpost_container .header .nav-link.active {
+    color: #000;
+}
+
+.allpost_container .header .nav-link.active::before {
+    width: 100%;
+    left: 0;
+    transition: none;
+}
+
+.allpost_container .header .nav-link:not(.active):hover {
+    color: #000;
+}
+
+.allpost_container .header .header-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.allpost_container .search-bar {
+     position: relative;
+}
+
+.allpost_container .search-bar input {
+    border: 1px solid #ccc;
+    padding: 8px 30px 8px 10px; /* テキストと×ボタンのスペース */
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.allpost_container .search-bar .clear-search {
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #888;
+}
+
+.allpost_container .btn-link {
+    text-decoration: none;
+    color: inherit; /* 親要素（ボタン）の文字色を継承 */
+    display: block; /* ボタン全体をリンク範囲にするため */
+    line-height: 1; /* ボタンの高さに合わせる調整 */
+    padding: 12px 20px;
+
+    margin: -12px -20px;
+}
+
+.allpost_container .sign-out-btn,
+.allpost_container .sign-up-btn {
+    background-color: #dc3545; /* 赤系の色 */
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    overflow: hidden; /* 子要素のpaddingでボタンからはみ出さないように */
+}
+
+.allpost_container .sign-up-btn {
+    background-color: #02fdf1;
+    color: white; /* リンクの色も白にするため */
+}
+
+/* ソートと投稿ボタン */
+.allpost_container .controls-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.allpost_container .sort-section {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.allpost_container .sort-dropdown {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.allpost_container .create-post-btn {
+    background-color: #007bff; /* 青系の色 */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/* ナビゲーションアイコン */
+.allpost_container .nav-icons-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #eee; /* 下線 */
+}
+
+.allpost_container .nav-icons {
+    display: flex;
+    gap: 15px;
+}
+
+.allpost_container .icon-btn {
+    font-size: 24px;
+    color: #555;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.allpost_container .icon-btn:hover {
+    color: #000;
+}
+
+.allpost_container .recent-activity {
+    font-weight: bold;
+    color: #555;
+}
+
+/* 投稿リスト */
+.allpost_container .post-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* 投稿アイテム間のスペース */
+}
+
+.allpost_container .post-item {
+    background-color: #f9f9f9; /* 投稿アイテムの背景色 */
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.allpost_container .post-details {
+    flex-grow: 1; /* 詳細部分がスペースを占有 */
+}
+
+.allpost_container .post-title {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin: 0 0 5px 0;
+    color: #333;
+}
+
+.allpost_container .post-category {
+    font-size: 0.9em;
+    color: #666;
+    margin: 0;
+}
+
+.allpost_container .post-stats {
+    display: flex;
+    gap: 15px; /* 統計情報間のスペース */
+    font-size: 1.1em;
+    color: #555;
+    font-weight: bold;
+    min-width: 100px; /* 統計情報の最小幅を確保 */
+    justify-content: flex-end; /* 右寄せ */
+}
+
+.allpost_container .stat-item {
+    text-align: center;
+}
+
+.allpost_container .post-meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9em;
+    color: #777;
+    margin-left: 20px; /* 統計情報と日時の間のスペース */
+    min-width: 140px; /* 日付の表示幅を確保 */
+    justify-content: flex-end; /* 右寄せ */
+}
+
+.allpost_container .user-icon {
+    font-size: 1.2em;
+    color: #888;
+}
+
+/* 投稿がない場合のメッセージ */
+.allpost_container .no-posts {
+    text-align: center;
+    color: #888;
+    padding: 30px;
+    border: 1px dashed #ccc;
+    border-radius: 8px;
+    margin-top: 20px;
+}
+
+/* レスポンシブ対応 (簡易的) */
+@media (max-width: 768px) {
+    .allpost_container .header, .controls-section, .nav-icons-section, .post-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .allpost_container .main-nav, .header-right, .sort-section, .nav-icons, .post-stats, .post-meta {
+        width: 100%;
+        justify-content: flex-start;
+        gap: 10px;
+    }
+
+    .allpost_container .header-right {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .allpost_container .search-bar input {
+        width: calc(100% - 40px); /* 検索バーの幅調整 */
+    }
+
+    .allpost_container .post-item {
+        align-items: flex-start;
+    }
+
+    .allpost_container .post-stats, .post-meta {
+        margin-left: 0;
+        margin-top: 10px;
+        justify-content: flex-start;
+    }
 }

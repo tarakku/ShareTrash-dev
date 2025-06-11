@@ -9,7 +9,8 @@
     'resources/css/footer.css',
     'resources/css/category.css',
     'resources/css/allpost.css',
-    'resources/js/index.js'])
+    'resources/js/index.js',
+    'resources/js/nav_underline_animation.js'])
 </head>
 <body>
     <div id="fade-in-element" class="hidden">
