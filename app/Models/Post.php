@@ -29,10 +29,9 @@ class Post extends Model
         'edited_at' => 'datetime',
     ];
 
-    // リレーションシップ（オプション）
     public function user()
     {
-        return $this->belongsTo(User::class, 'id', 'id'); // 'id' (postsテーブルのカラム名), 'id' (usersテーブルの参照カラム名)
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
 
     public function category()

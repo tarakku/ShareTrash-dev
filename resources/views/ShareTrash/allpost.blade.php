@@ -48,6 +48,7 @@
             </div>
             @auth
             <button class="create-post-btn">CreatePost</button>
+            <button class="create-post-btn"><a href="{{ route('create') }}">CreatePost</a></button>
             @endauth
         </div>
 
