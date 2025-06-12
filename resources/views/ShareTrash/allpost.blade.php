@@ -15,12 +15,16 @@
 
         <div class="controls-section">
             <div class="sort-section">
-                <label for="sortBy">SortBy</label>
-                <select id="sortBy" class="sort-dropdown">
-                    <option value="value">Value</option>
-                    <option value="date">日付</option>
-                    <option value="views">閲覧数</option>
-                </select>
+                <form action="{{ route('allpost') }}" method="GET" id="sortForm">
+                    <label for="sortBy">SortBy</label>
+                    <select id="sortBy" class="sort-dropdown" name="sort_by" onchange="this.form.submit()">
+                        <option value="value">選択してください</option>
+                        <option value="created_at" @selected($sortBy == 'created_at')>日付</option>
+                        <option value="views_count" @selected($sortBy == 'views_count')>閲覧数</option>
+                        <option value="likes_count" @selected($sortBy == 'likes_count')>いいね数</option>
+                        <option value="posted_at" @selected($sortBy == 'posted_at')>投稿日時</option>
+                    </select>
+                </form>
             </div>
             @auth
             <button class="create-post-btn">CreatePost</button>

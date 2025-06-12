@@ -10,27 +10,48 @@ use Illuminate\Http\Request; // Request クラスを忘れずにuseします
 class AllPostController extends Controller
 {
     /**
-     * 投稿の一覧を表示します。
-     * 必要に応じて、特定のカテゴリの投稿を絞り込みます。
+     * 一覧表示処理 ソート含む
      */
-    public function allpost(Request $request) // ここに Request $request を追加します
+    public function allpost_show(Request $request)
     {
-        // 投稿の基本クエリを定義します
-        $postsQuery = Post::with('category')->orderBy('posted_at', 'desc');
+        $allowedSorts = [
+            'created_at' => 'created_at',
+            'views_count' => 'views_count',
+            'likes_count' => 'likes_count',
+            'posted_at' => 'posted_at',
+        ];
 
-        // URLに 'category_id' パラメータがある場合、そのカテゴリIDで絞り込む
+        $sortBy = $request->query('sort_by', 'posted_at');
+        $sortDirection = $request->query('direction', 'desc');
+
+        if (!array_key_exists($sortBy, $allowedSorts)) {
+            $sortBy = 'posted_at';
+        }
+
+        if (!in_array(strtolower($sortDirection), ['asc', 'desc'])) {
+            $sortDirection = 'desc';
+        }
+
+        $postsQuery = Post::query();
+
+        $postsQuery->with('category');
+
         if ($request->has('category_id')) {
             $categoryId = $request->input('category_id');
-            // postsテーブルの category_id カラムで絞り込みます
             $postsQuery->where('category_id', $categoryId);
         }
 
-        // 定義されたクエリを実行して投稿を取得
-        $posts = $postsQuery->get(); 
+        if ($sortBy === 'likes_count') {
+            $postsQuery->withCount('likes');
+        }
 
-        // 全てのカテゴリ一覧も取得 (これは絞り込みには関係ありません)
-        $categories = Category::all(); 
+        $postsQuery->orderBy($allowedSorts[$sortBy], $sortDirection);
 
-        return view('ShareTrash.allpost', compact('posts', 'categories'));
+        $posts = $postsQuery->paginate(10);
+
+        $categories = Category::all();
+
+        return view('ShareTrash.allpost', compact('posts', 'categories', 'sortBy', 'sortDirection'));
     }
+
 }
