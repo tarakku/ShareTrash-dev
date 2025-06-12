@@ -27,17 +27,6 @@
             @endauth
         </div>
 
-        <div class="nav-icons-section">
-            <div class="nav-icons">
-                <a href="#" class="icon-btn"><i class="fas fa-arrow-left"></i></a>
-                <a href="#" class="icon-btn"><i class="fas fa-arrow-right"></i></a>
-                <a href="#" class="icon-btn"><i class="fas fa-comment-dots"></i></a>
-                <a href="#" class="icon-btn"><i class="fas fa-frown"></i></a>
-                <a href="#" class="icon-btn"><i class="fas fa-eye"></i></a>
-            </div>
-            <div class="recent-activity">Recent Activity</div>
-        </div>
-
         <div class="post-list">
             @if ($posts->isEmpty())
                 <p class="no-posts">まだ投稿がありません。</p>
@@ -49,8 +38,11 @@
                             <p class="post-category">カテゴリー: {{ $post->category->name ?? '未分類' }}</p> {{-- category->name を表示 --}}
                         </div>
                         <div class="post-stats">
+                            <i class="fas fa-eye"></i>
                             <span class="stat-item">{{ $post->views_count }}</span>
+                            <i class="fas fa-frown"></i>
                             <span class="stat-item">{{ $post->likes_count }}</span>
+                            <i class="fas fa-comment-dots"></i>
                             <span class="stat-item">0</span> {{-- コメント数を想定 --}}
                         </div>
                         <div class="post-meta">

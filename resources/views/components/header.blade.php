@@ -12,7 +12,7 @@
             <li class="login">
                 <img class="login_icon" src="{{ asset('header_images/login_icon.png') }}" alt="login_icon">
                 
-                こんにちは、{{ Auth::user()?->nickname ?? 'ゲスト' }} さん！
+                {{ Auth::user()?->nickname ?? 'ゲスト' }}
                 
             </li>
         </ul>
