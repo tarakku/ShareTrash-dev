@@ -15,7 +15,6 @@ class AllPostController extends Controller
     public function allpost_show(Request $request)
     {
         $allowedSorts = [
-            'created_at' => 'created_at',
             'views_count' => 'views_count',
             'likes_count' => 'likes_count',
             'posted_at' => 'posted_at',
@@ -39,10 +38,6 @@ class AllPostController extends Controller
         if ($request->has('category_id')) {
             $categoryId = $request->input('category_id');
             $postsQuery->where('category_id', $categoryId);
-        }
-
-        if ($sortBy === 'likes_count') {
-            $postsQuery->withCount('likes');
         }
 
         $postsQuery->orderBy($allowedSorts[$sortBy], $sortDirection);
