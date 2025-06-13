@@ -20,4 +20,6 @@ Route::middleware('auth')->group(function () {
 require __DIR__.'/auth.php';
 
 Route::get('/ShareTrash/Category', [\App\Http\Controllers\ShareTrash\CategoryController::class, 'category'])->name('category');
-Route::get('/ShareTrash/AllPost', [\App\Http\Controllers\ShareTrash\AllPostController::class, 'allpost'])->name('allpost');
+Route::get('/ShareTrash/AllPost', [\App\Http\Controllers\ShareTrash\AllPostController::class, 'allpost_show'])->name('allpost');
+
+Route::get('/ShareTrash/create', [\App\Http\Controllers\ShareTrash\PostController::class, 'create'])->name('create');

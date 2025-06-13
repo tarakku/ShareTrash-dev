@@ -146,6 +146,11 @@
     font-size: 14px;
 }
 
+.allpost_container .page-up-down {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
 .allpost_container .create-post-btn {
     background-color: #007bff; /* 青系の色 */
     color: white;
