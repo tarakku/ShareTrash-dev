@@ -15,15 +15,40 @@
 
         <div class="controls-section">
             <div class="sort-section">
-                <label for="sortBy">SortBy</label>
-                <select id="sortBy" class="sort-dropdown">
-                    <option value="value">Value</option>
-                    <option value="date">日付</option>
-                    <option value="views">閲覧数</option>
-                </select>
+                <form action="{{ route('allpost') }}" method="GET" id="sortForm">
+                    <label for="sortBy">SortBy</label>
+                    <select id="sortBy" class="sort-dropdown" name="sort_by" onchange="this.form.submit()">
+                        <option value="views_count" @selected($sortBy == 'views_count')>閲覧数</option>
+                        <option value="likes_count" @selected($sortBy == 'likes_count')>いいね数</option>
+                        <option value="posted_at" @selected($sortBy == 'posted_at')>投稿日時</option>
+                    </select>
+                </form>
+            </div>
+            <div class="page-up-down">
+                @if($posts->previousPageUrl())
+                    <a href="{{ $posts->previousPageUrl() }}" class="page-link left-arrow">
+                        <i class="fa fa-chevron-left"></i>
+                    </a>
+                @else
+                    <i class="fa fa-chevron-left disabled-arrow"></i>
+                @endif
+
+                <span class="current-page-info">
+                {{ $posts->currentPage() }} / {{ $posts->lastPage() }}
+                </span>
+
+
+                @if ($posts->nextPageUrl())
+                    <a href="{{ $posts->nextPageUrl() }}" class="page-link right-arrow">
+                        <i class="fa fa-chevron-right"></i>
+                    </a>
+                @else
+                    <i class="fa fa-chevron-right disabled-arrow"></i>
+                @endif
             </div>
             @auth
             <button class="create-post-btn">CreatePost</button>
+            <button class="create-post-btn"><a href="{{ route('create') }}">CreatePost</a></button>
             @endauth
         </div>
 
@@ -40,7 +65,7 @@
                         <div class="post-stats">
                             <i class="fas fa-eye"></i>
                             <span class="stat-item">{{ $post->views_count }}</span>
-                            <i class="fas fa-frown"></i>
+                            <i class="fa-solid fa-face-smile"></i>
                             <span class="stat-item">{{ $post->likes_count }}</span>
                             <i class="fas fa-comment-dots"></i>
                             <span class="stat-item">0</span> {{-- コメント数を想定 --}}
