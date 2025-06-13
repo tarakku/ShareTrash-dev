@@ -42,7 +42,7 @@ class AllPostController extends Controller
 
         $postsQuery->orderBy($allowedSorts[$sortBy], $sortDirection);
 
-        $posts = $postsQuery->paginate(10);
+        $posts = $postsQuery->paginate(5);
 
         $categories = Category::all();
 
