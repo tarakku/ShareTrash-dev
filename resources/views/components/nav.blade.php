@@ -2,7 +2,9 @@
     <nav class="main-nav">
         <a href="{{ route('category') }}" class="nav-link [active]">カテゴリー</a>
         <a href="{{ route('allpost') }}" class="nav-link [active]">すべてのポスト</a>
+        @auth
         <a href="#" class="nav-link [active]">自分のポスト</a>
+        @endauth
     </nav>
     <div class="header-right">
         <div class="search-bar">

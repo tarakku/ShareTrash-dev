@@ -9,13 +9,15 @@ class Category extends Model
 {
     use HasFactory;
 
-    protected $table = 'categories';
-
-    protected $primarykey = 'category_id';
-
-    public $timestamps = false;
-
+    protected $primaryKey = 'category_id';
+    public $incrementing = true;
+    protected $keyType = 'int';
     protected $fillable = [
-        'category_name',
+        'name',
     ];
+
+    public function posts()
+    {
+        return $this->hasMany(Post::class, 'category_id', 'category_id');
+    }
 }
