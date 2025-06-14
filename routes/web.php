@@ -23,3 +23,5 @@ Route::get('/ShareTrash/Category', [\App\Http\Controllers\ShareTrash\CategoryCon
 Route::get('/ShareTrash/AllPost', [\App\Http\Controllers\ShareTrash\AllPostController::class, 'allpost_show'])->name('allpost');
 
 Route::get('/ShareTrash/create', [\App\Http\Controllers\ShareTrash\PostController::class, 'create'])->name('create');
+
+Route::post('/ShareTrash/create', [\App\Http\Controllers\ShareTrash\PostController::class, 'store'])->name('store');

@@ -12,6 +12,15 @@
     background: #ffffff;
 }
 
+.allpost_container .alert-success {
+    display: block;
+    padding: 15px 0;
+    background:rgb(40, 155, 68);
+    color: #FFF;
+    text-align: center;
+    border-radius: 8px;
+}
+
 .allpost_container .header {
     display: flex;
     justify-content: space-between;

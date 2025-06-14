@@ -9,8 +9,13 @@
 </div>
 
 <main>
+    
     <div class="allpost_container">
-        
+        @if (session('success'))
+        <div class="alert-success">
+            {{ session('success') }}
+        </div>
+        @endif
         <x-nav />
 
         <div class="controls-section">
@@ -59,7 +64,7 @@
                     <div class="post-item">
                         <div class="post-details">
                             <h2 class="post-title">{{ $post->title }}</h2>
-                            <p class="post-category">カテゴリー: {{ $post->category->name ?? '未分類' }}</p> {{-- category->name を表示 --}}
+                            <p>カテゴリー: {{ $post->category->category_name ?? '未分類' }}</p>
                         </div>
                         <div class="post-stats">
                             <i class="fas fa-eye"></i>

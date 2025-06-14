@@ -18,27 +18,39 @@
         </div>
 
         <h2>CreatePost</h2>
-        <form action="{{ route('create') }}" method="POST" id="createPost">
+        <form action="{{ route('store') }}" method="POST" id="createPost">
             @csrf
 
             <div class="title">
                 <label for="title">タイトル</label>
-                <input type="text" name="title" id="title" value="{{ old('title') }}">
+                <input type="text" name="title" id="title" value="{{ old('title') }}" placeholder="投稿のタイトルを入力してください">
+                @error('title')
+                    <p class="error-message">{{ $message }}</p>
+                @enderror
             </div>
 
             <div class="content">
                 <label for="content">本文</label>
-                <textarea class="form-control" name="content" id="content" rows="5">{{ old('content') }}</textarea>
+                <textarea name="content" id="content" rows="5" placeholder="投稿の内容を入力してください">{{ old('content') }}</textarea>
+                @error('content')
+                    <p class="error-message">{{ $message }}</p>
+                @enderror
             </div>
 
             <div class="category-section">
-                <label for="category">カテゴリー</label>
-                <select id="sortBy" class="category-dropdown" name="sort_by">
-                        <option value="views_count">燃えるゴミ</option>
-                        <option value="likes_count">燃えないゴミ</option>
-                        <option value="posted_at">プラスチック</option>
-                    </select>
+                <label for="sortBy">カテゴリー</label>
+                <select id="category_id" class="category-dropdown" name="category_id">
+                    @foreach ($categories as $category)
+                        <option value="{{ $category->category_id }}" @selected(old('category_id') == $category->category_id)>
+                            {{ $category->category_name }}
+                        </option>
+                    @endforeach
+                </select>
+                @error('category_id')
+                    <p class="error-message">{{ $message }}</p>
+                @enderror
             </div>
+
             <button type="submit" class="btn btn-primary">投稿する</button>
         </form>
     </div>
