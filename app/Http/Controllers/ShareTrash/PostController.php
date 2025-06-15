@@ -57,7 +57,9 @@ class PostController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $post = Post::with('category')->findOrFail($id);
+
+        return view('ShareTrash.show', compact('post'));
     }
 
     /**
