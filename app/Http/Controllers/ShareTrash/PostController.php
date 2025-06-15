@@ -62,6 +62,20 @@ class PostController extends Controller
         return view('ShareTrash.show', compact('post'));
     }
 
+
+    public function myPosts(Request $request)
+    {
+        $user = Auth::user();
+            
+        $sortBy = $request->input('sort_by', 'posted_at');
+
+        $posts = Post::where('user_id', $user->id)
+                    ->orderBy($sortBy, 'desc')
+                    ->paginate(10)
+                    ->withQueryString();
+
+        return view('ShareTrash.mypost', compact('posts', 'sortBy'));
+    }
     /**
      * Show the form for editing the specified resource.
      */
