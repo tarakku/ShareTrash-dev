@@ -1,0 +1,505 @@
+/* ------------------------------------ */
+/* 全体レイアウトの基本設定 */
+/* ------------------------------------ */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {/*CSS適応*/
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-image:url("../images/back.jpg");
+    background-size:cover;
+}
+
+/* ------------------------------------ */
+/* ヘッダー設定 */
+/* ------------------------------------ */
+
+.Shere_Trash_icon{
+    display: flex;
+    margin-left: 15%;
+}
+
+.Shere_Trash_icon img{
+    width: 70px;
+    height: auto;
+}
+
+.login{
+    display: flex;
+}
+.login_icon{
+    width: 30px;
+    height: 30px;
+    margin-right: 5px;
+    overflow: hidden;
+    position: relative;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+}
+
+header h1 {
+    margin: 0;
+}
+
+
+header nav {
+    margin-right: 15%;
+}
+header nav ul {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+header nav ul li {
+    margin-left: 20px;
+}
+
+header nav ul li a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+}
+
+header nav ul li a:hover {
+    color: #007bff;
+}
+
+.message h2 {
+    font-size: 3rem;
+}
+
+.message h3 {
+    font-size: 1rem;
+}
+
+.message{
+    text-align: center;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+/* ------------------------------------ */
+/* メイン設定 */
+/* ------------------------------------ */
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    width: 40%;
+    margin: 0 auto;
+    padding: 20px;
+    border: 2px solid #333;
+    border-radius: 15px;
+    background: #ffffff;
+}
+
+.main_nav {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #333;
+}
+
+.main_nav nav ul {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.main_nav nav ul li {
+    margin-right: 20px;
+}
+
+.main_nav nav ul li a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+}
+
+.main_nav button {
+    padding: 8px 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+main > button:nth-of-type(1) {
+    margin-top: 0;
+    margin-bottom: 20px;
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.main_category {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 15px;
+}
+
+.main_category img {
+    width: 140px;
+    height: 140px;
+    object-fit: contain;
+}
+
+/* ------------------------------------ */
+/* フッター設定 */
+/* ------------------------------------ */
+footer {
+    background-color: #333;
+    color: #fff;
+    padding: 30px 20px;
+    text-align: center;
+    margin-top: 50px;
+}
+
+footer p {
+    margin-bottom: 15px;
+    font-size: 0.9em;
+}
+
+footer nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 15px 0;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+footer nav ul li {
+    margin: 0 15px;
+}
+
+footer nav ul li a {
+    text-decoration: none;
+    color: #fff;
+    transition: color 0.3s ease;
+}
+
+footer nav ul li a:hover {
+    color: #007bff;
+}
+
+.social-links {
+    margin-top: 15px;
+}
+
+.social-links img {
+    width: 30px;
+    height: 30px;
+    margin: 0 10px;
+    vertical-align: middle;
+}
+.background {/*白いカードを表示*/
+    background: white;/*背景の白*/
+    border-radius:20px;/*角の丸み*/
+    padding: 30px;/*内側余白*/
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);/* 影の効果 */
+     width:90%;
+     max-width:1000px;
+  
+   margin : 100px auto 100px auto ; /*上下100、中央*/
+ 
+}
+.search{/*カードの上部タブとバー、ボタンの中央分け　表示中央*/
+    display:flex;
+    justify-content: space-between;/*左右に要素を配置*/
+    align-items: center;
+   padding: 10px  20px;
+    border-bottom: 2px solid black;/*下線で区切り*/
+}
+
+.search-icon {/*タブの左揃え*/
+    display: flex;
+   justify-content: flex-start;
+    gap: 40px;
+}
+
+.search-button {/*ボタン、バーの右揃え*/
+    display: flex;
+    gap: 60px;
+    justify-content: flex-end;
+}
+.button{/*ログイン・アウト　コメントの設定*/
+    background-color: black;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width:120px;
+    height: 50px;
+}
+.text-serch {/*検索バーの外枠*/
+    display:flex;
+    padding:10px 20px;
+    border: 2px solid black;
+    border-radius: 30px;
+       background:transparent;
+}
+.clear-button{/*検索の×の□の非表示*/
+    background:none;
+    border: none;
+    font-size: 20px;
+    cursor:pointer;
+    color:black;
+    padding:0;
+    line-height:1;
+}
+.text-serch input {/*検索のバー内枠を非表示*/
+    border: none;
+    outline: none; 
+    background: transparent; 
+}
+.post-section {
+  display: flex;
+  flex-direction: column;/* 縦に並べる */
+  gap: 20px; /* 各要素の縦間隔 */
+  padding: 10px;
+  /*max-width: 600px; /* 横幅制限 */
+  /*margin: 0 auto;
+  /*box-sizing: border-box; /*ボックスサイズを調整 */
+    /*position: relative;*/
+}
+.post-header {
+  display: flex;
+  align-items: center;
+  gap: 15px; /* avatarとテキストの間隔 */
+  justify-content: flex-start; /* 左詰め */
+}
+.post-header .avatar {
+  width: 50px;
+  height: 50px;
+  background-color: #ccc;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.post-header > div > div:first-child {
+  font-weight: bold;
+  font-size: 16px;
+}
+.post-title {
+  font-weight: bold;
+  font-size: 24px;
+  flex-grow:1;/* タイトルを可能な限り広げる */
+}
+.post-content {
+  line-height: 1.6;
+  /* 35文字くらいで読みやすく改行させる */
+  /*max-width: 70ch; /* 1文字あたりの幅を基準に最大幅を制限 */
+  white-space: pre-wrap; /* 改行を反映させる */
+  word-break: break-word;
+  color: #333;
+}
+.actions {/*ボタンのアクション*/
+  display: flex;
+  align-items: center;
+  justify-content:first-start; /* 左詰め */;
+  gap: 10px;
+}
+.likebutton{
+     background:none;
+    border: none;
+    font-size: 20px;
+    cursor:pointer;
+    color:black;
+    padding:0;
+    line-height:1;
+}
+.likebutton::before{
+    content:"👍";
+    margin-right:8px;
+    font-size:16px;
+    display:inline-block;
+}
+.actions .button {
+  padding: 8px 16px;
+  background-color: black;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+.actions span {
+  font-size: 14px;
+  color: #666;
+}
+.actions > span:not(:first-child) {
+  margin-left: 10px;
+}
+.actions > div {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+.comment-box{
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.comment-box label{
+    font-weight:bold;
+    font-size:14px;
+}
+.comment-box input[type="text"]{
+    padding:8px 12px;
+    border-radius:5px;
+    border:1px solid #ccc;
+    width: 100%;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+.post-title-and-footer {
+  display: flex;
+  justify-content: space-between; /* 左右に分ける */
+  align-items: center;
+  flex-wrap: wrap; /* スマホ対応 */
+  margin-top: 10px;
+  gap: 10px;
+}
+.footer-inline {
+  display: flex;
+   justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+    margin-top: 10px;
+  flex-wrap: wrap; /* スマホ対応 */ 
+}
+
+.footer-nav {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+/* 👁 0 / 💬 0 を大きく */
+.footer-inline .actions span {
+  font-size: 18px;  /* お好みで調整（例: 18〜22px） */
+  color: #333;
+}
+
+/* 👍ボタンの絵文字を大きく */
+.footer-inline .likebutton::before {
+  font-size: 22px;
+}
+
+/* 「類義のポストへの移動」文字を大きく */
+.footer-inline .footer-nav span {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* ← → ボタンのサイズとフォントサイズ */
+.footer-inline .footer-nav button {
+  font-size: 20px;
+  padding: 8px 14px;
+  border: none;
+  background-color: #eee;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.footer-inline .footer-nav button:hover {
+  background-color: #ddd;
+}
+.backbutton {/*戻るボタンの見た目とアイコン*/
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: black;
+  padding: 0;
+  line-height: 1;
+  position:relative;
+}
+.senter-text{
+    margin : 0,60; /*上下の余白をなくす*/
+    text-align: center; /* テキストを中央揃え */
+}
+/*--------------------------*/
+/*前CSSからの変更点はここから*/
+/*--------------------------*/
+
+.backbutton::before {
+  content: "🔙 戻る";/*アイコン*/
+  margin-right: 8px;
+  font-size: 10px;
+  display: inline-block;
+}
+.form-row {/*▼ 入力欄（タイトルとドロップダウン）を並べる横並びレイアウト*/
+    display: flex;
+  gap: 40px;                  /* テキストボックスとプルダウンの間隔 */
+  align-items: center;        /* 高さを揃える */
+  margin-top: 10px;
+  
+}
+
+.text-input {/*テキストタイトル入力*/
+  padding: 8px 12px;
+  font-size: 14px;
+  border: 1px solid black;
+  border-radius: 5px;
+  flex: 1;                    /* 幅を自動調整（必要に応じて） */
+}
+
+.dropdown-menu {/*ドロップダウンメニュー*/
+  padding: 8px 12px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: white;
+}
+.input-container {/*投稿内容入力*/
+  width: 100%;
+ 
+  margin: 0;
+  margin-top: 10px;
+}
+
+.document-input {
+   width: 100%;/*横いっぱい*/
+  height: 300px;/*高さは固定手動調性*/
+  font-size: 16px;
+  padding: 10px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  resize: vertical;/*高さを調整可に*/
+}
+
+.submit-button {/*送信ボタンのスタイル*/
+  align-self: flex-end; /* ボタンを右端に配置 */
+ 
+  padding: 8px 12px;
+  background-color: black;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+
