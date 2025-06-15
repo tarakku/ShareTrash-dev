@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>ShareTrash - GreenCycle Community</title>
+  <link rel ="stylesheet" href="css/postsend.css">
+</head>
+<body>
+
+ <header>
+    <div class="logo">ShareTrash</div>
+    <nav>
+      <a href="#">From</a>
+      <a href="#">About</a>
+      <a href="#">Members</a>
+    </nav>
+    <div class="login">
+      <div class="login-icon"></div>
+      <span>login</span>
+    </div>
+  </header>
+
+   <section class="hero">
+    <h1>GreenCycle Community</h1>
+    <p>Connected Trash Can</p>
+  </section>
+
+  <div class= "background"><!-- 投稿用の白背景カード -->
+    <div class="search"><!-- 白背景カード上部の戻るボタン -->
+        <div class="actions">
+            <button class="backbutton"></button><!-- 戻るボタンアイコン -->
+            <p class="senter-text">ゴミの捨て方を共有しよう</p><!-- 投稿しよう -->
+            
+        </div>
+    </div>
+     <div class="form-row"><!-- タイトル入力 -->
+  <input type="text" placeholder="タイトルを入力" class="text-input">
+  </div>
+<div class="input-container"><!-- 本文入力欄 -->
+  <textarea class="document-input" id="messageBox" placeholder="内容を入力してください..."></textarea>
+ 
+</div>
+ <div class="form-row"><!-- カテゴリー入力欄と送信ボタン -->
+ 
+  <select class="dropdown-menu">
+    <option value="">ゴミの種別の選択</option>
+    <option value="option1">粗大ゴミ</option>
+    <option value="option2">選択肢2</option>
+    <option value="option3">選択肢3</option>
+  </select>
+
+  <button class="submit-button" onclick="submitMessage()">送信</button>
+</div>
+</div>
+
+
+ 
