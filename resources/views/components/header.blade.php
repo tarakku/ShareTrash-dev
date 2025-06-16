@@ -7,7 +7,7 @@
         <ul>
             <li><button id="toggleButton" class="style-none">forum</button></li>
             <li><a href="#">About</a></li>
-            <li><a href="#">Members</a></li>
+            <li><a href="{{ route('profile') }}">Members</a></li>
 
             <li class="login">
                 <img class="login_icon" src="{{ asset('header_images/login_icon.png') }}" alt="login_icon">

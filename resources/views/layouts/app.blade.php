@@ -13,6 +13,7 @@
     'resources/css/post.css',
     'resources/css/create.css',
     'resources/css/detail.css',
+    'resources/css/profile.css',
     'resources/css/app.css',
     'resources/js/index.js',
     'resources/js/app.js',

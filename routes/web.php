@@ -22,6 +22,8 @@ require __DIR__.'/auth.php';
 
 Route::get('/', [\App\Http\Controllers\ShareTrash\CategoryController::class, 'category'])->name('category');
 
+Route::get('/Profile', [\App\Http\Controllers\ShareTrash\ProfileController::class, 'profile'])->name('profile');
+
 Route::get('/AllPost', [PostController::class, 'all'])->name('posts.allpost');
 
 Route::get('/create', [PostController::class, 'create'])->name('posts.create');
