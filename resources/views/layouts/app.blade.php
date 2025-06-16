@@ -10,6 +10,8 @@
     'resources/css/footer.css',
     'resources/css/category.css',
     'resources/css/allpost.css',
+    'resources/css/create.css',
+    'resources/css/show.css',
     'resources/js/index.js',
     'resources/js/nav_underline_animation.js'])
 </head>

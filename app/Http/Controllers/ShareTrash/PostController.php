@@ -6,6 +6,7 @@ use App\Models\Post;
 use App\Models\Category;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Carbon;
 
 class PostController extends Controller
@@ -19,7 +20,47 @@ class PostController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * 投稿一覧（全体）
+     */
+    public function all(Request $request)
+    {
+        $allowedSorts = [
+            'views_count' => 'views_count',
+            'likes_count' => 'likes_count',
+            'posted_at' => 'posted_at',
+        ];
+
+        $sortBy = $request->query('sort_by', 'posted_at');
+        $sortDirection = $request->query('direction', 'desc');
+
+        if (!array_key_exists($sortBy, $allowedSorts)) {
+            $sortBy = 'posted_at';
+        }
+
+        if (!in_array(strtolower($sortDirection), ['asc', 'desc'])) {
+            $sortDirection = 'desc';
+        }
+
+        $postsQuery = Post::query();
+
+        $postsQuery->with('category');
+
+        if ($request->has('category_id')) {
+            $categoryId = $request->input('category_id');
+            $postsQuery->where('category_id', $categoryId);
+        }
+
+        $postsQuery->orderBy($allowedSorts[$sortBy], $sortDirection);
+
+        $posts = $postsQuery->paginate(5);
+
+        $categories = Category::all();
+
+        return view('ShareTrash.allpost', compact('posts', 'categories', 'sortBy', 'sortDirection'));
+    }
+
+    /**
+     * 投稿画面
      */
     public function create()
     {
@@ -28,7 +69,7 @@ class PostController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * 投稿作成
      */
     public function store(Request $request)
     {
@@ -48,17 +89,35 @@ class PostController extends Controller
             'likes_count' => 0,
         ]);
 
-        return redirect()->route('allpost')->with('success', '投稿が作成されました！');
+        return redirect()->route('posts.allpost')->with('success', '投稿が作成されました！');
     }
 
     /**
-     * Display the specified resource.
+     * 投稿詳細
      */
-    public function show(string $id)
+    public function detail(string $id)
     {
-        //
+        $post = Post::with('category')->findOrFail($id);
+
+        return view('ShareTrash.detailpost', compact('post'));
     }
 
+    /**
+     * 投稿一覧（自身）
+     */
+    public function my(Request $request)
+    {
+        $user = Auth::user();
+            
+        $sortBy = $request->input('sort_by', 'posted_at');
+
+        $posts = Post::where('user_id', $user->id)
+                    ->orderBy($sortBy, 'desc')
+                    ->paginate(10)
+                    ->withQueryString();
+
+        return view('ShareTrash.mypost', compact('posts', 'sortBy'));
+    }
     /**
      * Show the form for editing the specified resource.
      */

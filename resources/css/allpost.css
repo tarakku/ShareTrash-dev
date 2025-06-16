@@ -12,6 +12,15 @@
     background: #ffffff;
 }
 
+.allpost_container .alert-success {
+    display: block;
+    padding: 15px 0;
+    background:rgb(40, 155, 68);
+    color: #FFF;
+    text-align: center;
+    border-radius: 8px;
+}
+
 .allpost_container .header {
     display: flex;
     justify-content: space-between;
@@ -100,17 +109,16 @@
 
 .allpost_container .btn-link {
     text-decoration: none;
-    color: inherit; /* 親要素（ボタン）の文字色を継承 */
-    display: block; /* ボタン全体をリンク範囲にするため */
-    line-height: 1; /* ボタンの高さに合わせる調整 */
+    color: inherit;
+    display: block;
+    line-height: 1;
     padding: 12px 20px;
-
     margin: -12px -20px;
 }
 
 .allpost_container .sign-out-btn,
 .allpost_container .sign-up-btn {
-    background-color: #dc3545; /* 赤系の色 */
+    background-color:rgb(221, 23, 43); /* 赤系の色 */
     color: white;
     border: none;
     padding: 8px 15px;
@@ -118,6 +126,13 @@
     cursor: pointer;
     font-weight: bold;
     overflow: hidden; /* 子要素のpaddingでボタンからはみ出さないように */
+    box-shadow: 0 2px 10px rgba(16, 17, 17, 0.3);
+}
+
+.allpost_container .sign-out-btn:hover,
+.allpost_container .sign-up-btn:hover {
+    background-color: rgb(255, 255, 255);
+    color:rgb(0, 0, 0);
 }
 
 .allpost_container .sign-up-btn {
@@ -151,16 +166,23 @@
     align-items: center;
     gap: 30px;
 }
-.allpost_container .create-post-btn {
-    background-color: #007bff; /* 青系の色 */
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-weight: bold;
+.allpost_container .create-post-btn{
+    display: block;
+    width: 200px;
+    padding: 15px 0;
+    background: rgb(27, 214, 247);
+    color: #FFF;
+    font-weight: 700;
+    text-decoration: none;
+    text-align: center;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(16, 17, 17, 0.3); 
 }
 
+.allpost_container .create-post-btn:hover{
+    background-color: rgb(255, 255, 255);
+    color: rgb(0,0,0);
+}
 /* 投稿リスト */
 .allpost_container .post-list {
     display: flex;
@@ -169,18 +191,33 @@
 }
 
 .allpost_container .post-item {
-    background-color: #f9f9f9; /* 投稿アイテムの背景色 */
+    background-color: #f9f9f9;
     border: 1px solid #e0e0e0;
     border-radius: 8px;
     padding: 15px 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    text-decoration: none;
+    color: inherit;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    transition: color 300ms, background-color 300ms;
+}
+
+.allpost_container .post-item:hover {
+    background-color: #333;
+    color: #FFFFFF;
 }
 
 .allpost_container .post-details {
     flex-grow: 1; /* 詳細部分がスペースを占有 */
+}
+
+.post-item:hover .post-title,
+.post-item:hover p,
+.post-item:hover span,
+.post-item:hover i {
+    color: #fff;
 }
 
 .allpost_container .post-title {
