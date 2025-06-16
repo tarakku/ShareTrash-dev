@@ -10,7 +10,7 @@
 <main>
     <div class="show_container">
       <div class="back"> 
-        <a href="{{ route('allpost') }}" class="back-btn">
+        <a href="{{ route('posts.allpost') }}" class="back-btn">
                 トップへ戻る
         </a>
       </div>

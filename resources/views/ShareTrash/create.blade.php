@@ -12,13 +12,13 @@
 <main>
     <div class="create_container">
         <div class="back"> 
-            <a href="{{ route('allpost') }}" class="back-btn">
+            <a href="{{ route('posts.allpost') }}" class="back-btn">
                     トップへ戻る
             </a>
         </div>
 
         <h2>CreatePost</h2>
-        <form action="{{ route('store') }}" method="POST" id="createPost">
+        <form action="{{ route('posts.store') }}" method="POST" id="createPost">
             @csrf
 
             <div class="title">
