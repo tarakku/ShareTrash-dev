@@ -1,4 +1,25 @@
 <footer>
+     <!-- ここから問い合わせフォーム -->
+        <div id="toggleElement" class="modal" style="display: none;">
+            <div class="forum">
+                <div class="form-table">
+                    <button class="close-button" aria-label="閉じる">×</button>
+                    <h2 class="form-header">お問い合わせフォーム</h2>
+                    <div class="form-row">
+                        <label>メールアドレス</label>
+                        <input type="email" placeholder="example@gmail.com">
+                    </div>
+                    <div class="form-row">
+                        <label>お問い合わせ内容</label>
+                        <textarea placeholder="お問い合わせ内容を入力してください"></textarea>
+                    </div>
+                    <div class="form-row">
+                        <button type="submit" class="forum-button" name="button">送信</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <!-- ここまで問い合わせフォーム -->
     <div class="footer-container">
         <div class="footer-left">
             <img class="sharetrash-logo" src="{{ asset('footer_image/logo.png') }}">

@@ -13,6 +13,7 @@
     'resources/css/create.css',
     'resources/css/show.css',
     'resources/js/index.js',
+    'resources/js/app.js',
     'resources/js/nav_underline_animation.js'])
 </head>
 <body>

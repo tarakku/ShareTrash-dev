@@ -5,7 +5,7 @@
     </div>      
     <nav>
         <ul>
-            <li><a href="#">Form</a></li>
+            <li><button id="toggleButton" class="style-none">forum</button></li>
             <li><a href="#">About</a></li>
             <li><a href="#">Members</a></li>
 
