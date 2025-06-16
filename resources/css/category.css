@@ -1,31 +1,5 @@
 /* ------------------------------------ */
-/* 全体レイアウトの基本設定 */
-/* ------------------------------------ */
-html, body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-}
-
-body {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    background-image: url("/public/back_image/back.png");
-    background-size:cover;
-
-    /* アニメーション */
-    opacity: 0; /* 透明 */
-    transition: opacity 1.5s ease-out; /* 1.5秒*/
-}
-
-/* アニメーション */
-body.fade-in {
-    opacity: 1; /* 不透明にする */
-}
-
-/* ------------------------------------ */
-/* メイン設定 */
+/* カテゴリスタイル */
 /* ------------------------------------ */
 .category_container {
     width: 900px;

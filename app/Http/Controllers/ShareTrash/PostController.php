@@ -113,7 +113,7 @@ class PostController extends Controller
 
         $posts = Post::where('user_id', $user->id)
                     ->orderBy($sortBy, 'desc')
-                    ->paginate(10)
+                    ->paginate(5)
                     ->withQueryString();
 
         return view('ShareTrash.mypost', compact('posts', 'sortBy'));
