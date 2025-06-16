@@ -18,7 +18,7 @@
         </div>    
         <nav>
             <ul>
-                <li><a href="#">Form</a></li>
+                <li><button id="toggleButton" class="style-none">forum</button></li>
                 <li><a href="#">About</a></li>
                 <li><a href="#">Members</a></li>
 
@@ -89,6 +89,29 @@
 
     <!--ここからフッター-->
     <footer>
+
+        <!-- ここから問い合わせフォーム -->
+        <div id="toggleElement" class="modal" style="display: none;">
+            <div class="forum">
+                <div class="form-table">
+                    <button class="close-button" aria-label="閉じる">×</button>
+                    <h2 class="form-header">お問い合わせフォーム</h2>
+                    <div class="form-row">
+                        <label>メールアドレス</label>
+                        <input type="email" placeholder="example@gmail.com">
+                    </div>
+                    <div class="form-row">
+                        <label>お問い合わせ内容</label>
+                        <textarea placeholder="お問い合わせ内容を入力してください"></textarea>
+                    </div>
+                    <div class="form-row">
+                        <button type="submit" class="forum-button" name="button">送信</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ここまで問い合わせフォーム -->
+
         <p>&copy; 2023 Your Company Name. All rights reserved.</p>
         <nav>
             <ul>
