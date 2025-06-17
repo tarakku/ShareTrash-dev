@@ -1,7 +1,7 @@
 <header>
     <div class="Shere_Trash_icon">
         <img src="{{ asset('header_images/Shere_Trash_icon.png') }}" alt="Shere_Trash_icon">
-        <h1>ShareTrash</h1>
+        <h2>ShareTrash</h2>
     </div>      
     <nav>
         <ul>
