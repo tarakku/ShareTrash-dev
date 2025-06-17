@@ -1,0 +1,96 @@
+/* ------------------------------------ */
+/* 投稿作成スタイル*/
+/* ------------------------------------ */
+.create_container {
+    width: 900px;
+    max-width: 900px;
+    min-width: 320px;
+    margin: 0 auto;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08); /* 影を追加 */
+    width: 100%;
+    box-sizing: border-box;
+    background: #ffffff;
+}
+
+.create_container #createPost {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.create_container,
+.title,
+.content,
+.category-section {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.create_container label {
+    font-weight: 600;
+    font-size: 1rem;
+    color:rgb(0, 0, 0);
+}
+
+.create_container,
+input[type="text"],
+textarea,
+select {
+    padding: 12px 15px;
+    border: 1px solid rgb(208, 218, 228);
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.3s ease-in-out;
+}
+
+.create_container,
+input[type="text"]:focus,
+textarea:focus,
+select:focus {
+    outline: none;
+    border-color:rgb(0, 0, 0);
+}
+
+.create_container textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.create_container .btn-primary {
+    background-color:rgb(0, 0, 0);
+    color: #FFFFFF;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    align-self: flex-end; /* 右寄せにする */
+    box-shadow: 0 2px 10px rgba(16, 17, 17, 0.3); /* 影を追加 */
+}
+
+.btn-primary:hover {
+    background-color:rgb(255, 255, 255); /* ホバー時の色 */
+    color:rgb(0, 0, 0);
+}
+
+.create_container .back .back-btn {
+    display: block;
+    width: 200px;
+    padding: 15px 0;
+    background:rgb(0, 0, 0);
+    color: #FFF;
+    font-weight: 700;
+    text-decoration: none;
+    text-align: center;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(16, 17, 17, 0.3); /* 影を追加 */
+}
+
+.create_container .back .back-btn:hover {
+    background-color: rgb(255, 255, 255);
+    color:rgb(0, 0, 0);
+}

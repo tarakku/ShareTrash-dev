@@ -1,9 +1,9 @@
 <header class="header">
     <nav class="main-nav">
         <a href="{{ route('category') }}" class="nav-link [active]">カテゴリー</a>
-        <a href="{{ route('allpost') }}" class="nav-link [active]">すべてのポスト</a>
+        <a href="{{ route('posts.allpost') }}" class="nav-link [active]">すべてのポスト</a>
         @auth
-        <a href="#" class="nav-link [active]">自分のポスト</a>
+        <a href="{{ route('posts.my') }}" class="nav-link [active]">自分のポスト</a>
         @endauth
     </nav>
     <div class="header-right">

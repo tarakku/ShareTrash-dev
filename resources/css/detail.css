@@ -1,0 +1,127 @@
+/* ------------------------------------ */
+/* 投稿詳細スタイル*/
+/* ------------------------------------ */
+.show_container {
+    width: 900px;
+    max-width: 900px;
+    min-width: 320px;
+    margin: 0 auto;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08); /* 影を追加 */
+    width: 100%;
+    box-sizing: border-box;
+    background: #ffffff;
+}
+
+.show_container .back .back-btn {
+    display: block;
+    width: 200px;
+    padding: 15px 0;
+    margin-bottom: 15px;
+    background:rgb(0, 0, 0);
+    color: #FFF;
+    font-weight: 700;
+    text-decoration: none;
+    text-align: center;
+    border-radius: 8px;
+}
+
+.show_container .back .back-btn:hover {
+    background-color: rgb(255, 255, 255);
+    color:rgb(0, 0, 0);
+}
+.post-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+}
+
+.user-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.username {
+    font-weight: bold;
+    margin: 0;
+}
+
+.post-date {
+    font-size: 0.9em;
+    color: #777;
+    margin: 0;
+}
+
+.post-title {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+.post-category {
+    font-size: 0.9em;
+    color: #555;
+    margin-bottom: 15px;
+}
+
+.post-content {
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    border-top: 1px solid #eee;
+    padding-top: 10px;
+    font-size: 0.9em;
+}
+
+.stat-group {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-right: 15px;
+}
+
+.nav-arrows a {
+    margin: 0 5px;
+    color: #333;
+    text-decoration: none;
+}
+
+.posted-at {
+    color: #888;
+    font-size: 0.85em;
+}
+
+.comment-box {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.comment-btn {
+    background-color: black;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+.comment-box input[type="text"] {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}

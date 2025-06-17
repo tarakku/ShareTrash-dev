@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\ShareTrash\PostController;
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -19,7 +20,18 @@ Route::middleware('auth')->group(function () {
 });
 require __DIR__.'/auth.php';
 
-Route::get('/ShareTrash/Category', [\App\Http\Controllers\ShareTrash\CategoryController::class, 'category'])->name('category');
-Route::get('/ShareTrash/AllPost', [\App\Http\Controllers\ShareTrash\AllPostController::class, 'allpost_show'])->name('allpost');
+Route::get('/', [\App\Http\Controllers\ShareTrash\CategoryController::class, 'category'])->name('category');
 
-Route::get('/ShareTrash/create', [\App\Http\Controllers\ShareTrash\PostController::class, 'create'])->name('create');
+Route::get('/Profile', [\App\Http\Controllers\ShareTrash\ProfileController::class, 'profile'])->name('profile');
+
+Route::get('/AllPost', [PostController::class, 'all'])->name('posts.allpost');
+
+Route::get('/create', [PostController::class, 'create'])->name('posts.create');
+
+Route::post('/create', [PostController::class, 'store'])->name('posts.store');
+
+Route::middleware('auth')->group(function () {
+Route::get('/posts/{post}', [PostController::class, 'detail'])->name('posts.detail');
+});
+
+Route::get('/MyPost', [PostController::class, 'my'])->name('posts.my');
