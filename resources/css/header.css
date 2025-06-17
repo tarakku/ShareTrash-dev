@@ -1,7 +1,6 @@
 /* ------------------------------------ */
-/* ヘッダー設定 */
+/* ヘッダースタイル */
 /* ------------------------------------ */
-
 .Shere_Trash_icon{
     display: flex;
     margin-left: 15%;
@@ -71,4 +70,20 @@ header nav ul li a:hover {
     text-align: center;
     margin-top: 50px;
     margin-bottom: 50px;
+}
+
+.style-none {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: inherit;
+    padding-bottom: inherit;
+}
+
+.style-none:hover{
+    color: #007bff;
 }
