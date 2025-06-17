@@ -9,13 +9,18 @@
 </div>
 
 <main>
+    
     <div class="allpost_container">
-        
+        @if (session('success'))
+        <div class="alert-success">
+            {{ session('success') }}
+        </div>
+        @endif
         <x-nav />
 
         <div class="controls-section">
             <div class="sort-section">
-                <form action="{{ route('allpost') }}" method="GET" id="sortForm">
+                <form action="{{ route('posts.allpost') }}" method="GET" id="sortForm">
                     <label for="sortBy">SortBy</label>
                     <select id="sortBy" class="sort-dropdown" name="sort_by" onchange="this.form.submit()">
                         <option value="views_count" @selected($sortBy == 'views_count')>閲覧数</option>
@@ -47,8 +52,7 @@
                 @endif
             </div>
             @auth
-            <button class="create-post-btn">CreatePost</button>
-            <button class="create-post-btn"><a href="{{ route('create') }}">CreatePost</a></button>
+            <a href="{{ route('posts.create') }}" class="create-post-btn">CreatePost</a>
             @endauth
         </div>
 
@@ -57,24 +61,23 @@
                 <p class="no-posts">まだ投稿がありません。</p>
             @else
                 @foreach ($posts as $post)
-                    <div class="post-item">
-                        <div class="post-details">
-                            <h2 class="post-title">{{ $post->title }}</h2>
-                            <p class="post-category">カテゴリー: {{ $post->category->name ?? '未分類' }}</p> {{-- category->name を表示 --}}
-                        </div>
-                        <div class="post-stats">
-                            <i class="fas fa-eye"></i>
-                            <span class="stat-item">{{ $post->views_count }}</span>
-                            <i class="fa-solid fa-face-smile"></i>
-                            <span class="stat-item">{{ $post->likes_count }}</span>
-                            <i class="fas fa-comment-dots"></i>
-                            <span class="stat-item">0</span> {{-- コメント数を想定 --}}
-                        </div>
-                        <div class="post-meta">
-                            <i class="fas fa-user-circle user-icon"></i>
-                            <span class="post-date">{{ $post->posted_at->format('Y年m月d日') }}</span>
-                        </div>
+                <a href="{{ route('posts.detail', $post) }}" class="post-item">
+                    <div class="post-details">
+                        <h2 class="post-title">{{ $post->title }}</h2>
+                        <p>カテゴリー: {{ $post->category->category_name ?? '未分類' }}</p>
                     </div>
+                    <div class="post-stats">
+                        <i class="fas fa-eye"></i>
+                        <span class="stat-item">{{ $post->views_count }}</span>
+                        <i class="far fa-thumbs-up"></i>
+                        <span class="stat-item">{{ $post->likes_count }}</span>
+                        <i class="fas fa-comment-dots"></i>
+                        <span class="stat-item">0</span>
+                    </div>
+                    <div class="post-meta">
+                        <span class="post-date">{{ $post->posted_at->format('Y年m月d日') }}</span>
+                    </div>
+                </a>
                 @endforeach
             @endif
         </div>

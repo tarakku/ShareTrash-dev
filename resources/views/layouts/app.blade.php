@@ -6,15 +6,21 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <title>@yield('title', 'ShareTrash')</title>
-    @vite(['resources/css/header.css',
+    @vite([
+    'resources/css/header.css',
     'resources/css/footer.css',
     'resources/css/category.css',
-    'resources/css/allpost.css',
+    'resources/css/post.css',
+    'resources/css/create.css',
+    'resources/css/detail.css',
+    'resources/css/profile.css',
+    'resources/css/app.css',
     'resources/js/index.js',
+    'resources/js/app.js',
     'resources/js/nav_underline_animation.js'])
 </head>
 <body>
-    <div id="fade-in-element" class="hidden">
+    <div id="fade-in-element">
         <x-header />
 
         @yield('content')
