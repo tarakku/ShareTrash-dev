@@ -52,10 +52,27 @@
             </div>
         </div>
 
-        <div class="comment-box">
-            <button class="comment-btn">コメント</button>
-            <input type="text" placeholder="コメントを書いてみよう！！">
+        <!-- コメント機能　-->
+        @auth
+            <form class="comment-box" action="{{ route('comments.store', ['post' => $post->id]) }}" method="POST">
+                @csrf
+                <input type="text" name="body" placeholder="コメントを書いてみよう！！" required>
+                <button type="submit" class="comment-btn">コメント</button>
+            </form>
+        @endauth
+
+        @if ($post->comments->count())
+        <div class="comments-section">
+            <h3>コメント一覧</h3>
+            @foreach ($post->comments as $comment)
+                <div class="comment">
+                    <p class="comment-body">{{ $comment->body }}</p>
+                    <p class="comment-meta">{{ $comment->user->name ?? '匿名' }} - {{ $comment->created_at->diffForHumans() }}</p>
+                </div>
+            @endforeach
         </div>
+        @endif
+        <!-- コメント機能ここまで　-->
     </div>
 </main>
 @endsection
