@@ -119,26 +119,42 @@ class PostController extends Controller
         return view('ShareTrash.mypost', compact('posts', 'sortBy'));
     }
     /**
-     * Show the form for editing the specified resource.
+     * 編集画面を表示
      */
-    public function edit(string $id)
+    public function edit(Post $post)
     {
-        //
+       // dd($post);
+        $categories = Category::all();
+        return view('ShareTrash.edit', compact('post', 'categories'));
     }
 
     /**
-     * Update the specified resource in storage.
+     * 投稿を更新
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Post $post)
     {
-        //
+        $request->validate([
+            'title' => 'required|max:255',
+            'content' => 'required',
+            'category_id' => 'required|exists:categories,category_id',
+        ]);
+
+        $post->update([
+            'title' => $request->title,
+            'content' => $request->content,
+            'category_id' => $request ->category_id,
+        ]);
+
+        return redirect()->route('category', $post)->with('success', '投稿を更新しました。');
     }
 
     /**
-     * Remove the specified resource from storage.
+     * 投稿削除
      */
-    public function destroy(string $id)
+    public function destroy(Post $post)
     {
-        //
+        $post->delete();
+
+    return redirect()->route('category')->with('success', '投稿を削除しました。');
     }
 }
