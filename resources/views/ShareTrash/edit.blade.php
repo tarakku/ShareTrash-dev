@@ -10,28 +10,29 @@
 </div>
 
 <main>
-    <div class="create_container">
+    <div class="edit_container">
         <div class="back"> 
             <a href="{{ route('posts.allpost') }}" class="back-btn">
                     トップへ戻る
             </a>
         </div>
 
-        <h2>CreatePost</h2>
-        <form action="{{ route('posts.store') }}" method="POST" id="createPost">
+        <h1>EditPost</h1>
+        <form action="{{ route('posts.update', $post) }}" method="POST" id="updatePost">
             @csrf
+            @method('PUT')
 
             <div class="title">
                 <label for="title">タイトル</label>
-                <input type="text" name="title" id="title" value="{{ old('title') }}" placeholder="投稿のタイトルを入力してください">
+                <input type="text" id="title" name="title" value="{{ old('title', $post->title) }}" required>
                 @error('title')
-                    <p class="error-message">{{ $message }}</p>
+                    <p class="error-message>{{ $message }}</p>
                 @enderror
             </div>
 
             <div class="content">
                 <label for="content">本文</label>
-                <textarea name="content" id="content" rows="5" placeholder="投稿の内容を入力してください">{{ old('content') }}</textarea>
+                <textarea id="content" name="content" required>{{ old('content', $post->content) }}</textarea>
                 @error('content')
                     <p class="error-message">{{ $message }}</p>
                 @enderror
@@ -39,19 +40,21 @@
 
             <div class="category-section">
                 <label for="category_id">カテゴリー</label>
-                <select id="category_id" class="category-dropdown" name="category_id">
+                <select name="category_id" class="category-dropdown" id="category_id" value="{{ $post->category_id }}">
                     @foreach ($categories as $category)
-                        <option value="{{ $category->category_id }}" @selected(old('category_id') == $category->category_id)>
+                        <option value="{{ $category->category_id }}"
+                            @if (old('category_id', $post->category_id) == $category->category_id) selected @endif>
                             {{ $category->category_name }}
                         </option>
                     @endforeach
                 </select>
+
                 @error('category_id')
                     <p class="error-message">{{ $message }}</p>
                 @enderror
             </div>
-
-            <button type="submit" class="btn btn-primary">投稿する</button>
+            
+            <button type="submit" class="btn btn-primary">更新</button>
         </form>
     </div>
 </main>

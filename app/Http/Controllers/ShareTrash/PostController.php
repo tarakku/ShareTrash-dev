@@ -119,15 +119,17 @@ class PostController extends Controller
         return view('ShareTrash.mypost', compact('posts', 'sortBy'));
     }
     /**
-     * Show the form for editing the specified resource.
+     * 編集画面を表示
      */
-    public function edit(string $id)
+    public function edit(Post $post)
     {
-        //
+       // dd($post);
+        $categories = Category::all();
+        return view('ShareTrash.edit', compact('post', 'categories'));
     }
 
     /**
-     * Update the specified resource in storage.
+     * 投稿を更新
      */
     public function update(Request $request, string $id)
     {
@@ -135,7 +137,7 @@ class PostController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * 
      */
     public function destroy(string $id)
     {

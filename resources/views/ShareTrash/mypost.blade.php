@@ -78,6 +78,16 @@
                         <span class="post-date">{{ $post->posted_at->format('Y年m月d日') }}</span>
                     </div>
                 </a>
+
+                <div class="post-actions">
+                    <a href="{{ route('posts.edit', $post) }}" class="btn btn-edit">編集</a>
+
+                    <form action="{{ route('posts.destroy', $post) }}" method="POST" style="display:inline;">
+                        @csrf
+                        @method('DELETE')
+                        <a type="submit" class="btn btn-delete" onclick="return confirm('本当に削除しますか？')">削除</a>
+                    </form>
+                </div>
                 @endforeach
             @endif
         </div>
