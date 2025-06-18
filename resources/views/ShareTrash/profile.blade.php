@@ -1,18 +1,18 @@
 @extends('layouts.app')
 
-@section('title', 'トップページ')
+@section('title', 'プロフィール')
 
 @section('content')
 <main>
-  <h2>Profile</h2>
   <div class="field">
+    <h2>Profile</h2>
     <div class="tab-switch">
       <input type="radio" name="TAB" id="tab1" checked />
       <input type="radio" name="TAB" id="tab2" />
 
       <div class="tab-labels">
         <label for="tab1">プロフィール</label>
-        <label for="tab2">パスワード変更</label>
+        <label for="tab2">編集</label>
       </div>
 
       <div class="content content1">
@@ -37,34 +37,54 @@
             住所（市区町村）<br />
             <input type="text" value="渋谷区" readonly />
           </p>
-          <p>
-            <button type="button" onclick="location.href='../profile_edit/profile_edit.html'">
-              編集
-            </button>
-          </p>
         </form>
-
-        <div class="profile-icon">
-          <img src="../images/kkrn_icon_user_3.png" alt="プロフィール画像" id="profile-img" />
-          <label for="input-img" class="custom-file-button">画像を選択</label>
-          <input type="file" id="input-img" accept="image/*" hidden />
-        </div>
       </div>
 
       <div class="content content2" id="password">
-        <form class="password-items" onsubmit="clickSave(); return false;">
-          <p>
-            現在のパスワード<br />
-            <input type="password" size="20" />
-          </p>
-          <p>
-            新しいパスワード<br />
-            <input type="password" size="20" />
-          </p>
-          <p>
-            新しいパスワード（確認）<br />
-            <input type="password" size="20" />
-          </p>
+        <form class="edit-items" onsubmit="clickSave(); return false;">
+          <div class="edit-content">
+            <div class="left-content">
+              <p>
+                ニックネーム<br />
+                <input type="text" value="ニックネーム">
+              </p>
+              <p>
+                メールアドレス<br />
+                <input type="text" value="mail@example.com">
+              </p>
+              <p>
+                電話番号<br />
+                <input type="text" value="000-0000-0000">
+              </p>
+              <p>
+                住所（都道府県）<br />
+                <input type="text" value="東京都">
+              </p>
+              <p>
+                住所（市区町村）<br />
+                <input type="text" value="渋谷区">
+              </p>
+            </div>
+            <div class="right-content">
+              <p>
+                <span class="required">※</span>パスワードを変更する場合は、現在のパスワードを入力してください。
+              </p>
+              <p>
+                現在のパスワード
+              </p>
+              <input type="password" name="current_password"/><br />
+              
+              <p>
+                新しいパスワード
+              </p>
+                <input type="password" name="new_password"/><br />
+              
+              <p>
+                新しいパスワード（確認）
+              </p>
+                <input type="password" name="check_new_password"/><br />
+            </div>
+          </div>
           <div class="button-field">
             <p>
               <button type="button" onclick="location.href='../profile_top/profile.html'">

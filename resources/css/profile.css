@@ -1,11 +1,9 @@
 /* プロフィールエリア全体 */
 .field {
-  width: 1000px;
-  height: 700px;
-  margin: auto;
+  width: 60%;
+  margin:auto 20%;
   background-color: #fff;
-  border-top-left-radius: 3%;
-  border-top-right-radius: 3%;
+  border-radius: 3%;
   padding: 2rem;
   display: flex;
   flex-direction: column;
@@ -56,9 +54,22 @@
   display: block;
 }
 
+.content1,.content2{
+  align-items: center;
+}
+.edit-content{
+  display:flex;
+  gap: 40px;
+  width: 100%;
+}
+h2{
+  text-align: center;
+  font-size: 2em;
+}
 /* プロフィール入力エリア */
 .profile-items,
 .password-items {
+  width: 100%;
   flex: 1;
 }
 
@@ -70,29 +81,31 @@
 }
 
 .profile-items input,
-.password-items input {
+.edit-items input,
+.right-content input {
   width: 100%;
   padding: 0.4rem;
   font-size: 1rem;
+  box-sizing: border-box;
+  border: 1px solid #ccc;        /* 枠線の色・太さ */
+  border-radius: 4px;            /* 角丸 */
+  background-color: #fff;        /* 背景色 */
+  color: #000;                   /* 文字色 */
+  transition: border-color 0.3s; /* フォーカス時のなめらか変化 */
 }
 
-/* プロフィール画像 */
-.profile-icon {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1rem;
+.profile-items input:focus,
+.edit-items input:focus,
+.right-content input:focus {
+  border-color: #414141;         /* フォーカス時の枠色 */
+  outline: none;                 /* デフォルトのアウトライン削除 */
+  background-color: #fff;        /* フォーカス時背景色 */
 }
 
-.profile-icon img {
-  width: 300px;
-  height: 300px;
-  object-fit: cover;
-  border-radius: 50%;
-}
-
-#input-img {
-  display: none;
+/* 編集コンテンツ */
+.left-content,.right-content {
+  flex: 1;
+  box-sizing: border-box;
 }
 
 /* ボタン */
