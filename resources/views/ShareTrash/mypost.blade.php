@@ -85,7 +85,7 @@
                     <form action="{{ route('posts.destroy', $post) }}" method="POST" style="display:inline;">
                         @csrf
                         @method('DELETE')
-                        <a type="submit" class="btn btn-delete" onclick="return confirm('本当に削除しますか？')">削除</a>
+                        <button type="submit" class="btn btn-delete" onclick="return confirm('本当に削除しますか？')">削除</button>
                     </form>
                 </div>
                 @endforeach

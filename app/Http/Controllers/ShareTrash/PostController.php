@@ -131,16 +131,30 @@ class PostController extends Controller
     /**
      * 投稿を更新
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Post $post)
     {
-        //
+        $request->validate([
+            'title' => 'required|max:255',
+            'content' => 'required',
+            'category_id' => 'required|exists:categories,category_id',
+        ]);
+
+        $post->update([
+            'title' => $request->title,
+            'content' => $request->content,
+            'category_id' => $request ->category_id,
+        ]);
+
+        return redirect()->route('category', $post)->with('success', '投稿を更新しました。');
     }
 
     /**
-     * 
+     * 投稿削除
      */
-    public function destroy(string $id)
+    public function destroy(Post $post)
     {
-        //
+        $post->delete();
+
+    return redirect()->route('category')->with('success', '投稿を削除しました。');
     }
 }
