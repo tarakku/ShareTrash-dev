@@ -41,12 +41,14 @@
       </div>
 
       <div class="content content2" id="password">
-        <form class="edit-items" onsubmit="clickSave(); return false;">
+        <form class="edit-items" action ="{{ route('profile.update') }}" method="POST">
+          @csrf
+          @method('PATCH')
           <div class="edit-content">
             <div class="left-content">
               <p>
                 ニックネーム<br />
-                <input type="text" value="ニックネーム">
+                <input type="text" value="ニックネーム" >
               </p>
               <p>
                 メールアドレス<br />
@@ -87,7 +89,7 @@
           </div>
           <div class="button-field">
             <p>
-              <button type="button" onclick="location.href='../profile_top/profile.html'">
+              <button type="button" onclick="location.href='{{ route('profile')}}'">
                 キャンセル
               </button>
             </p>
@@ -95,7 +97,7 @@
               <button type="submit">保存</button>
             </p>
           </div>
-        </form>
+        <form class="edit-items" action="{{ route('profile.update') }}" method="POST" onsubmit="return validateForm();">
       </div>
     </div>
   </div>
