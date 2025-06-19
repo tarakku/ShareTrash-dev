@@ -33,35 +33,35 @@ class CommentTableSeeder extends Seeder
             'content' => 'この投稿、とても役に立ちました！ありがとうございます。',
             'posted_at' => now(),
             'post_id' => $posts->random()->post_id,
-            'user_id' => $users->random()->id, // ★ここを 'user_id' に変更★
+            'user_id' => $users->random()->id,
         ]);
 
         Comment::create([
             'content' => '私も同じ意見です。素晴らしい内容ですね！',
             'posted_at' => now()->subHours(1),
             'post_id' => $posts->random()->post_id,
-            'user_id' => $users->random()->id, // ★ここを 'user_id' に変更★
+            'user_id' => $users->random()->id,
         ]);
 
         Comment::create([
             'content' => '質問があります。この点について詳しく教えていただけますか？',
             'posted_at' => now()->subDays(1),
             'post_id' => $posts->random()->post_id,
-            'user_id' => $users->random()->id, // ★ここを 'user_id' に変更★
+            'user_id' => $users->random()->id,
         ]);
 
         Comment::create([
             'content' => '今後の更新も楽しみにしています！',
             'posted_at' => now()->subDays(2),
             'post_id' => $posts->random()->post_id,
-            'user_id' => $users->random()->id, // ★ここを 'user_id' に変更★
+            'user_id' => $users->random()->id,
         ]);
 
         Comment::create([
             'content' => '参考になりました！',
             'posted_at' => now()->subHours(3),
             'post_id' => $posts->random()->post_id,
-            'user_id' => $users->random()->id, // ★ここを 'user_id' に変更★
+            'user_id' => $users->random()->id,
         ]);
     }
 }

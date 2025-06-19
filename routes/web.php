@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\ShareTrash\PostController;
+use App\Http\Controllers\ShareTrash\CommentController;
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -40,3 +41,11 @@ Route::get('/posts/{post}/edit', [PostController::class, 'edit'])->name('posts.e
 Route::put('/posts/{post}', [PostController::class, 'update'])->name('posts.update');
 
 Route::delete('/posts/{post}', [PostController::class, 'destroy'])->name('posts.destroy');
+
+Route::post('/posts/{post}/comments', [CommentController::class, 'store'])
+    ->middleware('auth')
+    ->name('posts.comments.store');
+
+Route::post('/posts/{post}/like', [PostController::class, 'like'])
+    ->middleware('auth')
+    ->name('posts.like');

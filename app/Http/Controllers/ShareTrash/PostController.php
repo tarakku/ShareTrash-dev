@@ -4,6 +4,7 @@ namespace App\Http\Controllers\ShareTrash;
 
 use App\Models\Post;
 use App\Models\Category;
+use App\Models\Comment;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -43,7 +44,8 @@ class PostController extends Controller
 
         $postsQuery = Post::query();
 
-        $postsQuery->with('category');
+        $postsQuery->with('category')
+                    ->withCount('comments');
 
         if ($request->has('category_id')) {
             $categoryId = $request->input('category_id');
@@ -97,7 +99,9 @@ class PostController extends Controller
      */
     public function detail(string $id)
     {
-        $post = Post::with('category')->findOrFail($id);
+        $post = Post::with(['category', 'comments'])->findOrFail($id);
+
+        $post->increment('views_count');
 
         return view('ShareTrash.detailpost', compact('post'));
     }
@@ -156,5 +160,15 @@ class PostController extends Controller
         $post->delete();
 
     return redirect()->route('category')->with('success', '投稿を削除しました。');
+    }
+
+    /**
+     * いいね
+     */
+    public function like(Request $request, Post $post)
+    {
+        $post->increment('likes_count'); // +1する
+
+        return back()->with('success', 'いいねしました！');
     }
 }
