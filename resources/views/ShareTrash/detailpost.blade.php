@@ -40,7 +40,7 @@
                 </div>
                 <div class="stat-group">
                     <i class="fas fa-comment-dots"></i>
-                    <span>0</span>
+                    <span>{{ $post->comments->count() }}</span>
                 </div>
 
                 <div class="nav-arrows">

@@ -44,7 +44,8 @@ class PostController extends Controller
 
         $postsQuery = Post::query();
 
-        $postsQuery->with('category');
+        $postsQuery->with('category')
+                    ->withCount('comments');
 
         if ($request->has('category_id')) {
             $categoryId = $request->input('category_id');
@@ -99,6 +100,8 @@ class PostController extends Controller
     public function detail(string $id)
     {
         $post = Post::with(['category', 'comments'])->findOrFail($id);
+
+        $post->increment('views_count');
 
         return view('ShareTrash.detailpost', compact('post'));
     }
