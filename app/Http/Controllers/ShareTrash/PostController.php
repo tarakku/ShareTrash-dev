@@ -161,4 +161,14 @@ class PostController extends Controller
 
     return redirect()->route('category')->with('success', '投稿を削除しました。');
     }
+
+    /**
+     * いいね
+     */
+    public function like(Request $request, Post $post)
+    {
+        $post->increment('likes_count'); // +1する
+
+        return back()->with('success', 'いいねしました！');
+    }
 }

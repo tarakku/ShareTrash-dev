@@ -31,8 +31,12 @@
 
             <div class="actions">
                 <div class="stat-group">
-                    <i class="far fa-thumbs-up"></i>
-                    <span>{{ $post->likes_count }}</span>
+                    <form method="POST" action="{{ route('posts.like', ['post' => $post->post_id]) }}">
+                        @csrf
+                        <button type="submit" class="like-button">
+                            <i class="far fa-thumbs-up"></i> {{ $post->likes_count }}
+                        </button>
+                    </form>
                 </div>
                 <div class="stat-group">
                     <i class="fas fa-eye"></i>

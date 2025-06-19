@@ -45,3 +45,7 @@ Route::delete('/posts/{post}', [PostController::class, 'destroy'])->name('posts.
 Route::post('/posts/{post}/comments', [CommentController::class, 'store'])
     ->middleware('auth')
     ->name('posts.comments.store');
+
+Route::post('/posts/{post}/like', [PostController::class, 'like'])
+    ->middleware('auth')
+    ->name('posts.like');
