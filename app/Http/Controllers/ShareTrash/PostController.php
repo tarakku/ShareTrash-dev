@@ -4,6 +4,7 @@ namespace App\Http\Controllers\ShareTrash;
 
 use App\Models\Post;
 use App\Models\Category;
+use App\Models\Comment;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -97,7 +98,7 @@ class PostController extends Controller
      */
     public function detail(string $id)
     {
-        $post = Post::with('category')->findOrFail($id);
+        $post = Post::with(['category', 'comments'])->findOrFail($id);
 
         return view('ShareTrash.detailpost', compact('post'));
     }

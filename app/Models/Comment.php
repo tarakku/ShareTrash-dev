@@ -26,7 +26,6 @@ class Comment extends Model
         'edited_at' => 'datetime',
     ];
 
-    // リレーションシップの定義（オプションですが、良い習慣です）
     public function post()
     {
         return $this->belongsTo(Post::class, 'post_id', 'post_id');
@@ -34,6 +33,6 @@ class Comment extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class, 'user_id', 'id'); // コメントの 'id' はユーザーの 'id' を参照
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
 }
