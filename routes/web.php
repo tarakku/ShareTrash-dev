@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\ShareTrash\PostController;
 use App\Http\Controllers\ShareTrash\CommentController;
+use App\Http\Controllers\ShareTrash\CategoryController;
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -22,6 +23,8 @@ Route::middleware('auth')->group(function () {
 require __DIR__.'/auth.php';
 
 Route::get('/', [\App\Http\Controllers\ShareTrash\CategoryController::class, 'category'])->name('category');
+
+Route::get('/category/{name}', [CategoryController::class, 'show'])->name('category.show');
 
 Route::get('/Profile', [\App\Http\Controllers\ShareTrash\ProfileController::class, 'profile'])->name('profile');
 
