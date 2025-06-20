@@ -72,7 +72,7 @@
                         <i class="far fa-thumbs-up"></i>
                         <span class="stat-item">{{ $post->likes_count }}</span>
                         <i class="fas fa-comment-dots"></i>
-                        <span class="stat-item">0</span>
+                        <span class="stat-item">{{ $post->comments->count() }}</span>
                     </div>
                     <div class="post-meta">
                         <span class="post-date">{{ $post->posted_at->format('Y年m月d日') }}</span>
