@@ -31,8 +31,12 @@
 
             <div class="actions">
                 <div class="stat-group">
-                    <i class="far fa-thumbs-up"></i>
-                    <span>{{ $post->likes_count }}</span>
+                    <form method="POST" action="{{ route('posts.like', ['post' => $post->post_id]) }}">
+                        @csrf
+                        <button type="submit" class="like-button">
+                            <i class="far fa-thumbs-up"></i> {{ $post->likes_count }}
+                        </button>
+                    </form>
                 </div>
                 <div class="stat-group">
                     <i class="fas fa-eye"></i>
@@ -40,7 +44,7 @@
                 </div>
                 <div class="stat-group">
                     <i class="fas fa-comment-dots"></i>
-                    <span>0</span>
+                    <span>{{ $post->comments->count() }}</span>
                 </div>
 
                 <div class="nav-arrows">
@@ -52,10 +56,26 @@
             </div>
         </div>
 
-        <div class="comment-box">
-            <button class="comment-btn">コメント</button>
-            <input type="text" placeholder="コメントを書いてみよう！！">
+        <!-- コメント機能　-->
+        @auth
+            <form class="comment-box" action="{{ route('posts.comments.store', ['post' => $post->post_id]) }}" method="POST">
+                @csrf
+                <input type="text" name="content" placeholder="コメントを書いてみよう！！" required>
+                <button type="submit" class="comment-btn">コメント</button>
+            </form>
+        @endauth
+
+    
+        <div class="comments-section">
+            <h3>コメント一覧</h3>
+            @foreach ($post->comments as $comment)
+                <div class="comment">
+                    <p class="comment-content">{{ $comment->content }}</p>
+                </div>
+            @endforeach
         </div>
+
+        <!-- コメント機能ここまで　-->
     </div>
 </main>
 @endsection
