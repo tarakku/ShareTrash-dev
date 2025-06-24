@@ -15,6 +15,8 @@
             <p>このカテゴリには投稿がありません。</p>
         @endforelse
 
-        <a href="{{ route('posts.allpost') }}">← トップへ戻る</a>
+        <button class="back-button" onclick="location.href='{{ route('category') }}'">
+            ← トップへ戻る
+        </button>
     </div>
 @endsection
