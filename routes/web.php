@@ -4,6 +4,8 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\ShareTrash\PostController;
+use App\Http\Controllers\ShareTrash\CommentController;
+use App\Http\Controllers\ShareTrash\CategoryController;
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -24,6 +26,8 @@ Route::get('/', [\App\Http\Controllers\ShareTrash\CategoryController::class, 'ca
 
 Route::get('/profile', [\App\Http\Controllers\ShareTrash\ProfileController::class, 'profile'])->name('profile');
 
+Route::get('/category/{name}', [CategoryController::class, 'show'])->name('category.show');
+
 Route::get('/AllPost', [PostController::class, 'all'])->name('posts.allpost');
 
 Route::get('/create', [PostController::class, 'create'])->name('posts.create');
@@ -35,3 +39,16 @@ Route::get('/posts/{post}', [PostController::class, 'detail'])->name('posts.deta
 });
 
 Route::get('/MyPost', [PostController::class, 'my'])->name('posts.my');
+
+Route::get('/posts/{post}/edit', [PostController::class, 'edit'])->name('posts.edit');
+Route::put('/posts/{post}', [PostController::class, 'update'])->name('posts.update');
+
+Route::delete('/posts/{post}', [PostController::class, 'destroy'])->name('posts.destroy');
+
+Route::post('/posts/{post}/comments', [CommentController::class, 'store'])
+    ->middleware('auth')
+    ->name('posts.comments.store');
+
+Route::post('/posts/{post}/like', [PostController::class, 'like'])
+    ->middleware('auth')
+    ->name('posts.like');

@@ -14,7 +14,10 @@
     'resources/css/create.css',
     'resources/css/detail.css',
     'resources/css/profile.css',
+    'resources/css/my.css',
     'resources/css/app.css',
+    'resources/css/edit.css',
+    'resources/css/categories.css',
     'resources/js/index.js',
     'resources/js/app.js',
     'resources/js/nav_underline_animation.js'])
@@ -28,4 +31,4 @@
         <x-footer />
     </div>
 </body>
-</html>
+</html
