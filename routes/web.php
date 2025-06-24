@@ -28,6 +28,8 @@ Route::get('/profile', [\App\Http\Controllers\ShareTrash\ProfileController::clas
 
 Route::get('/category/{name}', [CategoryController::class, 'show'])->name('category.show');
 
+Route::patch('/myprofile', [\App\Http\Controllers\ShareTrash\ProfileController::class, 'update'])->name('myprofile.update');
+
 Route::get('/AllPost', [PostController::class, 'all'])->name('posts.allpost');
 
 Route::get('/create', [PostController::class, 'create'])->name('posts.create');
