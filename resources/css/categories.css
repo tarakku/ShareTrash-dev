@@ -1,0 +1,12 @@
+.categories_container {
+    width: 900px;
+    max-width: 900px;
+    min-width: 320px;
+    margin: 0 auto;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08); /* 影を追加 */
+    width: 100%;
+    box-sizing: border-box;
+    background: #ffffff;
+}
