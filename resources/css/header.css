@@ -32,7 +32,10 @@ header {
 header h1 {
     margin: 0;
 }
-
+.title{
+    text-decoration: none;
+    color: black;
+}
 
 header nav {
     margin-right: 15%;
