@@ -1,19 +1,22 @@
 <header>
     <div class="Shere_Trash_icon">
-        <img src="{{ asset('header_images/Shere_Trash_icon.png') }}" alt="Shere_Trash_icon">
-        <h2>ShareTrash</h2>
+        <a href="{{route('category')}}">
+            <img src="{{ asset('header_images/Shere_Trash_icon.png') }}" alt="Shere_Trash_icon">
+        </a>
+        <a href="{{route('category')}}" class="title">
+            <h1>ShareTrash</h1>
+        </a>
     </div>      
     <nav>
         <ul>
-            <li><button id="toggleButton" class="style-none">forum</button></li>
-            <li><a href="#">About</a></li>
-            <li><a href="{{ route('profile') }}">Members</a></li>
-
+            <li><button id="toggleButton" class="style-none">Form</button></li>
             <li class="login">
+                <a href="{{ route('profile') }}">
                 <img class="login_icon" src="{{ asset('header_images/login_icon.png') }}" alt="login_icon">
-                
+                </a>
+                <a href="{{ route('profile') }}">
                 {{ Auth::user()?->nickname ?? 'ゲスト' }}
-                
+                </a>
             </li>
         </ul>
     </nav>

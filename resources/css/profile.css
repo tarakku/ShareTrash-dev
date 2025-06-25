@@ -1,11 +1,9 @@
 /* プロフィールエリア全体 */
 .field {
-  width: 1000px;
-  height: 700px;
-  margin: auto;
+  width: 60%;
+  margin: auto 20%;
   background-color: #fff;
-  border-top-left-radius: 3%;
-  border-top-right-radius: 3%;
+  border-radius: 3%;
   padding: 2rem;
   display: flex;
   flex-direction: column;
@@ -33,67 +31,77 @@
   border-radius: 5px 5px 0 0;
 }
 
-#tab1:checked ~ .tab-labels label[for="tab1"],
-#tab2:checked ~ .tab-labels label[for="tab2"] {
+#tab1:checked~.tab-labels label[for="tab1"],
+#tab2:checked~.tab-labels label[for="tab2"] {
   background: #fff;
   border-bottom: 2px solid #fff;
   font-weight: bold;
 }
 
 /* コンテンツ共通 */
-.tab-switch > .content {
+.tab-switch>.content {
   display: none;
   padding-top: 1rem;
 }
 
-#tab1:checked ~ .tab-labels ~ .content1 {
+#tab1:checked~.tab-labels~.content1 {
   display: flex;
   justify-content: space-between;
   gap: 40px;
 }
 
-#tab2:checked ~ .tab-labels ~ .content2 {
+#tab2:checked~.tab-labels~.content2 {
   display: block;
 }
 
-/* プロフィール入力エリア */
-.profile-items,
-.password-items {
+.content1,
+.content2 {
+  align-items: center;
+}
+
+h2 {
+  text-align: center;
+  font-size: 2em;
+}
+
+/* プロフィール */
+.profile-items {
+  width: 100%;
   flex: 1;
 }
 
-.profile-items p,
-.password-items p {
+.profile-items p {
   margin-bottom: 1.2rem;
   font-size: 1rem;
   color: #000;
 }
 
-.profile-items input,
-.password-items input {
+.profile-items input {
   width: 100%;
   padding: 0.4rem;
   font-size: 1rem;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  /* 枠線の色・太さ */
+  border-radius: 4px;
+  /* 角丸 */
+  background-color: #fff;
+  /* 背景色 */
+  color: #000;
+  /* 文字色 */
+  transition: border-color 0.3s;
+  /* フォーカス時のなめらか変化 */
 }
 
-/* プロフィール画像 */
-.profile-icon {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1rem;
+.profile-items input:focus {
+  border-color: #414141;
+  /* フォーカス時の枠色 */
+  outline: none;
+  /* デフォルトのアウトライン削除 */
+  background-color: #fff;
+  /* フォーカス時背景色 */
 }
 
-.profile-icon img {
-  width: 300px;
-  height: 300px;
-  object-fit: cover;
-  border-radius: 50%;
-}
-
-#input-img {
-  display: none;
-}
 
 /* ボタン */
 #edit,
@@ -108,15 +116,84 @@
   cursor: pointer;
 }
 
-#cansel {
-  background-color: #fff;
-  color: #000;
-  outline: auto;
-}
 
 .button-field {
   display: flex;
   justify-content: flex-end;
   gap: 20px;
   margin-top: 2rem;
+}
+
+
+/* コンテンツ2 */
+.edit-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  /* 左右2カラム */
+  grid-auto-rows: auto;
+  gap: 4px 20px;
+  align-items: center;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.edit-form-grid label {
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  color: #000;
+}
+
+.edit-form-grid input {
+  width: 100%;
+  padding: 0.4rem;
+  font-size: 1rem;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  /* 枠線の色・太さ */
+  border-radius: 4px;
+  /* 角丸 */
+  background-color: #fff;
+  /* 背景色 */
+  color: #000;
+  /* 文字色 */
+  transition: border-color 0.3s;
+  /* フォーカス時のなめらか変化 */
+}
+
+.edit-form-grid input:focus {
+  border-color: #414141;
+  /* フォーカス時の枠色 */
+  outline: none;
+  /* デフォルトのアウトライン削除 */
+  background-color: #fff;
+  /* フォーカス時背景色 */
+}
+
+/* トースト */
+
+.toast-message {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #4caf50;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  z-index: 9999;
+  font-size: 14px;
+  animation: fadein 0.3s;
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }

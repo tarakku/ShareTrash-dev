@@ -413,6 +413,22 @@ footer {
     outline: none;
 }
 
+.form-row textarea {
+    resize: none;
+    overflow-y: hidden;
+}
+
+textarea.auto-grow {
+    resize: none;
+    overflow-y: hidden;
+    min-height: 3em;
+    box-sizing: border-box;
+    font-family: inherit;
+    font-size: 1.1rem;
+    line-height: 1.4;
+    min-height: 2.8em;
+}
+
 .forum-button{
     display: flex;
     justify-content: center;
@@ -449,7 +465,8 @@ footer {
 .form-table {
     position: relative;
     width: 45vw;
-    height: 60vh;
+    max-height: 90vh;
+    overflow-y: auto;
     max-width: 700px;
     padding: 40px 20px;
     background-color: white;
