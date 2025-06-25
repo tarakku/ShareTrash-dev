@@ -24,7 +24,6 @@ document.querySelector('.close-button').addEventListener('click', () => {
     document.getElementById('toggleElement').style.display = 'none';
 });
 // ここまでお問い合わせ表示スクリプト
-
 // テキストエリアの自動高さ調整
 document.addEventListener('DOMContentLoaded', () => {
   const textareas = document.querySelectorAll('textarea.auto-grow');
