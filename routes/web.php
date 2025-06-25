@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\ShareTrash\PostController;
 use App\Http\Controllers\ShareTrash\CommentController;
 use App\Http\Controllers\ShareTrash\CategoryController;
+use App\Http\Controllers\Admin\AdminDashboardController;
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -54,5 +55,10 @@ Route::middleware('auth')->group(function () {
 
 Route::get('/posts/{post}', [PostController::class, 'detail'])->name('posts.detail');
 
-
+Route::middleware(['auth', 'admin'])
+    ->prefix('admin')
+    ->name('admin.')
+    ->group(function () {
+        Route::get('/', [AdminDashboardController::class, 'index'])->name('dashboard');
+    });
 

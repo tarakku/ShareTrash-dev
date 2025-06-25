@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('address_prefecture')->nullable();
             $table->string('address_city')->nullable();
+            $table->boolean('is_admin')->default(false);
             // Laravel認証に必要なカラム
             // メールアドレス認証日時 (Breezeのメール認証機能を使うなら必須)
             $table->timestamp('email_verified_at')->nullable();
