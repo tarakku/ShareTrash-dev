@@ -11,7 +11,7 @@
                     </div>
                     <div class="form-row">
                         <label>お問い合わせ内容</label>
-                        <textarea placeholder="お問い合わせ内容を入力してください"></textarea>
+                        <textarea class="auto-grow" placeholder="お問い合わせ内容を入力してください" rows="2"></textarea>
                     </div>
                     <div class="form-row">
                         <button type="submit" class="forum-button" name="button">送信</button>
