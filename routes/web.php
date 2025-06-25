@@ -24,9 +24,11 @@ require __DIR__.'/auth.php';
 
 Route::get('/', [\App\Http\Controllers\ShareTrash\CategoryController::class, 'category'])->name('category');
 
+Route::get('/profile', [\App\Http\Controllers\ShareTrash\ProfileController::class, 'profile'])->name('profile');
+
 Route::get('/category/{name}', [CategoryController::class, 'show'])->name('category.show');
 
-Route::get('/Profile', [\App\Http\Controllers\ShareTrash\ProfileController::class, 'profile'])->name('profile');
+Route::patch('/myprofile', [\App\Http\Controllers\ShareTrash\ProfileController::class, 'update'])->name('myprofile.update');
 
 Route::get('/AllPost', [PostController::class, 'all'])->name('posts.allpost');
 
