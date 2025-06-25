@@ -24,8 +24,27 @@ document.querySelector('.close-button').addEventListener('click', () => {
     document.getElementById('toggleElement').style.display = 'none';
 });
 // ここまでお問い合わせ表示スクリプト
+// テキストエリアの自動高さ調整
+document.addEventListener('DOMContentLoaded', () => {
+  const textareas = document.querySelectorAll('textarea.auto-grow');
 
+  textareas.forEach(textarea => {
+    const lineHeight = parseFloat(getComputedStyle(textarea).lineHeight);
+    const baseRows = 2;
+    const baseHeight = lineHeight * baseRows;
 
+    const resize = () => {
+      textarea.style.height = 'auto';
+      const newHeight = textarea.scrollHeight;
+      textarea.style.height = Math.max(newHeight, baseHeight) + 'px';
+    };
+
+    textarea.addEventListener('input', resize);
+    resize(); // 初期化
+  });
+});
+
+// パスワード確認
 document.addEventListener('DOMContentLoaded', () => {
     const form = document.querySelector('.edit-form-grid');
     form.addEventListener('submit', (e) => {
