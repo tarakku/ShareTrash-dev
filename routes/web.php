@@ -37,20 +37,22 @@ Route::get('/create', [PostController::class, 'create'])->name('posts.create');
 Route::post('/create', [PostController::class, 'store'])->name('posts.store');
 
 Route::middleware('auth')->group(function () {
-Route::get('/posts/{post}', [PostController::class, 'detail'])->name('posts.detail');
-});
-
-Route::get('/MyPost', [PostController::class, 'my'])->name('posts.my');
-
-Route::get('/posts/{post}/edit', [PostController::class, 'edit'])->name('posts.edit');
-Route::put('/posts/{post}', [PostController::class, 'update'])->name('posts.update');
-
-Route::delete('/posts/{post}', [PostController::class, 'destroy'])->name('posts.destroy');
-
-Route::post('/posts/{post}/comments', [CommentController::class, 'store'])
+   
+    Route::put('/posts/{post}', [PostController::class, 'update'])->name('posts.update');
+    Route::delete('/posts/{post}', [PostController::class, 'destroy'])->name('posts.destroy');
+    Route::post('/posts/{post}/comments', [CommentController::class, 'store'])
     ->middleware('auth')
     ->name('posts.comments.store');
-
-Route::post('/posts/{post}/like', [PostController::class, 'like'])
+    Route::post('/posts/{post}/like', [PostController::class, 'like'])
     ->middleware('auth')
     ->name('posts.like');
+
+    Route::get('/MyPost', [PostController::class, 'my'])->name('posts.my');
+    Route::get('/posts/{post}/edit', [PostController::class, 'edit'])->name('posts.edit');
+
+});
+
+Route::get('/posts/{post}', [PostController::class, 'detail'])->name('posts.detail');
+
+
+
