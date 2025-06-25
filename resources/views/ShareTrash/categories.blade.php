@@ -3,6 +3,10 @@
 @section('title', $name . 'の分別情報')
 
 @section('content')
+<div class="message">
+    <h2>GreenCycle Comminity</h2>
+    <h3>Connected Trash Can</h3>
+</div>
     <div class="categories_container">
     <h2>{{ $name }} の分別情報</h2>
 

@@ -10,8 +10,8 @@
 <main>
     <div class="show_container">
       <div class="back"> 
-        <a href="{{ route('posts.allpost') }}" class="back-btn">
-                トップへ戻る
+        <a href="{{ session('return_to', route('posts.my')) }}" class="back-btn">
+                前のページに戻る
         </a>
       </div>
         <div class="post-header">

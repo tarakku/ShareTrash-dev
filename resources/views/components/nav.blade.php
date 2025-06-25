@@ -12,11 +12,11 @@
             <button class="clear-search">×</button>
         </div>
         @guest
-        <button class="sign-up-btn"><a href="{{ route('login', ['redirect_to' => url()->current()]) }}" class="btn-link">sign up</a></button>
+        <button class="sign-up-btn"><a href="{{ route('login', ['redirect_to' => url()->current()]) }}" class="btn-link">ログイン</a></button>
         @endguest
         @auth
             
-            <button class="sign-out-btn"><a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="btn-link">sign out</a></button>
+            <button class="sign-out-btn"><a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="btn-link">ログアウト</a></button>
             {{-- ログアウトフォーム (変更なし) --}}
             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                 @csrf
