@@ -10,13 +10,13 @@
     <nav>
         <ul>
             <li><button id="toggleButton" class="style-none">Form</button></li>
-            <li><a href="{{ route('profile') }}">Members</a></li>
-
             <li class="login">
+                <a href="{{ route('profile') }}">
                 <img class="login_icon" src="{{ asset('header_images/login_icon.png') }}" alt="login_icon">
-                
+                </a>
+                <a href="{{ route('profile') }}">
                 {{ Auth::user()?->nickname ?? 'ゲスト' }}
-                
+                </a>
             </li>
         </ul>
     </nav>
