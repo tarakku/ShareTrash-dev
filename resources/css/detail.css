@@ -61,6 +61,8 @@
 }
 
 .post-title {
+    text-align: left;
+    display: block; /* 明示しておくと安心 */
     font-size: 1.5em;
     margin-bottom: 10px;
 }

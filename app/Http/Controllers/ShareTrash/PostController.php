@@ -25,6 +25,9 @@ class PostController extends Controller
      */
     public function all(Request $request)
     {
+        // セッションに現在のURLを保存
+        session(['return_to' => $request->fullUrl()]);
+
         $allowedSorts = [
             'views_count' => 'views_count',
             'likes_count' => 'likes_count',
@@ -91,7 +94,9 @@ class PostController extends Controller
             'likes_count' => 0,
         ]);
 
-        return redirect()->route('posts.allpost')->with('success', '投稿が作成されました！');
+    $redirectUrl = session('return_to', route('posts.allpost'));
+
+    return redirect($redirectUrl)->with('success', '投稿が完了しました。');
     }
 
     /**
@@ -111,6 +116,9 @@ class PostController extends Controller
      */
     public function my(Request $request)
     {
+        // セッションに現在のURLを保存
+        session(['return_to' => $request->fullUrl()]);
+
         $user = Auth::user();
             
         $sortBy = $request->input('sort_by', 'posted_at');
@@ -149,7 +157,9 @@ class PostController extends Controller
             'category_id' => $request ->category_id,
         ]);
 
-        return redirect()->route('category', $post)->with('success', '投稿を更新しました。');
+        $redirectUrl = session('return_to', route('posts.my'));
+
+        return redirect($redirectUrl);
     }
 
     /**
@@ -159,7 +169,9 @@ class PostController extends Controller
     {
         $post->delete();
 
-    return redirect()->route('category')->with('success', '投稿を削除しました。');
+    $redirectUrl = session('return_to', route('posts.my'));
+
+    return redirect($redirectUrl);
     }
 
     /**
