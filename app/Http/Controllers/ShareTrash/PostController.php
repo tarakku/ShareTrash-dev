@@ -57,7 +57,8 @@ class PostController extends Controller
 
         $postsQuery->orderBy($allowedSorts[$sortBy], $sortDirection);
 
-        $posts = $postsQuery->paginate(5);
+        // クエリパラメータをページネーションに引き継ぐ
+        $posts = $postsQuery->paginate(5) ->appends($request->query());
 
         $categories = Category::all();
 
