@@ -12,12 +12,12 @@
 <main>
     <div class="edit_container">
         <div class="back"> 
-            <a href="{{ route('posts.allpost') }}" class="back-btn">
-                    トップへ戻る
+            <a href="{{ session('return_to', route('posts.my')) }}" class="back-btn">
+                    前のページに戻る
             </a>
         </div>
 
-        <h1>EditPost</h1>
+        <h1>投稿編集</h1>
         <form action="{{ route('posts.update', $post) }}" method="POST" id="updatePost">
             @csrf
             @method('PUT')

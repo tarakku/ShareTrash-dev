@@ -21,7 +21,7 @@
         <div class="controls-section">
             <div class="sort-section">
                 <form action="{{ route('posts.allpost') }}" method="GET" id="sortForm">
-                    <label for="sortBy">SortBy</label>
+                    <label for="sortBy">並び替え</label>
                     <select id="sortBy" class="sort-dropdown" name="sort_by" onchange="this.form.submit()">
                         <option value="views_count" @selected($sortBy == 'views_count')>閲覧数</option>
                         <option value="likes_count" @selected($sortBy == 'likes_count')>いいね数</option>
@@ -52,7 +52,7 @@
                 @endif
             </div>
             @auth
-            <a href="{{ route('posts.create') }}" class="create-post-btn">CreatePost</a>
+            <a href="{{ route('posts.create') }}" class="create-post-btn">投稿作成</a>
             @endauth
         </div>
 
