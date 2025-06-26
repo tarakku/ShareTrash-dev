@@ -14,10 +14,10 @@ return new class extends Migration
         Schema::create('views', function (Blueprint $table) {
             // 複合主キーの定義
             $table->foreignId('user_id')
-                  ->constrained('users', 'id')
+                  ->references('id')->on('users')
                   ->onDelete('cascade');
             $table->foreignId('post_id')
-                  ->constrained('posts', 'post_id')
+                  ->references('post_id')->on('posts')
                   ->onDelete('cascade');
 
             $table->primary(['user_id', 'post_id']); // 複合主キー

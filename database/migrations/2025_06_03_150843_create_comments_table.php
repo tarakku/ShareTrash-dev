@@ -19,12 +19,12 @@ return new class extends Migration
 
             // FK: 投稿ID
             $table->foreignId('post_id')
-                  ->constrained('posts', 'post_id')
+                  ->references('post_id')->on('posts')
                   ->onDelete('cascade');
 
             // FK: 会員ID
             $table->foreignId('user_id')
-                  ->constrained('users', 'id')
+                  ->references('id')->on('users')
                   ->onDelete('cascade');
         });
     }

@@ -22,12 +22,12 @@ return new class extends Migration
 
             // FK: 会員ID
             $table->foreignId('user_id')
-                  ->constrained('users', 'id') // usersテーブルのidを参照
+                  ->references('id')->on('users') // usersテーブルのidを参照
                   ->onDelete('cascade');
 
             // FK: カテゴリID
             $table->foreignId('category_id')
-                  ->constrained('categories', 'category_id') // categoriesテーブルのcategory_idを参照
+                  ->references('category_id')->on('categories') // categoriesテーブルのcategory_idを参照
                   ->onDelete('cascade');
         });
     }

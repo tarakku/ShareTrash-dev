@@ -12,12 +12,12 @@
 <main>
     <div class="create_container">
         <div class="back"> 
-            <a href="{{ route('posts.allpost') }}" class="back-btn">
-                    トップへ戻る
+            <a href="{{ session('return_to', route('posts.allpost')) }}" class="back-btn">
+                    前のページに戻る
             </a>
         </div>
 
-        <h2>CreatePost</h2>
+        <h2>投稿作成</h2>
         <form action="{{ route('posts.store') }}" method="POST" id="createPost">
             @csrf
 

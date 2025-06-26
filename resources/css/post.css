@@ -221,6 +221,8 @@
 }
 
 .allpost_container .post-title {
+    text-align: left;
+    display: block; /* 明示しておくと安心 */
     font-size: 1.2em;
     font-weight: bold;
     margin: 0 0 5px 0;
