@@ -2,21 +2,22 @@
      <!-- ここから問い合わせフォーム -->
         <div id="toggleElement" class="modal" style="display: none;">
             <div class="forum">
-                <div class="form-table">
+                <form class="form-table" action="{{ route('inquiry.form') }}" method="POST">
+                    @csrf
                     <button class="close-button" aria-label="閉じる">×</button>
                     <h2 class="form-header">お問い合わせフォーム</h2>
                     <div class="form-row">
                         <label>メールアドレス</label>
-                        <input type="email" placeholder="example@gmail.com">
+                        <input type="email" name="email" placeholder="email@example.com">
                     </div>
                     <div class="form-row">
                         <label>お問い合わせ内容</label>
-                        <textarea class="auto-grow" placeholder="お問い合わせ内容を入力してください" rows="2"></textarea>
+                        <textarea class="auto-grow" name="content" placeholder="お問い合わせ内容を入力してください" rows="2"></textarea>
                     </div>
                     <div class="form-row">
                         <button type="submit" class="forum-button" name="button">送信</button>
                     </div>
-                </div>
+                </form>
             </div>
         </div>
     <!-- ここまで問い合わせフォーム -->

@@ -7,6 +7,7 @@ use App\Http\Controllers\ShareTrash\PostController;
 use App\Http\Controllers\ShareTrash\CommentController;
 use App\Http\Controllers\ShareTrash\CategoryController;
 use App\Http\Controllers\Admin\AdminDashboardController;
+use App\Http\Controllers\ShareTrash\InquiryController;
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -23,6 +24,14 @@ Route::middleware('auth')->group(function () {
 });
 require __DIR__.'/auth.php';
 
+Route::get('/mypage_or_login',function(){
+    if (auth()->check()) {
+        return redirect()->route('profile');
+    } else {
+        return redirect()->route('login', ['redirect_to' => url()->previous()]);
+    }
+})->name('mypage_or_login');
+
 Route::get('/', [\App\Http\Controllers\ShareTrash\CategoryController::class, 'category'])->name('category');
 
 Route::get('/profile', [\App\Http\Controllers\ShareTrash\ProfileController::class, 'profile'])->name('profile');
@@ -36,6 +45,8 @@ Route::get('/AllPost', [PostController::class, 'all'])->name('posts.allpost');
 Route::get('/create', [PostController::class, 'create'])->name('posts.create');
 
 Route::post('/create', [PostController::class, 'store'])->name('posts.store');
+
+Route::post('/inquiry',[InquiryController::class, 'inquiryForm'])->name('inquiry.form');
 
 Route::middleware('auth')->group(function () {
    
