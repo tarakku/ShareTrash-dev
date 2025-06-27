@@ -180,8 +180,26 @@ class PostController extends Controller
      */
     public function like(Request $request, Post $post)
     {
-        $post->increment('likes_count'); // +1する
+        $user = Auth::user();
 
-        return back()->with('success', 'いいねしました！');
+        // 既にいいねしているか確認
+        $like = \App\Models\Like::where('user_id', $user->id)
+                        ->where('post_id', $post->post_id)
+                        ->first();
+        if ($like) {
+            $like->delete(); // いいねを削除
+            $post->decrement('likes_count'); // -1する
+            return back()->with('success', 'いいねを取り消しました。');
+        }else {
+            // いいねを保存
+            \App\Models\Like::create([
+                'user_id' => $user->id,
+                'post_id' => $post->post_id,
+            ]);
+
+            $post->increment('likes_count'); // +1する
+
+            return back()->with('success', 'いいねしました！');
+        }
     }
 }
