@@ -107,8 +107,23 @@ class PostController extends Controller
     {
         $post = Post::with(['category', 'comments'])->findOrFail($id);
 
-        $post->increment('views_count');
+        //セッションキーを作成
+        $sessionkey = 'viewed_post_' . $post->post_id;
+        $expire = 10 * 60;
 
+        //セッションに記録がなければ閲覧数を+1する
+        if(!session() ->has($sessionkey)) {
+            $post -> increment('views_count');
+            session() -> put($sessionkey, true);
+            session() -> put($sessionkey . '_time', now() -> timestamp);
+        } else {
+            //セッションに記録があれば、閲覧数を+1しない
+            $lastTime = session($sessionkey . '_time' , 0);
+            if(now()->timestamp - $lastTime > $expire) {
+                $post->increment('views_count');
+                session()->put($sessionkey . '_time', now()->timestamp);
+            }
+        }
         return view('ShareTrash.detailpost', compact('post'));
     }
 
