@@ -32,7 +32,7 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        $redirectAfterLogin = session('url.intended', '/ShareTrash/Category');
+        $redirectAfterLogin = session('url.intended', '/');
         return redirect($redirectAfterLogin);
     }
 

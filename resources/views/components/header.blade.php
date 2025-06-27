@@ -11,12 +11,21 @@
         <ul>
             <li><button id="toggleButton" class="style-none">お問い合わせ</button></li>
             <li class="login">
-                <a href="{{ route('profile') }}">
-                <img class="login_icon" src="{{ asset('header_images/login_icon.png') }}" alt="login_icon">
-                </a>
-                <a href="{{ route('profile') }}">
-                {{ Auth::user()?->nickname ?? 'ゲスト' }}
-                </a>
+                @auth
+                    <a href="{{ route('mypage_or_login') }}">
+                        <img class="login_icon" src="{{ asset('header_images/login_icon.png') }}" alt="login_icon">
+                    </a>
+                    <a href="{{ route('mypage_or_login') }}">
+                        {{ Auth::user()->nickname }}
+                    </a>
+                @else
+                    <a href="{{ route('mypage_or_login') }}">
+                        <img class="login_icon" src="{{ asset('header_images/login_icon.png') }}" alt="login_icon">
+                    </a>
+                    <a href="{{ route('mypage_or_login') }}">
+                        ゲスト（ログイン）
+                    </a>
+                @endauth
             </li>
         </ul>
     </nav>
