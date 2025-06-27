@@ -20,7 +20,7 @@ return new class extends Migration
                   ->references('post_id')->on('posts')
                   ->onDelete('cascade');
 
-            $table->primary(['user_id', 'post_id']); // 複合主キー
+            $table->unique(['user_id', 'post_id']); // 複合主キー
 
             $table->timestamps(); // いいねした日時などを記録する場合
         });
