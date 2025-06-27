@@ -24,3 +24,13 @@ body {
 body.fade-in {
     opacity: 1; /* 不透明にする */
 }
+
+.page-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.main-content {
+    flex: 1;
+}
