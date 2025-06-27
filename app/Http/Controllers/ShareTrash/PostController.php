@@ -185,9 +185,9 @@ class PostController extends Controller
     {
         $post->delete();
 
-    $redirectUrl = session('return_to', route('posts.my'));
+        $redirectUrl = session('return_to', route('posts.my'));
 
-    return redirect($redirectUrl);
+        return redirect($redirectUrl);
     }
 
     /**

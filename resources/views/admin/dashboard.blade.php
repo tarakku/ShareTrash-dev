@@ -75,10 +75,12 @@
             <ul>
                 @foreach ($inquiries as $inquiry)
                     <li>
-                        <span class="label">名前:</span><span class="value">{{ $inquiry->name }}</span>
+                        <span class="label">名前:</span><span class="value">{{ $inquiry->display_name }}</span>
                         <span class="label">メール:</span><span class="value">{{ $inquiry->email }}</span>
                         <span class="label">内容:</span><span class="value">{{ $inquiry->content }}</span>
                         <span class="label">送信日時:</span><span class="value">{{ $inquiry->inquired_at ? $inquiry->inquired_at->format('Y年m月d日 H:i') : '日付なし' }}</span>
+                        <span class="label">ステータス:</span>
+                        <span class="value">{{ $inquiry->status === "未対応" ? '未対応' : ($inquiry->status === "対応中" ? '対応中' : '対応済み') }}</span>
                     </li>
                 @endforeach
             </ul>
@@ -105,12 +107,14 @@
             const postSection = document.getElementById('postSection');
             postSection.style.display = (postSection.style.display === 'none' || postSection.style.display === '') ? 'block' : 'none';
             document.getElementById('userSection').style.display = 'none';
+            document.getElementById('contactSection').style.display = 'none'; // 追加
             document.getElementById('statsSection').style.display = 'none';
         }
         function showUserSection() {
             const userSection = document.getElementById('userSection');
             userSection.style.display = (userSection.style.display === 'none' || userSection.style.display === '') ? 'block' : 'none';
             document.getElementById('postSection').style.display = 'none';
+            document.getElementById('contactSection').style.display = 'none'; // 追加
             document.getElementById('statsSection').style.display = 'none';
         }
         function showInquirySection() {
@@ -125,6 +129,7 @@
             statsSection.style.display = (statsSection.style.display === 'none' || statsSection.style.display === '') ? 'block' : 'none';
             document.getElementById('postSection').style.display = 'none';
             document.getElementById('userSection').style.display = 'none';
+            document.getElementById('contactSection').style.display = 'none'; // 追加
             if(statsSection.style.display === 'block') {
                 window.renderStatsChart({
                     post_count: {{ $stats['post_count'] }},
