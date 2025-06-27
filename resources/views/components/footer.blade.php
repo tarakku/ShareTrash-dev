@@ -4,7 +4,7 @@
             <div class="forum">
                 <form class="form-table" action="{{ route('inquiry.form') }}" method="POST">
                     @csrf
-                    <button class="close-button" aria-label="閉じる">×</button>
+                    <button type="button" class="close-button" aria-label="閉じる" onclick="formClose()">×</button>
                     <h2 class="form-header">お問い合わせフォーム</h2>
                     <div class="form-row">
                         <label>メールアドレス</label>

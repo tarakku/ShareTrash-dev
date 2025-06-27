@@ -23,10 +23,10 @@
     'resources/js/nav_underline_animation.js'])
 </head>
 <body>
-    <div class="page-wrapper" id="fade-in-element">
+    <div class="page-wrapper" >
         <x-header />
 
-        <main class="main-content">
+        <main class="main-content" id="fade-in-element">
             @yield('content')
         </main>
         
