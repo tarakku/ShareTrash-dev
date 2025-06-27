@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('likes', function (Blueprint $table) {
             // 複合主キーの定義
+            $table->bigIncrements('like_id');
             $table->foreignId('user_id')
                   ->references('id')->on('users')
                   ->onDelete('cascade');
