@@ -175,7 +175,7 @@ class PostController extends Controller
 
         $redirectUrl = session('return_to', route('posts.my'));
 
-        return redirect($redirectUrl);
+        return redirect($redirectUrl)->with('success', '投稿の更新完了しました。');
     }
 
     /**
@@ -187,7 +187,7 @@ class PostController extends Controller
 
         $redirectUrl = session('return_to', route('posts.my'));
 
-        return redirect($redirectUrl);
+        return redirect($redirectUrl)->with('success', '投稿の削除完了しました。');
     }
 
     /**

@@ -26,9 +26,18 @@
     <div id="fade-in-element">
         <x-header />
 
+        {{-- トースト通知 --}}
+        @if (session('success'))
+            <div id="toast" class="toast-success">{{ session('success') }}</div>
+        @elseif (session('error'))
+            <div id="toast" class="toast-error">{{ session('error') }}</div>
+        @else
+            <div id="toast" style="display:none;"></div>
+        @endif
+
         @yield('content')
 
         <x-footer />
     </div>
 </body>
-</html
+</html>

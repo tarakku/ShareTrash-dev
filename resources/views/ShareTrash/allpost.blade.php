@@ -11,11 +11,6 @@
 <main>
     
     <div class="allpost_container">
-        @if (session('success'))
-        <div class="alert-success">
-            {{ session('success') }}
-        </div>
-        @endif
         <x-nav />
 
         <div class="controls-section">
