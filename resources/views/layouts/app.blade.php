@@ -18,6 +18,7 @@
     'resources/css/app.css',
     'resources/css/edit.css',
     'resources/css/categories.css',
+    'resources/css/nav.css',
     'resources/js/index.js',
     'resources/js/app.js',
     'resources/js/nav_underline_animation.js'])

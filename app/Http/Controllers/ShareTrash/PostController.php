@@ -46,9 +46,16 @@ class PostController extends Controller
         }
 
         $postsQuery = Post::query();
+        $postsQuery->with('category')->withCount('comments');
 
-        $postsQuery->with('category')
-                    ->withCount('comments');
+        // 検索機能
+        if ($request->filled('search')) {
+            $search = $request->input('search');
+            $postsQuery->where(function($query) use ($search) {
+                $query->where('title', 'like', "%{$search}%")
+                      ->orWhere('content', 'like', "%{$search}%");
+            });
+        }
 
         if ($request->has('category_id')) {
             $categoryId = $request->input('category_id');
@@ -56,9 +63,7 @@ class PostController extends Controller
         }
 
         $postsQuery->orderBy($allowedSorts[$sortBy], $sortDirection);
-
-        // クエリパラメータをページネーションに引き継ぐ
-        $posts = $postsQuery->paginate(5) ->appends($request->query());
+        $posts = $postsQuery->paginate(5)->appends($request->query());
 
         $categories = Category::all();
 
@@ -136,10 +141,19 @@ class PostController extends Controller
         session(['return_to' => $request->fullUrl()]);
 
         $user = Auth::user();
-            
         $sortBy = $request->input('sort_by', 'posted_at');
 
-        $posts = Post::where('user_id', $user->id)
+        // 検索機能を含めたクエリビルダを作成
+        $postsQuery = Post::where('user_id', $user->id);
+        if ($request->filled('search')) {
+            $search = $request->input('search');
+            $postsQuery->where(function($query) use ($search) {
+                $query->where('title', 'like', "%{$search}%")
+                      ->orWhere('content', 'like', "%{$search}%");
+            });
+        }
+
+        $posts = $postsQuery
                     ->orderBy($sortBy, 'desc')
                     ->paginate(5)
                     ->withQueryString();

@@ -1,0 +1,156 @@
+.header_container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #eee;
+}
+
+.header_containe .main-nav {
+    display: flex;
+    gap: 20px;
+    position: relative;
+    padding-bottom: 5px;
+}
+
+
+.header_container .nav-link {
+    text-decoration: none;
+    color: #555;
+    font-weight: bold;
+    padding: 0 10px 5px 10px;
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+    transition: color 0.3s ease;
+
+    /* CSS変数で下線の状態を制御 */
+    --underline-width: 0%;
+    --underline-left: 0%;
+}
+
+.header_container .nav-link::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: var(--underline-left); /* JavaScriptで制御 */
+    width: var(--underline-width); /* JavaScriptで制御 */
+    height: 2px;
+    background-color: #000;
+    transition: width 0.3s ease-out, left 0.3s ease-out; /* スライドアニメーション */
+}
+
+.header_container .nav-link.active {
+    color: #000;
+}
+
+.header_container .nav-link.active::before {
+    width: 100%;
+    left: 0;
+    transition: none;
+}
+
+.header_container .nav-link:not(.active):hover {
+    color: #000;
+}
+
+.header_container .header-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+
+
+/* 検索機能バー */
+.search-bar {
+    display: flex;
+    align-items: center;
+    position: relative;
+    width: 200px;
+    background: #f5f5f5;
+    border-radius: 25px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    transition: box-shadow 0.2s, background 0.2s;
+}
+.search-bar:focus-within {
+    box-shadow: 0 4px 16px rgba(0,180,180,0.15);
+    background: #fff;
+}
+
+.search-bar input {
+    border: none;
+    outline: none;
+    background: transparent;
+    padding: 10px 40px 10px 16px;
+    border-radius: 25px;
+    font-size: 15px;
+    width: 100%;
+    color: #333;
+    transition: background 0.2s;
+}
+
+.search-bar .search-btn {
+    position: absolute;
+    right: 36px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    font-size: 18px;
+    color: #00b4b4;
+    cursor: pointer;
+    padding: 0;
+}
+
+.search-bar .clear-search {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: #bbb;
+    padding: 0;
+    transition: color 0.2s;
+}
+.search-bar .clear-search:hover {
+    color: #ff4d4f;
+}
+
+/* レスポンシブ対応 (簡易的) */
+@media (max-width: 768px) {
+    .header_container, .controls-section, .nav-icons-section, .post-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .header_container .main-nav, .header-right, .sort-section, .nav-icons, .post-stats, .post-meta {
+        width: 100%;
+        justify-content: flex-start;
+        gap: 10px;
+    }
+
+    .header_container .header-right {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .header_container .search-bar input {
+        width: calc(100% - 40px); /* 検索バーの幅調整 */
+    }
+
+    .header_container .post-item {
+        align-items: flex-start;
+    }
+
+    .header_container .post-stats, .post-meta {
+        margin-left: 0;
+        margin-top: 10px;
+        justify-content: flex-start;
+    }
+}
