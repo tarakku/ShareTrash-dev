@@ -9,17 +9,10 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Carbon;
+use Intervention\Image\ImageManager;
 
 class PostController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
-    }
-
     /**
      * 投稿一覧（全体）
      */
@@ -57,7 +50,7 @@ class PostController extends Controller
             });
         }
 
-        if ($request->has('category_id')) {
+        if ($request->has('category_id') && $request->input('category_id') !== 'all') {
             $categoryId = $request->input('category_id');
             $postsQuery->where('category_id', $categoryId);
         }
@@ -88,9 +81,10 @@ class PostController extends Controller
             'title' => 'required|max:255',
             'content' => 'required',
             'category_id' => 'required|exists:categories,category_id',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
-        Post::create([
+        $data = [
             'title' => $request->title,
             'content' => $request->content,
             'user_id' => Auth::id(),
@@ -98,7 +92,35 @@ class PostController extends Controller
             'posted_at' => Carbon::now(),
             'views_count' => 0,
             'likes_count' => 0,
-        ]);
+        ];
+
+        if($request->hasFile('image')) {
+           $image = $request->file('image');
+           $filename = uniqid() . '.' . $image->getClientOriginalExtension();
+
+           // v3系はドライバーに完全修飾クラス名を指定
+           $manager = new \Intervention\Image\ImageManager(\Intervention\Image\Drivers\Gd\Driver::class);
+           $img = $manager->read($image->getRealPath())
+              ->resize(800, null, function ($constraint) {
+                    $constraint->aspectRatio();
+                    $constraint->upsize();
+              })
+              ->toJpeg(80);
+
+           $path = 'post_images/' . $filename;
+           // putの第2引数はバイナリ文字列でなければならない
+           $saved = \Storage::disk('public')->put($path, (string) $img);
+           if ($saved) {
+               $data['image_path'] = $path;
+           } else {
+               $data['image_path'] = null;
+           }
+        } else {
+           $data['image_path'] = null;
+        }
+
+        // 投稿の画像パスを更新
+        Post::create($data);
 
     $redirectUrl = session('return_to', route('posts.allpost'));
 

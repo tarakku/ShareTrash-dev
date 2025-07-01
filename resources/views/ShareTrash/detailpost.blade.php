@@ -29,6 +29,10 @@
             <p class="post-category">カテゴリー: {{ $post->category->category_name ?? '未分類' }}</p>
             <div class="post-content">{!! nl2br(e($post->content)) !!}</div>
 
+            @if($post->image_path)
+                <img src="{{ asset('storage/' . $post->image_path) }}" alt="投稿画像" class="post-image">
+            @endif
+
             <div class="actions">
                 <div class="stat-group">
                     <form method="POST" action="{{ route('posts.like', ['post' => $post->post_id]) }}">

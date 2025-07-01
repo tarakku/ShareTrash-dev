@@ -18,7 +18,7 @@
         </div>
 
         <h2>投稿作成</h2>
-        <form action="{{ route('posts.store') }}" method="POST" id="createPost">
+        <form action="{{ route('posts.store') }}" method="POST" id="createPost" enctype="multipart/form-data">
             @csrf
 
             <div class="title">
@@ -51,6 +51,13 @@
                 @enderror
             </div>
 
+            <div class="image-upload">
+                <label for="image">画像</label>
+                <input type="file" name="image" id="image" accept="image/*">
+                @error('image')
+                    <p class="error-message">{{ $message }}</p>
+                @enderror
+            </div>
             <button type="submit" class="btn btn-primary">投稿する</button>
         </form>
     </div>

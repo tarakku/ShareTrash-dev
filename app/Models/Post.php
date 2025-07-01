@@ -22,6 +22,7 @@ class Post extends Model
         'likes_count',
         'user_id',
         'category_id',
+        'image_path',
     ];
 
     protected $casts = [
