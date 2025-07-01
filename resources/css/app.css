@@ -17,10 +17,35 @@ body {
 
     /* アニメーション */
     opacity: 0; /* 透明 */
-    transition: opacity 1.5s ease-out; /* 1.5秒*/
+    transition: opacity 0.3s ease-in; /* 0.6秒*/
 }
 
 /* アニメーション */
 body.fade-in {
     opacity: 1; /* 不透明にする */
+}
+
+.page-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.main-content {
+    flex: 1;
+}
+
+.footer {
+    transform: translateY(100%); /* 下に隠す */
+    transition: transform 0.5s ease, opacity 0.5s ease;
+    opacity: 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+.footer.visible {
+    transform: translateY(0); /* 表示 */
+    opacity: 1;
 }
