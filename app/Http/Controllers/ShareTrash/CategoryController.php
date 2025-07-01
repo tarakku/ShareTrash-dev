@@ -13,8 +13,11 @@ class CategoryController extends Controller
          return view('ShareTrash.category');
     }
 
-    public function show($name)
+    public function show(Request $request, $name)
     {
+        // セッションに現在のURLを保存
+        session(['return_to' => $request->fullUrl()]);
+
         $category = Category::where('category_name', $name)->firstOrFail();
 
         $posts = $category->posts;
