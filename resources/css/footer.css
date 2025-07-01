@@ -4,8 +4,21 @@
 footer {
     background-color: #ffffff; /* 全体の背景色 */
     border-top: 1px solid #ddd;
-    margin-top: 60px; /* ページ下部に固定 */
+    margin-top: 60px; /* 上部の余白 */
     padding: 20px 0 0 0;
+}
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+    z-index: 9999;
+}
+
+.footer.visible {
+    transform: translateY(0);
 }
 
 .footer-container {
@@ -421,12 +434,11 @@ footer {
 textarea.auto-grow {
     resize: none;
     overflow-y: hidden;
-    min-height: 3em;
     box-sizing: border-box;
     font-family: inherit;
-    font-size: 1.1rem;
-    line-height: 1.4;
-    min-height: 2.8em;
+    font-size: 1em;
+    line-height: 1.5;
+    min-height: 3.0em;
 }
 
 .forum-button{

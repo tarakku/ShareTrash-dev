@@ -28,6 +28,17 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
+// ページ読み込み時にフェードイン効果を追加
+document.addEventListener('DOMContentLoaded', () => {
+    document.body.classList.add('fade-in');
+});
+
+
+// 閉じるボタンのイベントリスナー
+document.querySelector('.close-button').addEventListener('click', () => {
+    document.getElementById('toggleElement').style.display = 'none';
+});
 // ここまでお問い合わせ表示スクリプト
 
 // テキストエリアの自動高さ調整
@@ -36,7 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   textareas.forEach(textarea => {
     const lineHeight = parseFloat(getComputedStyle(textarea).lineHeight);
-    const baseRows = 2;
+    const baseRows = 3.5;
     const baseHeight = lineHeight * baseRows;
 
     const resize = () => {
@@ -144,3 +155,29 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 });
+
+// フッターの表示制御
+document.addEventListener('DOMContentLoaded', () => {
+  const footer = document.querySelector('.footer');
+
+  if (footer) {
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.scrollY;
+      const windowHeight = window.innerHeight;
+      const documentHeight = document.documentElement.scrollHeight;
+
+      if (scrollTop + windowHeight >= documentHeight - 1) {
+        footer.classList.add('visible');
+      } else {
+        footer.classList.remove('visible');
+      }
+    });
+  }
+});
+
+function formClose() {
+    const modal = document.getElementById('toggleElement');
+    if (modal) {
+        modal.style.display = 'none';
+    }
+}
