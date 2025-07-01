@@ -50,7 +50,7 @@ body.fade-in {
     font-size: 1rem;
     box-shadow: 0 2px 8px rgba(0,0,0,0.15);
     display: none;
-  
+}
 .page-wrapper {
     flex: 1;
     display: flex;
