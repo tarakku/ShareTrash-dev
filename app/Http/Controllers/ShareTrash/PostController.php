@@ -46,9 +46,16 @@ class PostController extends Controller
         }
 
         $postsQuery = Post::query();
+        $postsQuery->with('category')->withCount('comments');
 
-        $postsQuery->with('category')
-                    ->withCount('comments');
+        // 検索機能
+        if ($request->filled('search')) {
+            $search = $request->input('search');
+            $postsQuery->where(function($query) use ($search) {
+                $query->where('title', 'like', "%{$search}%")
+                      ->orWhere('content', 'like', "%{$search}%");
+            });
+        }
 
         if ($request->has('category_id')) {
             $categoryId = $request->input('category_id');
@@ -56,9 +63,7 @@ class PostController extends Controller
         }
 
         $postsQuery->orderBy($allowedSorts[$sortBy], $sortDirection);
-
-        // クエリパラメータをページネーションに引き継ぐ
-        $posts = $postsQuery->paginate(5) ->appends($request->query());
+        $posts = $postsQuery->paginate(5)->appends($request->query());
 
         $categories = Category::all();
 
@@ -107,8 +112,23 @@ class PostController extends Controller
     {
         $post = Post::with(['category', 'comments'])->findOrFail($id);
 
-        $post->increment('views_count');
+        //セッションキーを作成
+        $sessionkey = 'viewed_post_' . $post->post_id;
+        $expire = 10 * 60;
 
+        //セッションに記録がなければ閲覧数を+1する
+        if(!session() ->has($sessionkey)) {
+            $post -> increment('views_count');
+            session() -> put($sessionkey, true);
+            session() -> put($sessionkey . '_time', now() -> timestamp);
+        } else {
+            //セッションに記録があれば、閲覧数を+1しない
+            $lastTime = session($sessionkey . '_time' , 0);
+            if(now()->timestamp - $lastTime > $expire) {
+                $post->increment('views_count');
+                session()->put($sessionkey . '_time', now()->timestamp);
+            }
+        }
         return view('ShareTrash.detailpost', compact('post'));
     }
 
@@ -121,10 +141,19 @@ class PostController extends Controller
         session(['return_to' => $request->fullUrl()]);
 
         $user = Auth::user();
-            
         $sortBy = $request->input('sort_by', 'posted_at');
 
-        $posts = Post::where('user_id', $user->id)
+        // 検索機能を含めたクエリビルダを作成
+        $postsQuery = Post::where('user_id', $user->id);
+        if ($request->filled('search')) {
+            $search = $request->input('search');
+            $postsQuery->where(function($query) use ($search) {
+                $query->where('title', 'like', "%{$search}%")
+                      ->orWhere('content', 'like', "%{$search}%");
+            });
+        }
+
+        $posts = $postsQuery
                     ->orderBy($sortBy, 'desc')
                     ->paginate(5)
                     ->withQueryString();
@@ -160,7 +189,7 @@ class PostController extends Controller
 
         $redirectUrl = session('return_to', route('posts.my'));
 
-        return redirect($redirectUrl);
+        return redirect($redirectUrl)->with('success', '投稿の更新完了しました。');
     }
 
     /**
@@ -170,9 +199,9 @@ class PostController extends Controller
     {
         $post->delete();
 
-    $redirectUrl = session('return_to', route('posts.my'));
+        $redirectUrl = session('return_to', route('posts.my'));
 
-    return redirect($redirectUrl);
+        return redirect($redirectUrl)->with('success', '投稿の削除完了しました。');
     }
 
     /**

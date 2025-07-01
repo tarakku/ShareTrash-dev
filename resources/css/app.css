@@ -25,6 +25,32 @@ body.fade-in {
     opacity: 1; /* 不透明にする */
 }
 
+.toast-success {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: #4caf50;
+    color: #fff;
+    padding: 16px 24px;
+    border-radius: 8px;
+    z-index: 9999;
+    font-size: 1rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    display: none;
+}
+.toast-error {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: #f44336;
+    color: #fff;
+    padding: 16px 24px;
+    border-radius: 8px;
+    z-index: 9999;
+    font-size: 1rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    display: none;
+  
 .page-wrapper {
     flex: 1;
     display: flex;

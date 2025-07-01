@@ -24,6 +24,10 @@ class Inquiry extends Model
         'inquired_at',
     ];
 
+    protected $casts = [
+        'inquired_at' => 'datetime',
+    ];
+    
     // ログインユーザーとのリレーション
     public function user()
     {

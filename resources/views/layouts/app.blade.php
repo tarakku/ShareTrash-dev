@@ -18,6 +18,7 @@
     'resources/css/app.css',
     'resources/css/edit.css',
     'resources/css/categories.css',
+    'resources/css/nav.css',
     'resources/js/index.js',
     'resources/js/app.js',
     'resources/js/nav_underline_animation.js'])
@@ -26,6 +27,15 @@
     <div class="page-wrapper" >
         <x-header />
 
+        {{-- トースト通知 --}}
+        @if (session('success'))
+            <div id="toast" class="toast-success">{{ session('success') }}</div>
+        @elseif (session('error'))
+            <div id="toast" class="toast-error">{{ session('error') }}</div>
+        @else
+            <div id="toast" style="display:none;"></div>
+        @endif
+        
         <main class="main-content" id="fade-in-element">
             @yield('content')
         </main>
