@@ -434,12 +434,11 @@ footer {
 textarea.auto-grow {
     resize: none;
     overflow-y: hidden;
-    min-height: 3em;
     box-sizing: border-box;
     font-family: inherit;
-    font-size: 1.1rem;
-    line-height: 1.4;
-    min-height: 2.8em;
+    font-size: 1em;
+    line-height: 1.5;
+    min-height: 3.0em;
 }
 
 .forum-button{

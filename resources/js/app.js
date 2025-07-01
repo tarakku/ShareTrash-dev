@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   textareas.forEach(textarea => {
     const lineHeight = parseFloat(getComputedStyle(textarea).lineHeight);
-    const baseRows = 2;
+    const baseRows = 3.5;
     const baseHeight = lineHeight * baseRows;
 
     const resize = () => {
