@@ -19,7 +19,6 @@ return new class extends Migration
             $table->timestamp('edited_at')->nullable(); // 編集日時
             $table->integer('views_count')->default(0); // 閲覧数
             $table->integer('likes_count')->default(0); // いいね数
-            $table->string('image_path')->nullable(); // 画像パス
 
             // FK: 会員ID
             $table->foreignId('user_id')

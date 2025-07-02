@@ -5,6 +5,7 @@ namespace App\Http\Controllers\ShareTrash;
 use App\Models\Post;
 use App\Models\Category;
 use App\Models\Comment;
+use App\Models\PostImage;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -81,7 +82,8 @@ class PostController extends Controller
             'title' => 'required|max:255',
             'content' => 'required',
             'category_id' => 'required|exists:categories,category_id',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'images' => 'nullable|array|max:3',
+            'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
         $data = [
@@ -94,37 +96,39 @@ class PostController extends Controller
             'likes_count' => 0,
         ];
 
-        if($request->hasFile('image')) {
-           $image = $request->file('image');
-           $filename = uniqid() . '.' . $image->getClientOriginalExtension();
+        // 投稿を作成し、$postに代入
+        $post = Post::create($data);
 
-           // v3系はドライバーに完全修飾クラス名を指定
-           $manager = new \Intervention\Image\ImageManager(\Intervention\Image\Drivers\Gd\Driver::class);
-           $img = $manager->read($image->getRealPath())
-              ->resize(800, null, function ($constraint) {
-                    $constraint->aspectRatio();
-                    $constraint->upsize();
-              })
-              ->toJpeg(80);
+        // 画像の保存処理
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $image) {
+                $filename = uniqid() . '.' . $image->getClientOriginalExtension();
 
-           $path = 'post_images/' . $filename;
-           // putの第2引数はバイナリ文字列でなければならない
-           $saved = \Storage::disk('public')->put($path, (string) $img);
-           if ($saved) {
-               $data['image_path'] = $path;
-           } else {
-               $data['image_path'] = null;
-           }
+                $manager = new \Intervention\Image\ImageManager(\Intervention\Image\Drivers\Gd\Driver::class);
+                $img = $manager->read($image->getRealPath())
+                    ->resize(800, null, function ($constraint) {
+                        $constraint->aspectRatio();
+                        $constraint->upsize();
+                    })
+                    ->toJpeg(80);
+
+                $path = 'post_images/' . $filename;
+                $saved = \Storage::disk('public')->put($path, (string) $img);
+
+                if ($saved) {
+                    PostImage::create([
+                        'post_id' => $post->post_id,
+                        'image_path' => $path,
+                    ]);
+                }
+            }
         } else {
-           $data['image_path'] = null;
+            \Log::debug('画像がアップロードされていません');
         }
 
-        // 投稿の画像パスを更新
-        Post::create($data);
+        $redirectUrl = session('return_to', route('posts.allpost'));
 
-    $redirectUrl = session('return_to', route('posts.allpost'));
-
-    return redirect($redirectUrl)->with('success', '投稿が完了しました。');
+        return redirect($redirectUrl)->with('success', '投稿が完了しました。');
     }
 
     /**
