@@ -7,18 +7,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <title>@yield('title', 'ShareTrash')</title>
     @vite([
-    'resources/css/header.css',
-    'resources/css/footer.css',
-    'resources/css/category.css',
-    'resources/css/post.css',
-    'resources/css/create.css',
-    'resources/css/detail.css',
-    'resources/css/profile.css',
-    'resources/css/my.css',
-    'resources/css/app.css',
-    'resources/css/edit.css',
-    'resources/css/categories.css',
-    'resources/css/nav.css',
     'resources/js/create.js',
     'resources/js/app.js',
     'resources/js/detail.js',

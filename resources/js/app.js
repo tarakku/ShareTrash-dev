@@ -1,6 +1,19 @@
 import './bootstrap';
 import Alpine from 'alpinejs';
 
+import '../css/header.css';
+import '../css/footer.css';
+import '../css/category.css';
+import '../css/post.css';
+import '../css/create.css';
+import '../css/detail.css';
+import '../css/profile.css';
+import '../css/my.css';
+import '../css/edit.css';
+import '../css/categories.css';
+import '../css/nav.css';
+import '../css/app.css';
+
 window.Alpine = Alpine;
 Alpine.start();
 
