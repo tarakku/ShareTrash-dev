@@ -14,6 +14,10 @@ import '../css/categories.css';
 import '../css/nav.css';
 import '../css/app.css';
 
+import '../js/create.js';
+import '../js/detail.js';
+import '../js/nav_underline_animation.js';
+
 window.Alpine = Alpine;
 Alpine.start();
 
