@@ -29,6 +29,26 @@
             <p class="post-category">カテゴリー: {{ $post->category->category_name ?? '未分類' }}</p>
             <div class="post-content">{!! nl2br(e($post->content)) !!}</div>
 
+            {{-- 投稿画像表示 --}}
+            @if($post->images && $post->images->count())
+                <div class="post-images-multi">
+                    @foreach($post->images as $image)
+                        <div class="post-image-wrapper">
+                            <img src="{{ asset('storage/' . $image->image_path) }}"
+                                alt="投稿画像"
+                                class="post-image-multi"
+                                onclick="openModal(this.src)">
+                        </div>
+                    @endforeach
+                </div>
+            @endif
+
+            {{-- モーダルウィンドウ --}}
+            <div id="image-modal" class="image-modal" onclick="closeModal()" style="display:none;">
+                <span class="image-modal-close" onclick="closeModal(event)">&times;</span>
+                <img id="modal-img" class="image-modal-content">
+            </div>
+
             <div class="actions">
                 <div class="stat-group">
                     <form method="POST" action="{{ route('posts.like', ['post' => $post->post_id]) }}">

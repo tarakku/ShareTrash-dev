@@ -18,7 +18,7 @@
         </div>
 
         <h2>投稿作成</h2>
-        <form action="{{ route('posts.store') }}" method="POST" id="createPost">
+        <form action="{{ route('posts.store') }}" method="POST" id="createPost" enctype="multipart/form-data">
             @csrf
 
             <div class="title">
@@ -47,6 +47,22 @@
                     @endforeach
                 </select>
                 @error('category_id')
+                    <p class="error-message">{{ $message }}</p>
+                @enderror
+            </div>
+
+            <div class="image-upload">
+                <label for="image-input">画像（最大3枚）</label>
+                <div id="drop-area" class="drop-area">
+                    <p>ここに画像をドロップするか、クリックして選択</p>
+                    <input type="file" id="image-input" name="images[]" accept="image/*" multiple>
+                </div>
+                <div id="preview" class="image-preview"></div>
+                <small style="color: #888;">3枚まで選択できます</small>
+                @error('images')
+                    <p class="error-message">{{ $message }}</p>
+                @enderror
+                @error('images.*')
                     <p class="error-message">{{ $message }}</p>
                 @enderror
             </div>

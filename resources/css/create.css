@@ -8,7 +8,8 @@
     margin: 0 auto;
     padding: 30px;
     border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08); /* 影を追加 */
+    border: none !important; /* 黒い枠線を完全に消す */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5); /* 影を追加 */
     width: 100%;
     box-sizing: border-box;
     background: #ffffff;
@@ -93,4 +94,62 @@ select:focus {
 .create_container .back .back-btn:hover {
     background-color: rgb(255, 255, 255);
     color:rgb(0, 0, 0);
+}
+
+/* ドロップエリア */
+.create_container .drop-area {
+    border: 2px dashed #aaa;
+    border-radius: 10px;
+    padding: 30px 10px;
+    text-align: center;
+    background: #fafbfc;
+    margin-bottom: 12px;
+    transition: border-color 0.2s, background 0.2s;
+    cursor: pointer;
+    position: relative;
+}
+.create_container .drop-area.dragover {
+    border-color: #333;
+    background: #f0f0f0;
+}
+.create_container .drop-area input[type="file"] {
+    opacity: 0;
+    position: absolute;
+    left: 0; top: 0; width: 100%; height: 100%;
+    cursor: pointer;
+}
+
+/* プレビュー画像 */
+.create_container .image-preview {
+    display: flex;
+    gap: 16px;
+    margin: 12px 0;
+    flex-wrap: wrap;
+}
+.create_container .image-preview div {
+    position: relative;
+    display: inline-block;
+}
+.create_container .image-preview img {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    border: 1px solid #eee;
+}
+.create_container .image-preview button {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    background: rgba(0,0,0,0.6);
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    font-size: 1rem;
+    line-height: 1;
+    padding: 0;
 }
