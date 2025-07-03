@@ -136,7 +136,7 @@ class PostController extends Controller
      */
     public function detail(string $id)
     {
-        $post = Post::with(['category', 'comments'])->findOrFail($id);
+        $post = Post::with(['category', 'comments', 'images'])->findOrFail($id);
 
         //セッションキーを作成
         $sessionkey = 'viewed_post_' . $post->post_id;

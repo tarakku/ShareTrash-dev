@@ -53,8 +53,11 @@
 
             <div class="image-upload">
                 <label for="image-input">画像（最大3枚）</label>
-                <input type="file" id="image-input" name="images[]" accept="image/*" multiple>
-                <div id="preview"></div>
+                <div id="drop-area" class="drop-area">
+                    <p>ここに画像をドロップするか、クリックして選択</p>
+                    <input type="file" id="image-input" name="images[]" accept="image/*" multiple>
+                </div>
+                <div id="preview" class="image-preview"></div>
                 <small style="color: #888;">3枚まで選択できます</small>
                 @error('images')
                     <p class="error-message">{{ $message }}</p>
