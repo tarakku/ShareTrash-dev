@@ -1,4 +1,4 @@
-<header class="header">
+<header class="header_container">
     <nav class="main-nav">
         <a href="{{ route('category') }}" class="nav-link [active]">カテゴリー</a>
         <a href="{{ route('posts.allpost') }}" class="nav-link [active]">すべてのポスト</a>
@@ -7,10 +7,11 @@
         @endauth
     </nav>
     <div class="header-right">
-        <div class="search-bar">
-            <input type="text" placeholder="Value">
-            <button class="clear-search">×</button>
-        </div>
+        <form class="search-bar" action="{{ url()->current() }}" method="GET">
+            <input type="text" name="search" placeholder="キーワード検索" value="{{ request('search') }}">
+            <button type="submit" class="search-btn"><i class="fas fa-search"></i></button>
+            <button type="button" class="clear-search" onclick="this.form.search.value=''; this.form.submit();">×</button>
+        </form>
         @guest
         <button class="sign-up-btn"><a href="{{ route('login', ['redirect_to' => url()->current()]) }}" class="btn-link">ログイン</a></button>
         @endguest

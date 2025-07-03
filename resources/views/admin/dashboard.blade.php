@@ -25,7 +25,7 @@
                 <p>登録ユーザーの確認や制限の管理</p>
             </div>
 
-            <div class="card">
+            <div class="card" onclick="showInquirySection()" style="cursor:pointer;">
                 <h2>お問い合わせ</h2>
                 <p>ユーザーからの問い合わせを見る</p>
             </div>
@@ -63,12 +63,28 @@
                         <span class="label">メール:</span><span class="value">{{ $user->email }}</span>
                         <span class="label">都道府県:</span><span class="value">{{ $user->address_prefecture ?? '未設定' }}</span>
                         <span class="label">市区町村:</span><span class="value">{{ $user->address_city ?? '未設定' }}</span>
-                        <span class="label">登録日:</span><span class="value">{{ $user->created_at ? $user->created_at->format('Y年m月d日') : '日付なし' }}</span>
+                        <span class="label">登録日:</span><span class="value">{{ $user->created_at ? $user->created_at->format('Y年m月d日 H:i') : '日付なし' }}</span>
                     </li>
                 @endforeach
             </ul>
         </div>
 
+        {{-- お問い合わせエリア（最初は非表示） --}}
+        <div id="contactSection" class="content-area" style="display: none;">
+            <h3>お問い合わせ</h3>
+            <ul>
+                @foreach ($inquiries as $inquiry)
+                    <li>
+                        <span class="label">名前:</span><span class="value">{{ $inquiry->display_name }}</span>
+                        <span class="label">メール:</span><span class="value">{{ $inquiry->email }}</span>
+                        <span class="label">内容:</span><span class="value">{{ $inquiry->content }}</span>
+                        <span class="label">送信日時:</span><span class="value">{{ $inquiry->inquired_at ? $inquiry->inquired_at->format('Y年m月d日 H:i') : '日付なし' }}</span>
+                        <span class="label">ステータス:</span>
+                        <span class="value">{{ $inquiry->status === "未対応" ? '未対応' : ($inquiry->status === "対応中" ? '対応中' : '対応済み') }}</span>
+                    </li>
+                @endforeach
+            </ul>
+        </div>
         {{-- サイト統計エリア（最初は非表示） --}}
         <div id="statsSection" class="content-area" style="display: none;">
             <h3>サイト統計</h3>
@@ -91,12 +107,21 @@
             const postSection = document.getElementById('postSection');
             postSection.style.display = (postSection.style.display === 'none' || postSection.style.display === '') ? 'block' : 'none';
             document.getElementById('userSection').style.display = 'none';
+            document.getElementById('contactSection').style.display = 'none'; // 追加
             document.getElementById('statsSection').style.display = 'none';
         }
         function showUserSection() {
             const userSection = document.getElementById('userSection');
             userSection.style.display = (userSection.style.display === 'none' || userSection.style.display === '') ? 'block' : 'none';
             document.getElementById('postSection').style.display = 'none';
+            document.getElementById('contactSection').style.display = 'none'; // 追加
+            document.getElementById('statsSection').style.display = 'none';
+        }
+        function showInquirySection() {
+            const contactSection = document.getElementById('contactSection');
+            contactSection.style.display = (contactSection.style.display === 'none' || contactSection.style.display === '') ? 'block' : 'none';
+            document.getElementById('postSection').style.display = 'none';
+            document.getElementById('userSection').style.display = 'none';
             document.getElementById('statsSection').style.display = 'none';
         }
         function showStatsSection() {
@@ -104,6 +129,7 @@
             statsSection.style.display = (statsSection.style.display === 'none' || statsSection.style.display === '') ? 'block' : 'none';
             document.getElementById('postSection').style.display = 'none';
             document.getElementById('userSection').style.display = 'none';
+            document.getElementById('contactSection').style.display = 'none'; // 追加
             if(statsSection.style.display === 'block') {
                 window.renderStatsChart({
                     post_count: {{ $stats['post_count'] }},

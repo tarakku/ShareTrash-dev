@@ -11,11 +11,6 @@
 <main>
     
     <div class="allpost_container">
-        @if (session('success'))
-        <div class="alert-success">
-            {{ session('success') }}
-        </div>
-        @endif
         <x-nav />
 
         <div class="controls-section">
@@ -27,6 +22,9 @@
                         <option value="likes_count" @selected($sortBy == 'likes_count')>いいね数</option>
                         <option value="posted_at" @selected($sortBy == 'posted_at')>投稿日時</option>
                     </select>
+                @if(request('search'))
+                    <input type="hidden" name="search" value="{{ request('search') }}">
+                @endif
                 </form>
             </div>
             <div class="page-up-down">
