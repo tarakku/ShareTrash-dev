@@ -13,6 +13,9 @@ import '../css/edit.css';
 import '../css/categories.css';
 import '../css/nav.css';
 import '../css/app.css';
+import '../css/login.css';
+import '../css/register.css';
+import '../css/login_register_wrapper.css';
 
 import '../js/create.js';
 import '../js/detail.js';

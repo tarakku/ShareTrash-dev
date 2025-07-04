@@ -1,28 +1,27 @@
 <x-guest-layout>
-    <x-auth-session-status class="mb-4" :status="session('status')" />
+    <div class="register-page-wrapper">
+        <x-auth-session-status class="mb-4" :status="session('status')" />
 
-    {{-- Validation Errors --}}
-    {{-- Laravelから返されるバリデーションエラーを表示する部分 --}}
-    @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
-    
-    <div class="register_main">
-        <form method="POST" action="{{ route('register') }}" name="rergister_form">
-            @csrf
-            <div class="rergister_form_top">
-                <h1>Register</h1>
-                <p>下記の情報をご入力の上、「REGISTER」ボタンをクリックしてください。</p>
+        {{-- Validation Errors --}}
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
             </div>
+        @endif
 
-            <div class="rergister_form_btm">
-                <form method="POST" action="{{ route('register') }}" name="register_form">
+        <div class="register_main">
+            <form method="POST" action="{{ route('register') }}" name="register_form">
+                @csrf
+                <div class="rergister_form_top">
+                    <h1>Register</h1>
+                    <p>下記の情報をご入力の上、「REGISTER」ボタンをクリックしてください。</p>
+                </div>
+
+                <div class="rergister_form_btm">
                     <div class="rergister_form_left">
                         <label>
                             ニックネーム
@@ -59,8 +58,8 @@
                 </div>
                 <div class="register_button">
                     <button type="submit" name="button">Register</button>
-                </div> 
+                </div>
             </form>
-        </form>
+        </div>
     </div>
 </x-guest-layout>
