@@ -73,3 +73,5 @@ Route::middleware(['auth', 'admin'])
         Route::get('/', [AdminDashboardController::class, 'index'])->name('dashboard');
     });
 
+// Ajaxリクエストで投稿一覧を更新するためのルート
+Route::get('/AllPost/refresh', [\App\Http\Controllers\ShareTrash\PostController::class, 'refresh'])->name('posts.refresh');

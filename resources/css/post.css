@@ -98,7 +98,7 @@
     color: rgb(0,0,0);
 }
 /* 投稿リスト */
-.allpost_container .post-list {
+.allpost_container .all-post-list {
     display: flex;
     flex-direction: column;
     gap: 10px; /* 投稿アイテム間のスペース */
