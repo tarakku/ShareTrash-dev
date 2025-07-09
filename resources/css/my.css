@@ -1,0 +1,43 @@
+/* ------------------------------------ */
+/* 投稿系統共通スタイル */
+/* ------------------------------------ */
+.post-actions {
+    margin-top: 0px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 10px;
+}
+
+/* ボタン共通スタイル */
+.btn-edit,
+.btn-delete {
+    display: inline-block;
+    min-width: 70px;
+    padding: 6px 16px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 4px;
+    text-align: center;
+    cursor: pointer;
+    box-sizing: border-box;
+    transition: background 0.2s;
+}
+
+/* 編集ボタン */
+.btn-edit {
+    background: #4caf50;
+    color: #fff;
+}
+
+/* 削除ボタン */
+.btn-delete {
+    background: #f44336;
+    color: #fff;
+    margin-left: 8px;
+}
+
+.btn-edit:hover,
+.btn-delete:hover {
+    opacity: 0.85;
+}

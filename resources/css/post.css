@@ -1,0 +1,192 @@
+/* ------------------------------------ */
+/* 投稿系統共通スタイル */
+/* ------------------------------------ */
+.allpost_container {
+    width: 900px;
+    max-width: 900px;
+    min-width: 320px;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5); /* 影を追加 */
+    background: #ffffff;
+}
+
+.allpost_container .alert-success {
+    display: block;
+    padding: 15px 0;
+    background:rgb(40, 155, 68);
+    color: #FFF;
+    text-align: center;
+    border-radius: 8px;
+}
+
+.allpost_container .btn-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    line-height: 1;
+    padding: 12px 20px;
+    margin: -12px -20px;
+}
+
+.allpost_container .sign-out-btn,
+.allpost_container .sign-up-btn {
+    background-color:rgb(221, 23, 43); /* 赤系の色 */
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    overflow: hidden; /* 子要素のpaddingでボタンからはみ出さないように */
+    box-shadow: 0 2px 10px rgba(16, 17, 17, 0.3);
+}
+
+.allpost_container .sign-out-btn:hover,
+.allpost_container .sign-up-btn:hover {
+    background-color: rgb(255, 255, 255);
+    color:rgb(0, 0, 0);
+}
+
+.allpost_container .sign-up-btn {
+    background-color: #02fdf1;
+    color: white; /* リンクの色も白にするため */
+}
+
+/* ソートと投稿ボタン */
+.allpost_container .controls-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.allpost_container .sort-section {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.allpost_container .sort-dropdown {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.allpost_container .page-up-down {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+.allpost_container .create-post-btn{
+    display: block;
+    width: 200px;
+    padding: 15px 0;
+    background: rgb(27, 214, 247);
+    color: #FFF;
+    font-weight: 700;
+    text-decoration: none;
+    text-align: center;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(16, 17, 17, 0.3); 
+}
+
+.allpost_container .create-post-btn:hover{
+    background-color: rgb(255, 255, 255);
+    color: rgb(0,0,0);
+}
+/* 投稿リスト */
+.allpost_container .all-post-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* 投稿アイテム間のスペース */
+}
+
+.allpost_container .post-item {
+    background-color: #f9f9f9;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-decoration: none;
+    color: inherit;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    transition: color 300ms, background-color 300ms;
+}
+
+.allpost_container .post-item:hover {
+    background-color: #333;
+    color: #FFFFFF;
+}
+
+.allpost_container .post-details {
+    flex-grow: 1; /* 詳細部分がスペースを占有 */
+}
+
+.post-item:hover .post-title,
+.post-item:hover p,
+.post-item:hover span,
+.post-item:hover i {
+    color: #fff;
+}
+
+.allpost_container .post-title {
+    text-align: left;
+    display: block; /* 明示しておくと安心 */
+    font-size: 1.2em;
+    font-weight: bold;
+    margin: 0 0 5px 0;
+    color: #333;
+}
+
+.allpost_container .post-category {
+    font-size: 0.9em;
+    color: #666;
+    margin: 0;
+}
+
+.allpost_container .post-stats {
+    display: flex;
+    align-items: center;
+    gap: 40px; /* 統計情報間のスペース */
+    font-size: 1.1em;
+    color: #555;
+    font-weight: bold;
+    min-width: 100px; /* 統計情報の最小幅を確保 */
+    justify-content: flex-end; /* 右寄せ */
+}
+
+.allpost_container .stat-item {
+    text-align: center;
+}
+
+.allpost_container .post-meta {
+    display: flex;
+    padding-left: 20px;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9em;
+    color: #777;
+    margin-left: 20px; /* 統計情報と日時の間のスペース */
+    min-width: 140px; /* 日付の表示幅を確保 */
+    justify-content: flex-end; /* 右寄せ */
+}
+
+.allpost_container .user-icon {
+    font-size: 1.2em;
+    color: #888;
+}
+
+/* 投稿がない場合のメッセージ */
+.allpost_container .no-posts {
+    text-align: center;
+    color: #888;
+    padding: 30px;
+    border: 1px dashed #ccc;
+    border-radius: 8px;
+    margin-top: 20px;
+}

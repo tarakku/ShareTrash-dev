@@ -1,0 +1,140 @@
+/* ------------------------------------ */
+/* カテゴリスタイル */
+/* ------------------------------------ */
+.category_container {
+    width: 900px;
+    max-width: 900px;
+    min-width: 320px;
+    margin: 0 auto;
+    padding: 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5); /* 影を追加 */
+    border-radius: 15px;
+    background: #ffffff;
+}
+
+.category_container .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #eee;
+}
+
+.category_container .header .main-nav {
+    display: flex;
+    gap: 20px;
+    position: relative;
+    padding-bottom: 5px;
+}
+
+
+.category_container .header .nav-link {
+    text-decoration: none;
+    color: #555;
+    font-weight: bold;
+    padding: 0 10px 5px 10px;
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+    transition: color 0.3s ease;
+
+    /* CSS変数で下線の状態を制御 */
+    --underline-width: 0%;
+    --underline-left: 0%;
+}
+
+.category_container .header .nav-link::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: var(--underline-left); /* JavaScriptで制御 */
+    width: var(--underline-width); /* JavaScriptで制御 */
+    height: 2px;
+    background-color: #000;
+    transition: width 0.3s ease-out, left 0.3s ease-out; /* スライドアニメーション */
+}
+
+.category_container .header .nav-link.active {
+    color: #000;
+}
+
+.category_container .header .nav-link.active::before {
+    width: 100%;
+    left: 0;
+    transition: none;
+}
+
+.category_container .header .nav-link:not(.active):hover {
+    color: #000;
+}
+
+.category_container .header .header-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.category_container .search-bar {
+     position: relative;
+}
+
+.category_container .search-bar input {
+    border: 1px solid #ccc;
+    padding: 8px 30px 8px 10px; /* テキストと×ボタンのスペース */
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.category_container .search-bar .clear-search {
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #888;
+}
+
+.category_container .btn-link {
+    text-decoration: none;
+    color: inherit; /* 親要素（ボタン）の文字色を継承 */
+    display: block; /* ボタン全体をリンク範囲にするため */
+    line-height: 1; /* ボタンの高さに合わせる調整 */
+    padding: 12px 20px;
+
+    margin: -12px -20px;
+}
+
+.category_container .sign-out-btn,
+.category_container .sign-up-btn {
+    background-color: #dc3545; /* 赤系の色 */
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    overflow: hidden; /* 子要素のpaddingでボタンからはみ出さないように */
+}
+
+.category_container .sign-up-btn {
+    background-color: #02fdf1;
+    color: white; /* リンクの色も白にするため */
+}
+
+.category_container .main_category {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.category_container .main_category img {
+    width: 140px;
+    height: 140px;
+    object-fit: contain;
+}

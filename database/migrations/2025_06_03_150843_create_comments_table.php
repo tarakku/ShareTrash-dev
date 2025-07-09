@@ -12,19 +12,19 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('comments', function (Blueprint $table) {
-            $table->id('comment_id'); // PK: コメントID
-            $table->text('content'); // 内容 (stringではなくtextの方が適切)
-            $table->timestamp('posted_at')->useCurrent(); // 投稿日時
-            $table->timestamp('edited_at')->nullable(); // 編集日時
+            $table->id('comment_id');
+            $table->text('content');
+            $table->timestamp('posted_at')->useCurrent();
+            $table->timestamp('edited_at')->nullable();
 
             // FK: 投稿ID
             $table->foreignId('post_id')
-                  ->constrained('posts', 'post_id') // postsテーブルのpost_idを参照
+                  ->references('post_id')->on('posts')
                   ->onDelete('cascade');
 
             // FK: 会員ID
             $table->foreignId('user_id')
-                  ->constrained('users', 'id') // usersテーブルのidを参照
+                  ->references('id')->on('users')
                   ->onDelete('cascade');
         });
     }

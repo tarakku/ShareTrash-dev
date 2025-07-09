@@ -16,6 +16,10 @@ class AuthenticatedSessionController extends Controller
      */
     public function create(): View
     {
+        if (request()->has('redirect_to')) {
+            session(['url.intended' => request('redirect_to')]);
+        }
+
         return view('auth.login');
     }
 
@@ -25,10 +29,9 @@ class AuthenticatedSessionController extends Controller
     public function store(LoginRequest $request): RedirectResponse
     {
         $request->authenticate();
-
         $request->session()->regenerate();
-
-        return redirect()->intended(route('ShareTrash', absolute: false));
+        $redirectAfterLogin = session('url.intended', '/');
+        return redirect($redirectAfterLogin)->with('success', 'ログインしました');
     }
 
     /**
@@ -37,11 +40,9 @@ class AuthenticatedSessionController extends Controller
     public function destroy(Request $request): RedirectResponse
     {
         Auth::guard('web')->logout();
-
         $request->session()->invalidate();
-
         $request->session()->regenerateToken();
-
-        return redirect()->route('ShareTrash');
+        $redirectTo = $request->input('redirect_after_logout', '/');
+        return redirect($redirectTo)->with('success', 'ログアウトしました');
     }
 }

@@ -1,0 +1,97 @@
+/* ------------------------------------ */
+/* 編集画面スタイル*/
+/* ------------------------------------ */
+.edit_container {
+    width: 900px;
+    max-width: 900px;
+    min-width: 320px;
+    margin: 0 auto;
+    padding: 30px;
+    border-radius: 12px;
+    border: none !important; /* 黒い枠線を完全に消す */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5); /* 影を追加 */
+    width: 100%;
+    box-sizing: border-box;
+    background: #ffffff;
+}
+
+.edit_container #updatePost {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.edit_container,
+.title,
+.content,
+.category-section {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.edit_container label {
+    font-weight: 600;
+    font-size: 1rem;
+    color:rgb(0, 0, 0);
+}
+
+.edit_container,
+input[type="text"],
+textarea,
+select {
+    padding: 12px 15px;
+    border: 1px solid rgb(208, 218, 228);
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.3s ease-in-out;
+}
+
+.edit_container,
+input[type="text"]:focus,
+textarea:focus,
+select:focus {
+    outline: none;
+    border-color:rgb(0, 0, 0);
+}
+
+.edit_container textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.edit_container .btn-primary {
+    background-color:rgb(0, 0, 0);
+    color: #FFFFFF;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    align-self: flex-end;
+    box-shadow: 0 2px 10px rgba(16, 17, 17, 0.3); /* 影を追加 */
+}
+
+.edit_container .btn-primary:hover {
+    background-color:rgb(255, 255, 255); /* ホバー時の色 */
+    color:rgb(0, 0, 0);
+}
+
+.edit_container .back .back-btn {
+    display: block;
+    width: 200px;
+    padding: 15px 0;
+    background:rgb(0, 0, 0);
+    color: #FFF;
+    font-weight: 700;
+    text-decoration: none;
+    text-align: center;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(16, 17, 17, 0.3); /* 影を追加 */
+}
+
+.edit_container .back .back-btn:hover {
+    background-color: rgb(255, 255, 255);
+    color:rgb(0, 0, 0);
+}

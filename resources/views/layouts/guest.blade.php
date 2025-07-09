@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    @vite(['resources/css/login.css','resources/css/register.css','resources/css/login_register_wrapper.css'])
+    @vite(['resources/js/app.js'])
     <title>ShereTrash</title>
 </head>
 <body class="fadeout">
     <div class="wrapper">
         <div class="header">
             <div class="header_ShereTrash">
-                <a href="{{ route('ShareTrash') }}" class="top-button">
+                <a href="{{ route('category') }}" class="top-button">
                     トップへ戻る
                 </a>
             </div> 

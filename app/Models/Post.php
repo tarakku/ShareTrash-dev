@@ -22,6 +22,7 @@ class Post extends Model
         'likes_count',
         'user_id',
         'category_id',
+        'image_path',
     ];
 
     protected $casts = [
@@ -29,14 +30,23 @@ class Post extends Model
         'edited_at' => 'datetime',
     ];
 
-    // リレーションシップ（オプション）
     public function user()
     {
-        return $this->belongsTo(User::class, 'id', 'id'); // 'id' (postsテーブルのカラム名), 'id' (usersテーブルの参照カラム名)
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
 
     public function category()
     {
         return $this->belongsTo(Category::class, 'category_id', 'category_id');
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class, 'post_id', 'post_id');
+    }
+
+    public function images()
+    {
+        return $this->hasMany(PostImage::class, 'post_id', 'post_id');
     }
 }
