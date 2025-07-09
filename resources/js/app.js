@@ -27,16 +27,6 @@ Alpine.start();
 
 // ここからお問い合わせ表示スクリプト
 document.addEventListener('DOMContentLoaded', () => {
-<<<<<<< HEAD
-    const toggleButton = document.getElementById('toggleButton');
-    const toggleElement = document.getElementById('toggleElement');
-
-    toggleButton.addEventListener('click', () => {
-        if (toggleElement.style.display === 'none' || toggleElement.style.display === '') {
-            toggleElement.style.display = 'flex';
-        } else {
-            toggleElement.style.display = 'none';
-=======
     const toggleButtons = document.querySelectorAll('.toggle-button');
     const toggleElement = document.getElementById('toggleElement');
     if (toggleButtons.length > 0 && toggleElement) {
@@ -101,17 +91,11 @@ document.addEventListener('DOMContentLoaded', () => {
         if (newPassword !== confirmPassword) {
             alert('新しいパスワードと確認用パスワードが一致しません。');
             e.preventDefault(); // 送信キャンセル
->>>>>>> e9c70a370bc79b359380ec4c5a83aec569e35c26
         }
     });
 });
 
-<<<<<<< HEAD
-document.querySelector('.close-button').addEventListener('click', () => {
-  document.getElementById('toggleElement').style.display = 'none';
-});
-// ここまでお問い合わせ表示スクリプト
-=======
+
 // トースト表示用の共通関数
 function showToast(message, type = 'success', duration = 3000) {
     const toast = document.getElementById('toast');
@@ -212,4 +196,3 @@ function formClose() {
         modal.style.display = 'none';
     }
 }
->>>>>>> e9c70a370bc79b359380ec4c5a83aec569e35c26
