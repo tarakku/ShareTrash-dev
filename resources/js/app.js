@@ -95,6 +95,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
+
 // トースト表示用の共通関数
 function showToast(message, type = 'success', duration = 3000) {
     const toast = document.getElementById('toast');
