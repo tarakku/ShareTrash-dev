@@ -27,9 +27,9 @@
                 <img class="sharetrash-logo" src="{{ asset('footer_image/logo.png') }}">
             </div>
             <div class="footer-centor">
-                <a href=" " class="contact-button">
-                    <span>お問い合わせ<br>こちら</br></span>
-                </a>
+                <button class="contact-button toggle-button">
+                    <span>お問い合わせ<br>こちら</span>
+                </button>
             </div>
             <div class="footer-right">
                 <div class="community-info">

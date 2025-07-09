@@ -9,7 +9,7 @@
     </div>      
     <nav>
         <ul>
-            <li><button id="toggleButton" class="style-none">お問い合わせ</button></li>
+            <li><button class="style-none toggle-button">お問い合わせ</button></li>
             <li class="login">
                 @auth
                     <a href="{{ route('mypage_or_login') }}">

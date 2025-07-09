@@ -27,15 +27,17 @@ Alpine.start();
 
 // ここからお問い合わせ表示スクリプト
 document.addEventListener('DOMContentLoaded', () => {
-    const toggleButton = document.getElementById('toggleButton');
+    const toggleButtons = document.querySelectorAll('.toggle-button');
     const toggleElement = document.getElementById('toggleElement');
-    if (toggleButton && toggleElement) {
-        toggleButton.addEventListener('click', () => {
-            if (toggleElement.style.display === 'none' || toggleElement.style.display === '') {
-                toggleElement.style.display = 'flex';
-            } else {
-                toggleElement.style.display = 'none';
-            }
+    if (toggleButtons.length > 0 && toggleElement) {
+        toggleButtons.forEach((button) => {
+            button.addEventListener('click', () => {
+                if (toggleElement.style.display === 'none' || toggleElement.style.display === '') {
+                    toggleElement.style.display = 'flex';
+                } else {
+                    toggleElement.style.display = 'none';
+                }
+            });
         });
     }
     const closeBtn = document.querySelector('.close-button');

@@ -5,7 +5,7 @@
 @section('content')
 
 <div class="message">
-    <h2>GreenCycle Comminity</h2>
+    <h2>GreenCycle Community</h2>
     <h3>Connected Trash Can</h3>
 </div>
 
