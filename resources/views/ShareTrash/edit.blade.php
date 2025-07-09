@@ -5,7 +5,7 @@
 @section('content')
 
 <div class="message">
-    <h2>GreenCycle Comminity</h2>
+    <h2>GreenCycle Community</h2>
     <h3>Connected Trash Can</h3>
 </div>
 
@@ -17,7 +17,7 @@
             </a>
         </div>
 
-        <h1>投稿編集</h1>
+        <h2>投稿編集</h2>
         <form action="{{ route('posts.update', $post) }}" method="POST" id="updatePost">
             @csrf
             @method('PUT')

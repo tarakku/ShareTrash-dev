@@ -5,51 +5,48 @@ namespace App\Http\Controllers\ShareTrash;
 use App\Models\Post;
 use App\Models\Category;
 use App\Models\Comment;
+use App\Models\PostImage;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Carbon;
+use Intervention\Image\ImageManager;
 
 class PostController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * 共通ロジック 投稿情報取得
      */
-    public function index()
+    private function getAllPosts(Request $request)
     {
-        //
-    }
-
-    /**
-     * 投稿一覧（全体）
-     */
-    public function all(Request $request)
-    {
-        // セッションに現在のURLを保存
-        session(['return_to' => $request->fullUrl()]);
-
+        // ここで定義したカラムのみがソート可能
+        // これにより、SQLインジェクションのリスクを軽減
         $allowedSorts = [
             'views_count' => 'views_count',
             'likes_count' => 'likes_count',
             'posted_at' => 'posted_at',
         ];
 
+        // リクエストからソートのパラメータを取得
+        // デフォルトは 'posted_at' で降順
         $sortBy = $request->query('sort_by', 'posted_at');
         $sortDirection = $request->query('direction', 'desc');
 
-        if (!array_key_exists($sortBy, $allowedSorts)) {
-            $sortBy = 'posted_at';
+        if(!array_key_exists($sortBy, $allowedSorts)) {
+            // 不正なソートカラムが指定された場合、デフォルトに戻す
+            $sortBy = 'posted_at';  
         }
 
-        if (!in_array(strtolower($sortDirection), ['asc', 'desc'])) {
+        if(!in_array(strtolower($sortDirection), ['asc', 'desc'])) {
+            // 不正なソート方向が指定された場合、デフォルトに戻す
             $sortDirection = 'desc';
         }
 
-        $postsQuery = Post::query();
-        $postsQuery->with('category')->withCount('comments');
+        // 投稿のクエリビルダを作成
+        $postsQuery = Post::query()->with('category')->withCount('comments');
 
         // 検索機能
-        if ($request->filled('search')) {
+        if($request->filled('search')) {
             $search = $request->input('search');
             $postsQuery->where(function($query) use ($search) {
                 $query->where('title', 'like', "%{$search}%")
@@ -57,18 +54,33 @@ class PostController extends Controller
             });
         }
 
-        if ($request->has('category_id')) {
-            $categoryId = $request->input('category_id');
-            $postsQuery->where('category_id', $categoryId);
+        // カテゴリフィルタ
+        if($request->has('category_id') && $request->input(category_id) !== 'all') {
+            $postsQuery->where('category_id', $request->input('category_id'));
         }
 
-        $postsQuery->orderBy($allowedSorts[$sortBy], $sortDirection);
-        $posts = $postsQuery->paginate(5)->appends($request->query());
+        // ソートの適用
+        $posts = $postsQuery
+            ->orderBy($allowedSorts[$sortBy], $sortDirection)
+            ->paginate(5)
+            ->appends($request->query());
 
+        // データを配列として返す （compact() は変数名と同じキーで連想配列を作る関数）
+        return compact('posts', 'sortBy', 'sortDirection');
+    }
+
+    /**
+     * 投稿一覧（全体）
+     */
+    public function all(Request $request)
+    {
+        session(['return_to' => $request->fullUrl()]);
+        $data = $this->getAllPosts($request);
         $categories = Category::all();
 
-        return view('ShareTrash.allpost', compact('posts', 'categories', 'sortBy', 'sortDirection'));
+        return view('ShareTrash.allpost', array_merge($data, compact('categories')));
     }
+
 
     /**
      * 投稿画面
@@ -88,9 +100,11 @@ class PostController extends Controller
             'title' => 'required|max:255',
             'content' => 'required',
             'category_id' => 'required|exists:categories,category_id',
+            'images' => 'nullable|array|max:3',
+            'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
-        Post::create([
+        $data = [
             'title' => $request->title,
             'content' => $request->content,
             'user_id' => Auth::id(),
@@ -98,11 +112,41 @@ class PostController extends Controller
             'posted_at' => Carbon::now(),
             'views_count' => 0,
             'likes_count' => 0,
-        ]);
+        ];
 
-    $redirectUrl = session('return_to', route('posts.allpost'));
+        // 投稿を作成し、$postに代入
+        $post = Post::create($data);
 
-    return redirect($redirectUrl)->with('success', '投稿が完了しました。');
+        // 画像の保存処理
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $image) {
+                $filename = uniqid() . '.' . $image->getClientOriginalExtension();
+
+                $manager = new \Intervention\Image\ImageManager(\Intervention\Image\Drivers\Gd\Driver::class);
+                $img = $manager->read($image->getRealPath())
+                    ->resize(800, null, function ($constraint) {
+                        $constraint->aspectRatio();
+                        $constraint->upsize();
+                    })
+                    ->toJpeg(80);
+
+                $path = 'post_images/' . $filename;
+                $saved = \Storage::disk('public')->put($path, (string) $img);
+
+                if ($saved) {
+                    PostImage::create([
+                        'post_id' => $post->post_id,
+                        'image_path' => $path,
+                    ]);
+                }
+            }
+        } else {
+            \Log::debug('画像がアップロードされていません');
+        }
+
+        $redirectUrl = session('return_to', route('posts.allpost'));
+
+        return redirect($redirectUrl)->with('success', '投稿が完了しました。');
     }
 
     /**
@@ -110,7 +154,7 @@ class PostController extends Controller
      */
     public function detail(string $id)
     {
-        $post = Post::with(['category', 'comments'])->findOrFail($id);
+        $post = Post::with(['category', 'comments', 'images'])->findOrFail($id);
 
         //セッションキーを作成
         $sessionkey = 'viewed_post_' . $post->post_id;
@@ -137,28 +181,9 @@ class PostController extends Controller
      */
     public function my(Request $request)
     {
-        // セッションに現在のURLを保存
         session(['return_to' => $request->fullUrl()]);
-
-        $user = Auth::user();
-        $sortBy = $request->input('sort_by', 'posted_at');
-
-        // 検索機能を含めたクエリビルダを作成
-        $postsQuery = Post::where('user_id', $user->id);
-        if ($request->filled('search')) {
-            $search = $request->input('search');
-            $postsQuery->where(function($query) use ($search) {
-                $query->where('title', 'like', "%{$search}%")
-                      ->orWhere('content', 'like', "%{$search}%");
-            });
-        }
-
-        $posts = $postsQuery
-                    ->orderBy($sortBy, 'desc')
-                    ->paginate(5)
-                    ->withQueryString();
-
-        return view('ShareTrash.mypost', compact('posts', 'sortBy'));
+        $data = $this->getAllPosts($request, true); // ← フラグを true にして自分の投稿に絞る
+        return view('ShareTrash.mypost', $data);
     }
     /**
      * 編集画面を表示
@@ -230,5 +255,15 @@ class PostController extends Controller
 
             return back()->with('success', 'いいねしました！');
         }
+    }
+
+    /**
+     * 投稿一覧のリフレッシュ
+     */
+    // Ajaxリクエストで投稿一覧を更新するためのメソッド
+    public function refresh(Request $request)
+    {
+        $data = $this->getAllPosts($request);
+        return view('ShareTrash._postlist', $data)->render();
     }
 }

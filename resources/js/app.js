@@ -1,24 +1,43 @@
 import './bootstrap';
-
 import Alpine from 'alpinejs';
+
+import '../css/header.css';
+import '../css/footer.css';
+import '../css/category.css';
+import '../css/post.css';
+import '../css/create.css';
+import '../css/detail.css';
+import '../css/profile.css';
+import '../css/my.css';
+import '../css/edit.css';
+import '../css/categories.css';
+import '../css/nav.css';
+import '../css/app.css';
+import '../css/login.css';
+import '../css/register.css';
+import '../css/login_register_wrapper.css';
+
+import '../js/post-refresh.js';
+import '../js/create.js';
+import '../js/detail.js';
+import '../js/nav_underline_animation.js';
 
 window.Alpine = Alpine;
 Alpine.start();
 
 // ここからお問い合わせ表示スクリプト
-// toggleButton, toggleElementが存在する場合のみイベント登録
-// close-buttonも同様
-
 document.addEventListener('DOMContentLoaded', () => {
-    const toggleButton = document.getElementById('toggleButton');
+    const toggleButtons = document.querySelectorAll('.toggle-button');
     const toggleElement = document.getElementById('toggleElement');
-    if (toggleButton && toggleElement) {
-        toggleButton.addEventListener('click', () => {
-            if (toggleElement.style.display === 'none' || toggleElement.style.display === '') {
-                toggleElement.style.display = 'flex';
-            } else {
-                toggleElement.style.display = 'none';
-            }
+    if (toggleButtons.length > 0 && toggleElement) {
+        toggleButtons.forEach((button) => {
+            button.addEventListener('click', () => {
+                if (toggleElement.style.display === 'none' || toggleElement.style.display === '') {
+                    toggleElement.style.display = 'flex';
+                } else {
+                    toggleElement.style.display = 'none';
+                }
+            });
         });
     }
     const closeBtn = document.querySelector('.close-button');
@@ -34,40 +53,41 @@ document.addEventListener('DOMContentLoaded', () => {
     document.body.classList.add('fade-in');
 });
 
-
-// 閉じるボタンのイベントリスナー
-document.querySelector('.close-button').addEventListener('click', () => {
-    document.getElementById('toggleElement').style.display = 'none';
+// 閉じるボタンのイベントリスナー（要素が存在する場合のみ登録）
+document.addEventListener('DOMContentLoaded', () => {
+    const closeBtn = document.querySelector('.close-button');
+    const toggleElement = document.getElementById('toggleElement');
+    if (closeBtn && toggleElement) {
+        closeBtn.addEventListener('click', () => {
+            toggleElement.style.display = 'none';
+        });
+    }
 });
-// ここまでお問い合わせ表示スクリプト
 
 // テキストエリアの自動高さ調整
 document.addEventListener('DOMContentLoaded', () => {
-  const textareas = document.querySelectorAll('textarea.auto-grow');
-
-  textareas.forEach(textarea => {
-    const lineHeight = parseFloat(getComputedStyle(textarea).lineHeight);
-    const baseRows = 3.5;
-    const baseHeight = lineHeight * baseRows;
-
-    const resize = () => {
-      textarea.style.height = 'auto';
-      const newHeight = textarea.scrollHeight;
-      textarea.style.height = Math.max(newHeight, baseHeight) + 'px';
-    };
-
-    textarea.addEventListener('input', resize);
-    resize(); // 初期化
-  });
+    const textareas = document.querySelectorAll('textarea.auto-grow');
+    textareas.forEach(textarea => {
+        const lineHeight = parseFloat(getComputedStyle(textarea).lineHeight);
+        const baseRows = 3.5;
+        const baseHeight = lineHeight * baseRows;
+        const resize = () => {
+            textarea.style.height = 'auto';
+            const newHeight = textarea.scrollHeight;
+            textarea.style.height = Math.max(newHeight, baseHeight) + 'px';
+        };
+        textarea.addEventListener('input', resize);
+        resize(); // 初期化
+    });
 });
 
 // パスワード確認
 document.addEventListener('DOMContentLoaded', () => {
     const form = document.querySelector('.edit-form-grid');
+    if (!form) return;
     form.addEventListener('submit', (e) => {
         const newPassword = form.querySelector('input[name="new_password"]').value;
         const confirmPassword = form.querySelector('input[name="new_password_confirmation"]').value;
-
         if (newPassword !== confirmPassword) {
             alert('新しいパスワードと確認用パスワードが一致しません。');
             e.preventDefault(); // 送信キャンセル
@@ -89,8 +109,6 @@ function showToast(message, type = 'success', duration = 3000) {
 }
 
 // セッションメッセージ用トースト
-// DOMContentLoaded時にメッセージがあれば表示
-
 document.addEventListener('DOMContentLoaded', function () {
     const toast = document.getElementById('toast');
     if (toast && toast.textContent.trim() !== '') {
@@ -102,8 +120,6 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 // プロフィールフォーム用トースト
-// formが存在する場合のみイベント登録
-
 document.addEventListener('DOMContentLoaded', function () {
     const form = document.getElementById('profileForm');
     if (!form) return;
@@ -158,21 +174,19 @@ document.addEventListener('DOMContentLoaded', function () {
 
 // フッターの表示制御
 document.addEventListener('DOMContentLoaded', () => {
-  const footer = document.querySelector('.footer');
-
-  if (footer) {
-    window.addEventListener('scroll', () => {
-      const scrollTop = window.scrollY;
-      const windowHeight = window.innerHeight;
-      const documentHeight = document.documentElement.scrollHeight;
-
-      if (scrollTop + windowHeight >= documentHeight - 1) {
-        footer.classList.add('visible');
-      } else {
-        footer.classList.remove('visible');
-      }
-    });
-  }
+    const footer = document.querySelector('.footer');
+    if (footer) {
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.scrollY;
+            const windowHeight = window.innerHeight;
+            const documentHeight = document.documentElement.scrollHeight;
+            if (scrollTop + windowHeight >= documentHeight - 1) {
+                footer.classList.add('visible');
+            } else {
+                footer.classList.remove('visible');
+            }
+        });
+    }
 });
 
 function formClose() {

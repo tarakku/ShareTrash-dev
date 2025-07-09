@@ -22,6 +22,7 @@ class Post extends Model
         'likes_count',
         'user_id',
         'category_id',
+        'image_path',
     ];
 
     protected $casts = [
@@ -42,5 +43,10 @@ class Post extends Model
     public function comments()
     {
         return $this->hasMany(Comment::class, 'post_id', 'post_id');
+    }
+
+    public function images()
+    {
+        return $this->hasMany(PostImage::class, 'post_id', 'post_id');
     }
 }

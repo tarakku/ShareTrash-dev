@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="message">
-    <h2>GreenCycle Comminity</h2>
+    <h2>GreenCycle Community</h2>
     <h3>Connected Trash Can</h3>
 </div>
 
@@ -54,7 +54,7 @@
             @endauth
         </div>
 
-        <div class="post-list">
+        <div class="all-post-list">
             @if ($posts->isEmpty())
                 <p class="no-posts">まだ投稿がありません。</p>
             @else
