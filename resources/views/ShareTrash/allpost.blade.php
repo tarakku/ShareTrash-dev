@@ -54,7 +54,7 @@
             @endauth
         </div>
 
-        <div class="post-list">
+        <div class="all-post-list">
             @if ($posts->isEmpty())
                 <p class="no-posts">まだ投稿がありません。</p>
             @else

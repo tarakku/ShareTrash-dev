@@ -17,6 +17,7 @@ import '../css/login.css';
 import '../css/register.css';
 import '../css/login_register_wrapper.css';
 
+import '../js/post-refresh.js';
 import '../js/create.js';
 import '../js/detail.js';
 import '../js/nav_underline_animation.js';
