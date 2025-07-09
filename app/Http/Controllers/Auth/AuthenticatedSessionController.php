@@ -30,6 +30,16 @@ class AuthenticatedSessionController extends Controller
     {
         $request->authenticate();
         $request->session()->regenerate();
+
+        // ユーザー情報を取得
+        $user = Auth::user();
+
+        // 管理者なら管理画面へ
+        if ($user->is_admin) {
+            return redirect('/admin')->with('success', '管理者としてログインしました');
+        }
+
+        // 一般ユーザーなら、ログイン前にアクセスしようとしていたページへリダイレクト
         $redirectAfterLogin = session('url.intended', '/');
         return redirect($redirectAfterLogin)->with('success', 'ログインしました');
     }

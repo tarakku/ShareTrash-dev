@@ -3,7 +3,11 @@ document.addEventListener('DOMContentLoaded', function () {
         const sortBySelect = document.getElementById('sortBy');
         const sortBy = sortBySelect ? sortBySelect.value : 'posted_at';
 
-        fetch(`/AllPost/refresh?sort_by=${sortBy}`)
+        // 現在のURLのクエリパラメータを取得
+        const urlParams = new URLSearchParams(window.location.search);
+        const page = urlParams.get('page') || 1;
+
+        fetch(`/AllPost/refresh?sort_by=${sortBy}&page=${page}`)
             .then(response => response.text())
             .then(html => {
                 document.querySelector('.all-post-list').innerHTML = html;
