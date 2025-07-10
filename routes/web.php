@@ -66,12 +66,14 @@ Route::middleware('auth')->group(function () {
 
 Route::get('/posts/{post}', [PostController::class, 'detail'])->name('posts.detail');
 
-Route::middleware(['auth', 'admin'])
-    ->prefix('admin')
-    ->name('admin.')
-    ->group(function () {
-        Route::get('/', [AdminDashboardController::class, 'index'])->name('dashboard');
-    });
-
 // Ajaxリクエストで投稿一覧を更新するためのルート
 Route::get('/AllPost/refresh', [\App\Http\Controllers\ShareTrash\PostController::class, 'refresh'])->name('posts.refresh');
+
+// Ajaxリクエストでコメントを更新するためのルート 管理者
+Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {
+    Route::get('/', [AdminDashboardController::class, 'index'])->name('dashboard');
+    Route::get('/refresh-posts', [AdminDashboardController::class, 'refreshPosts'])->name('refresh.posts');
+    Route::get('/refresh-users', [AdminDashboardController::class, 'refreshUsers'])->name('refresh.users');
+    Route::get('/refresh-inquiries', [AdminDashboardController::class, 'refreshInquiries'])->name('refresh.inquiries');
+    Route::get('/refresh-stats', [AdminDashboardController::class, 'refreshStats'])->name('refresh.stats');
+});

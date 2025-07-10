@@ -12,7 +12,9 @@
     </header>
 
     <div class="container">
-        <p>ようこそ、管理者ページへ。</p>
+        <p>ようこそ、管理者ページへ。<br>
+        更新まで残り: <span id="elapsedSeconds">0</span>秒
+        </p>
 
         <div class="grid">
             <div class="card" onclick="showPostSection()" style="cursor:pointer;">
@@ -40,16 +42,7 @@
         <div id="postSection" class="content-area" style="display: none;">
             <h3>投稿管理</h3>
             <ul>
-                @foreach ($posts as $post)
-                    <li>
-                        <span class="label">タイトル:</span><span class="value">{{ $post->title }}</span>
-                        <span class="label">カテゴリー:</span><span class="value">{{ $post->category->category_name ?? '未分類' }}</span>
-                        <span class="label">ビュー数:</span><span class="value">{{ $post->views_count }}</span>
-                        <span class="label">いいね数:</span><span class="value">{{ $post->likes_count }}</span>
-                        <span class="label">コメント数:</span><span class="value">{{ $post->comments->count() }}</span>
-                        <span class="label">投稿日:</span><span class="value">{{ $post->posted_at ? $post->posted_at->format('Y年m月d日') : '日付なし' }}</span>
-                    </li>
-                @endforeach
+                @include('admin._posts_list')
             </ul>
         </div>
 
@@ -57,15 +50,7 @@
         <div id="userSection" class="content-area" style="display: none;">
             <h3>ユーザー管理</h3>
             <ul>
-                @foreach ($users as $user)
-                    <li>
-                        <span class="label">ニックネーム:</span><span class="value">{{ $user->nickname }}</span>
-                        <span class="label">メール:</span><span class="value">{{ $user->email }}</span>
-                        <span class="label">都道府県:</span><span class="value">{{ $user->address_prefecture ?? '未設定' }}</span>
-                        <span class="label">市区町村:</span><span class="value">{{ $user->address_city ?? '未設定' }}</span>
-                        <span class="label">登録日:</span><span class="value">{{ $user->created_at ? $user->created_at->format('Y年m月d日 H:i') : '日付なし' }}</span>
-                    </li>
-                @endforeach
+                @include('admin._users_list')
             </ul>
         </div>
 
@@ -73,16 +58,7 @@
         <div id="contactSection" class="content-area" style="display: none;">
             <h3>お問い合わせ</h3>
             <ul>
-                @foreach ($inquiries as $inquiry)
-                    <li>
-                        <span class="label">名前:</span><span class="value">{{ $inquiry->display_name }}</span>
-                        <span class="label">メール:</span><span class="value">{{ $inquiry->email }}</span>
-                        <span class="label">内容:</span><span class="value">{{ $inquiry->content }}</span>
-                        <span class="label">送信日時:</span><span class="value">{{ $inquiry->inquired_at ? $inquiry->inquired_at->format('Y年m月d日 H:i') : '日付なし' }}</span>
-                        <span class="label">ステータス:</span>
-                        <span class="value">{{ $inquiry->status === "未対応" ? '未対応' : ($inquiry->status === "対応中" ? '対応中' : '対応済み') }}</span>
-                    </li>
-                @endforeach
+               @include('admin._inquiries_list')
             </ul>
         </div>
         {{-- サイト統計エリア（最初は非表示） --}}
@@ -138,6 +114,13 @@
                 });
             }
         }
+
+        window.refreshRoutes = {
+            posts: "{{ route('admin.refresh.posts') }}",
+            users: "{{ route('admin.refresh.users') }}",
+            inquiries: "{{ route('admin.refresh.inquiries') }}",
+            stats: "{{ route('admin.refresh.stats') }}"
+        };
     </script>
 </body>
 </html>
