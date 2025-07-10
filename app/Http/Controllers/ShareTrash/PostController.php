@@ -43,7 +43,7 @@ class PostController extends Controller
         }
 
         // 投稿のクエリビルダを作成
-        $postsQuery = Post::query()->with('category')->withCount('comments');
+        $postsQuery = Post::query()->with('category','user')->withCount('comments');
 
         // 検索機能
         if($request->filled('search')) {
@@ -154,7 +154,7 @@ class PostController extends Controller
      */
     public function detail(string $id)
     {
-        $post = Post::with(['category', 'comments', 'images'])->findOrFail($id);
+        $post = Post::with(['category', 'comments', 'images','user'])->findOrFail($id);
 
         //セッションキーを作成
         $sessionkey = 'viewed_post_' . $post->post_id;
