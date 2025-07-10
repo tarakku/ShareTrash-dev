@@ -43,7 +43,7 @@ class PostController extends Controller
         }
 
         // 投稿のクエリビルダを作成
-        $postsQuery = Post::query()->with('category')->withCount('comments');
+        $postsQuery = Post::query()->with('category','user')->withCount('comments');
 
         // 検索機能
         if($request->filled('search')) {
@@ -154,7 +154,7 @@ class PostController extends Controller
      */
     public function detail(string $id)
     {
-        $post = Post::with(['category', 'comments', 'images'])->findOrFail($id);
+        $post = Post::with(['category', 'comments', 'images','user'])->findOrFail($id);
 
         //セッションキーを作成
         $sessionkey = 'viewed_post_' . $post->post_id;
@@ -182,8 +182,46 @@ class PostController extends Controller
     public function my(Request $request)
     {
         session(['return_to' => $request->fullUrl()]);
-        $data = $this->getAllPosts($request, true); // ← フラグを true にして自分の投稿に絞る
-        return view('ShareTrash.mypost', $data);
+
+        $allowedSorts = [
+            'views_count' => 'views_count',
+            'likes_count' => 'likes_count',
+            'posted_at' => 'posted_at',
+        ];
+
+        $sortBy = $request->query('sort_by', 'posted_at');
+        $sortDirection = $request->query('direction', 'desc');
+
+        if (!array_key_exists($sortBy, $allowedSorts)) {
+            $sortBy = 'posted_at';
+        }
+        if (!in_array(strtolower($sortDirection), ['asc', 'desc'])) {
+            $sortDirection = 'desc';
+        }
+
+        $postsQuery = Post::query()
+            ->with('category')
+            ->withCount('comments')
+            ->where('user_id', auth()->id()); // 自分の投稿だけ
+
+        if ($request->filled('search')) {
+            $search = $request->input('search');
+            $postsQuery->where(function ($query) use ($search) {
+                $query->where('title', 'like', "%{$search}%")
+                    ->orWhere('content', 'like', "%{$search}%");
+            });
+        }
+
+        if ($request->has('category_id') && $request->input('category_id') !== 'all') {
+            $postsQuery->where('category_id', $request->input('category_id'));
+        }
+
+        $posts = $postsQuery
+            ->orderBy($allowedSorts[$sortBy], $sortDirection)
+            ->paginate(5)
+            ->appends($request->query());
+
+        return view('ShareTrash.mypost', compact('posts', 'sortBy', 'sortDirection'));
     }
     /**
      * 編集画面を表示

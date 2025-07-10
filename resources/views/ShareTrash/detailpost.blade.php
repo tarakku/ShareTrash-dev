@@ -18,7 +18,7 @@
             <div class="user-info">
                 <img src="{{ asset('header_images/login_icon.png') }}" alt="ユーザーアイコン" class="user-icon">
                 <div>
-                    <p class="username">Admin</p>
+                    <p class="username">{{ $post->user->nickname }}</p>
                     <p class="post-date">{{ $post->posted_at->format('m月d日') }}</p>
                 </div>
             </div>
