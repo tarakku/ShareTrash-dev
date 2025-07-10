@@ -89,6 +89,10 @@
         <div class="comments-section">
             <h3>コメント一覧</h3>
             @foreach ($post->comments as $comment)
+                <dev class="comment-user">
+                    <span class="comment-username">{{ $comment->user->nickname }} </span>
+                    <span class="comment-date">{{ $comment->posted_at->format('Y年m月d日') }}</span>
+                </dev>
                 <div class="comment">
                     <p class="comment-content">{{ $comment->content }}</p>
                 </div>
