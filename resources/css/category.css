@@ -75,18 +75,18 @@
     gap: 15px;
 }
 
-.category_container .search-bar {
+.category_container {
      position: relative;
 }
 
-.category_container .search-bar input {
+.category_container input {
     border: 1px solid #ccc;
     padding: 8px 30px 8px 10px; /* テキストと×ボタンのスペース */
     border-radius: 5px;
     font-size: 14px;
 }
 
-.category_container .search-bar .clear-search {
+.category_container .clear-search {
     position: absolute;
     right: 5px;
     top: 50%;
