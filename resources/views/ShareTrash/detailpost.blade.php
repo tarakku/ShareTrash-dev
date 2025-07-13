@@ -86,20 +86,19 @@
         @endauth
 
     
-        <div class="comments-section">
-            <h3>コメント一覧</h3>
+        <div class="comments-section" data-post-id="{{ $post->post_id }}">
+        <h3>コメント一覧</h3>
+        <div class="comments-container">
             @foreach ($post->comments as $comment)
-                <dev class="comment-user">
+                <div class="comment-user">
                     <span class="comment-username">{{ $comment->user->nickname }} </span>
                     <span class="comment-date">{{ $comment->posted_at->format('Y年m月d日') }}</span>
-                </dev>
+                </div>
                 <div class="comment">
                     <p class="comment-content">{{ $comment->content }}</p>
                 </div>
             @endforeach
         </div>
-
-        <!-- コメント機能ここまで　-->
     </div>
 </main>
 @endsection
