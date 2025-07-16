@@ -1,3 +1,9 @@
+
+// 非同期処理です
+//domの読み込みが完了したら実行
+//ページの読み込み時と10秒ごとに投稿を更新する
+// DOMとは、Document Object Model（ドキュメントオブジェクトモデル）の略で、HTMLやXML文書をプログラムで操作するためのインターフェースです。
+
 document.addEventListener('DOMContentLoaded', function () {
     function refreshPosts() {
         const sortBySelect = document.getElementById('sortBy');

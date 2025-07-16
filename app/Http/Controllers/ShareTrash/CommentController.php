@@ -21,4 +21,10 @@ class CommentController extends Controller
 
         return back()->with('success', 'コメントを投稿しました');
     }
+
+    public function refresh(Post $post)
+    {
+        $comments = $post->comments()->with('user')->orderBy('posted_at', 'desc')->get();
+        return view('ShareTrash._comments_list', compact('comments'))->render();
+    }
 }

@@ -37,4 +37,32 @@ class AdminDashboardController extends Controller
         
         return view('admin.dashboard', compact('posts', 'users', 'stats','inquiries'));
     }
+
+    public function refreshPosts()
+    {
+        $posts = Post::with('category', 'comments')->get();
+        return view('admin._posts_list', compact('posts'))->render();
+    }
+
+    public function refreshUsers()
+    {
+        $users = User::all();
+        return view('admin._users_list', compact('users'))->render();
+    }
+
+    public function refreshInquiries()
+    {
+        $inquiries = Inquiry::all();
+        return view('admin._inquiries_list', compact('inquiries'))->render();
+    }
+
+    public function refreshStats()
+    {
+        $stats = [
+            'post_count' => Post::count(),
+            'user_count' => User::count(),
+            'comment_count' => Comment::count(),
+        ];
+        return response()->json($stats);
+    }
 }
